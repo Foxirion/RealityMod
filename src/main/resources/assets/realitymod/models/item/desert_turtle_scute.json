@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "realitymod:item/desert_turtle_scute"
+  }
+}

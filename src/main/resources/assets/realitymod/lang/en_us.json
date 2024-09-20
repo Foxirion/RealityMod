@@ -1,0 +1,14 @@
+{
+  "block.realitymod.oasis_clay": "Oasis Clay",
+  "block.minecraft.turtle_egg": "Sea Turtle Egg",
+
+  "creativetab.rm_natural_blocks": "RealityMod Natural Blocks",
+  "creativetab.rm_ingredients": "RealityMod Ingredients",
+  "creativetab.rm_food_and_drinks": "RealityMod Food & Drinks",
+
+  "item.realitymod.coconut": "Coconut",
+  "item.realitymod.desert_turtle_scute": "Desert Turtle Scute",
+  "item.realitymod.oasis_clay_ball": "Oasis Clay Ball",
+  "item.minecraft.scute": "Sea Turtle Scute",
+  "item.minecraft.turtle_helmet": "Sea Turtle Shell"
+}
