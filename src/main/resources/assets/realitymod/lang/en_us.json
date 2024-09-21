@@ -1,6 +1,12 @@
 {
   "block.realitymod.oasis_clay": "Oasis Clay",
+  "block.realitymod.palm_leaves": "Palm Leaves",
+  "block.realitymod.palm_log": "Palm Log",
+  "block.realitymod.palm_planks": "Palm Planks",
+  "block.realitymod.palm_wood": "Palm Wood",
   "block.minecraft.turtle_egg": "Sea Turtle Egg",
+  "block.realitymod.stripped_palm_log": "Stripped Palm Log",
+  "block.realitymod.stripped_palm_wood": "Stripped Palm Wood",
 
   "creativetab.rm_natural_blocks": "RealityMod Natural Blocks",
   "creativetab.rm_ingredients": "RealityMod Ingredients",

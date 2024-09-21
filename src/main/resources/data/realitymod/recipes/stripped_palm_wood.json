@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "realitymod:stripped_palm_log"
+    }
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "item":"realitymod:stripped_palm_wood",
+    "count": 3
+  },
+  "show_notification": true
+}

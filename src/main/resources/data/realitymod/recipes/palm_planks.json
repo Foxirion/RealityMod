@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "realitymod:palm_log"
+    }
+  },
+  "pattern": [
+    "#"
+  ],
+  "result": {
+    "item":"realitymod:palm_planks",
+    "count": 4
+  },
+  "show_notification": true
+}

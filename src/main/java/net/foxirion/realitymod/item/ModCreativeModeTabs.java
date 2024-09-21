@@ -14,11 +14,26 @@ public class ModCreativeModeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, RealityMod.MOD_ID);
 
-    public static final RegistryObject<CreativeModeTab> RM_NATURAL_BLOCKS = CREATIVE_MODE_TABS.register("rm_natural_blocks",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.OASIS_CLAY.get()))
+    public static final RegistryObject<CreativeModeTab> RM_BUILDING_BLOCKS = CREATIVE_MODE_TABS.register("rm_building_blocks",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.PALM_PLANKS.get()))
                     .title(Component.translatable("creativetab.rm_natural_blocks"))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModBlocks.OASIS_CLAY.get());
+                        pOutput.accept(ModBlocks.PALM_LOG.get());
+                        pOutput.accept(ModBlocks.PALM_WOOD.get());
+                        pOutput.accept(ModBlocks.STRIPPED_PALM_LOG.get());
+                        pOutput.accept(ModBlocks.STRIPPED_PALM_WOOD.get());
+                        pOutput.accept(ModBlocks.PALM_PLANKS.get());
+                    })
+                    .build());
+
+    public static final RegistryObject<CreativeModeTab> RM_NATURAL_BLOCKS = CREATIVE_MODE_TABS.register("rm_natural_blocks",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.PALM_LOG.get()))
+                    .title(Component.translatable("creativetab.rm_natural_blocks"))
+                    .displayItems((pParameters, pOutput) -> {
+                        pOutput.accept(ModBlocks.OASIS_CLAY.get());
+                        pOutput.accept(ModBlocks.PALM_LOG.get());
+                        pOutput.accept(ModBlocks.PALM_LEAVES.get());
                     })
                     .build());
 
