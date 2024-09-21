@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "realitymod:coconut"
+    }
+  },
+  "pattern": [
+    "#"
+  ],
+  "result": {
+    "item": "realitymod:coconut_milk"
+  },
+  "show_notification": true
+}

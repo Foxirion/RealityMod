@@ -27,6 +27,7 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("creativetab.rm_ingredients"))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModItems.DESERT_TURTLE_SCUTE.get());
+                        pOutput.accept(ModItems.OASIS_CLAY_BALL.get());
                     })
                     .build());
 
@@ -35,6 +36,7 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("creativetab.rm_food_and_drinks"))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModItems.COCONUT.get());
+                        pOutput.accept(ModItems.COCONUT_MILK.get());
                     })
                     .build());
 

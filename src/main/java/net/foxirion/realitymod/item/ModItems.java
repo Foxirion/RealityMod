@@ -15,6 +15,10 @@ public class ModItems {
     public static final RegistryObject<Item> COCONUT = ITEMS.register("coconut",
             () -> new Item(new Item.Properties()));
 
+    //Coconut
+    public static final RegistryObject<Item> COCONUT_MILK = ITEMS.register("coconut_milk",
+            () -> new Item(new Item.Properties().food(ModFoods.COCONUT_MILK)));
+
     //Desert Turtle Scute
     public static final RegistryObject<Item> DESERT_TURTLE_SCUTE = ITEMS.register("desert_turtle_scute",
             () -> new Item(new Item.Properties()));
