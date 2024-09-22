@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "realitymod:item/oasis_clay_ball"
+  }
+}

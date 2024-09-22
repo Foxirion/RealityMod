@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.6,
+  "group": "oasis_clay_ball_to_brick",
+  "ingredient": {
+    "item": "realitymod:oasis_clay_ball"
+  },
+  "result": "minecraft:brick"
+}

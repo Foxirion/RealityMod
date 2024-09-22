@@ -9,6 +9,8 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SaplingBlock;
+import net.minecraft.world.level.block.grower.AbstractTreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -34,6 +36,10 @@ public class ModBlocks {
     //Palm Wood
     public static final RegistryObject<Block> PALM_WOOD = registerBlock("palm_wood",
             () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)));
+
+    //Palm Sapling
+    public static final RegistryObject<Block> PALM_SAPLING = registerBlock("palm_sapling",
+            () -> new SaplingBlock(null, BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
 
     //Stripped Palm Log
     public static final RegistryObject<Block> STRIPPED_PALM_LOG = registerBlock("stripped_palm_log",
