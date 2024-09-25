@@ -1,11 +1,13 @@
 package net.foxirion.realitymod.datagen;
 
+import com.google.gson.JsonObject;
 import net.foxirion.realitymod.RealityMod;
 import net.foxirion.realitymod.block.ModBlocks;
 import net.foxirion.realitymod.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -29,22 +31,30 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> pWriter) {
 
-        oreSmelting(pWriter, List.of(ModItems.OASIS_CLAY_BALL.get()), RecipeCategory.MISC, BRICK, 0.6f, 200, "oasis_clay_ball_to_brick", 2);
+                //Smelting
 
-        oreSmelting(pWriter, List.of(ModBlocks.OASIS_CLAY.get()), RecipeCategory.BUILDING_BLOCKS, Blocks.TERRACOTTA, 0.7f, 200, "oasis_clay_to_terracotta", 2);
+        // Oasis Clay & Ball
+// Oasis Clay & Ball
+        customSmelting(pWriter, ModBlocks.OASIS_CLAY.get(), Items.TERRACOTTA, 2, 0.7f, 200, "oasis_clay_to_terracotta");
+        customSmelting(pWriter, ModItems.OASIS_CLAY_BALL.get(), Items.BRICK, 2, 0.6f, 200, "oasis_clay_ball_to_brick");
+        //Crafting
 
+        //Coconut
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.COCONUT_MILK.get())
                 .requires(ModItems.COCONUT.get())
                 .unlockedBy(getHasName(ModItems.COCONUT.get()), has(ModItems.COCONUT.get()))
                 .unlockedBy(getHasName(ModItems.COCONUT_MILK.get()), has(ModItems.COCONUT_MILK.get()))
                 .save(pWriter);
 
+        //Oasis Clay
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.OASIS_CLAY.get())
                 .pattern("##")
                 .pattern("##")
                 .define('#', ModItems.OASIS_CLAY_BALL.get())
                 .unlockedBy(getHasName(ModItems.OASIS_CLAY_BALL.get()), has(ModItems.OASIS_CLAY_BALL.get()))
                 .save(pWriter);
+
+        //Palm Blocks and non-Blocks
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.PALM_PLANKS.get(), 4)
                 .requires(ModBlocks.PALM_LOG.get())
@@ -65,6 +75,63 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModBlocks.STRIPPED_PALM_WOOD.get())
                 .unlockedBy(getHasName(ModBlocks.STRIPPED_PALM_WOOD.get()), has(ModBlocks.STRIPPED_PALM_WOOD.get()))
                 .save(pWriter, new ResourceLocation(RealityMod.MOD_ID, "palm_planks_from_stripped_palm_wood"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.PALM_BUTTON.get())
+                .requires(ModBlocks.PALM_PLANKS.get())
+                .unlockedBy(getHasName(ModBlocks.PALM_PLANKS.get()), has(ModBlocks.PALM_PLANKS.get()))
+                .save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.PALM_DOOR.get(), 3)
+                .pattern("##")
+                .pattern("##")
+                .pattern("##")
+                .define('#', ModBlocks.PALM_PLANKS.get())
+                .unlockedBy(getHasName(ModBlocks.PALM_PLANKS.get()), has(ModBlocks.PALM_PLANKS.get()))
+                .save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.PALM_FENCE.get(), 3)
+                .pattern("#|#")
+                .pattern("#|#")
+                .define('#', ModBlocks.PALM_PLANKS.get())
+                .define('|', Items.STICK)
+                .unlockedBy(getHasName(ModBlocks.PALM_PLANKS.get()), has(ModBlocks.PALM_PLANKS.get()))
+                .save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.PALM_FENCE_GATE.get())
+                .pattern("|#|")
+                .pattern("|#|")
+                .define('#', ModBlocks.PALM_PLANKS.get())
+                .define('|', Items.STICK)
+                .unlockedBy(getHasName(ModBlocks.PALM_PLANKS.get()), has(ModBlocks.PALM_PLANKS.get()))
+                .save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.PALM_PRESSURE_PLATE.get())
+                .pattern("##")
+                .define('#', ModBlocks.PALM_PLANKS.get())
+                .unlockedBy(getHasName(ModBlocks.PALM_PLANKS.get()), has(ModBlocks.PALM_PLANKS.get()))
+                .save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.PALM_SLAB.get(), 6)
+                .pattern("###")
+                .define('#', ModBlocks.PALM_PLANKS.get())
+                .unlockedBy(getHasName(ModBlocks.PALM_PLANKS.get()), has(ModBlocks.PALM_PLANKS.get()))
+                .save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.PALM_STAIRS.get(), 4)
+                .pattern("#  ")
+                .pattern("## ")
+                .pattern("###")
+                .define('#', ModBlocks.PALM_PLANKS.get())
+                .unlockedBy(getHasName(ModBlocks.PALM_PLANKS.get()), has(ModBlocks.PALM_PLANKS.get()))
+                .save(pWriter, new ResourceLocation(RealityMod.MOD_ID, "palm_stairs"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.PALM_TRAPDOOR.get(), 2)
+                .pattern("###")
+                .pattern("###")
+                .define('#', ModBlocks.PALM_PLANKS.get())
+                .unlockedBy(getHasName(ModBlocks.PALM_PLANKS.get()), has(ModBlocks.PALM_PLANKS.get()))
+                .save(pWriter);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.PALM_WOOD.get(), 3)
                 .pattern("##")
                 .pattern("##")
@@ -83,15 +150,21 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
 
     }
-    protected static void oreSmelting(Consumer<FinishedRecipe> pFinishedRecipeConsumer, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTIme, String pGroup, int pResultCount) {
-        oreCooking(pFinishedRecipeConsumer, RecipeSerializer.SMELTING_RECIPE, pIngredients, pCategory, pResult, pExperience, pCookingTIme, pGroup, "_from_smelting");
+
+    //Methods
+    protected static void oreSmelting(Consumer<FinishedRecipe> pFinishedRecipeConsumer, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTime, String pGroup, int pResultCount) {
+        oreCooking(pFinishedRecipeConsumer, RecipeSerializer.SMELTING_RECIPE, pIngredients, pCategory, pResult, pExperience, pCookingTime, pGroup, "_from_smelting", pResultCount);
     }
 
     protected static void oreBlasting(Consumer<FinishedRecipe> pFinishedRecipeConsumer, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTime, String pGroup, int pResultCount) {
         oreCooking(pFinishedRecipeConsumer, RecipeSerializer.BLASTING_RECIPE, pIngredients, pCategory, pResult, pExperience, pCookingTime, pGroup, "_from_blasting");
     }
 
-    protected static void oreCooking(Consumer<FinishedRecipe> pFinishedRecipeConsumer, RecipeSerializer<? extends AbstractCookingRecipe> pCookingSerializer, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTime, String pGroup, String pRecipeName) {
+    protected static void Smelting(Consumer<FinishedRecipe> pFinishedRecipeConsumer, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTime, String pGroup, int pResultCount) {
+        oreCooking(pFinishedRecipeConsumer, RecipeSerializer.SMELTING_RECIPE, pIngredients, pCategory, pResult, pExperience, pCookingTime, pGroup, "_from_smelting", pResultCount);
+    }
+
+    protected static void oreCooking(Consumer<FinishedRecipe> pFinishedRecipeConsumer, RecipeSerializer<? extends AbstractCookingRecipe> pCookingSerializer, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTime, String pGroup, String pRecipeName, int pResultCount) {
         Iterator var9 = pIngredients.iterator();
 
         while(var9.hasNext()) {
@@ -105,4 +178,59 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     }
 
+    //Custom Smelting Method (made at 1AM)
+    protected void customSmelting(Consumer<FinishedRecipe> pFinishedRecipeConsumer, ItemLike pInput, ItemLike pResult, int pResultCount, float pExperience, int pCookingTime, String pGroup) {
+        pFinishedRecipeConsumer.accept(new CustomSmeltingRecipe(
+                new ResourceLocation(RealityMod.MOD_ID, pGroup),
+                Ingredient.of(pInput),
+                pResult,
+                pResultCount,
+                pExperience,
+                pCookingTime
+        ));
+    }
+
+    private record CustomSmeltingRecipe(
+            ResourceLocation id,
+            Ingredient ingredient,
+            ItemLike result,
+            int resultCount,
+            float experience,
+            int cookingTime
+    ) implements FinishedRecipe {
+
+        @Override
+        public void serializeRecipeData(JsonObject json) {
+            json.addProperty("type", "minecraft:smelting");
+            json.addProperty("category", "blocks");
+            json.addProperty("cookingtime", this.cookingTime);
+            json.addProperty("experience", this.experience);
+            json.add("ingredient", this.ingredient.toJson());
+
+            JsonObject resultJson = new JsonObject();
+            resultJson.addProperty("item", this.result.toString());
+            resultJson.addProperty("count", this.resultCount);
+            json.add("result", resultJson);
+        }
+
+        @Override
+        public ResourceLocation getId() {
+            return this.id;
+        }
+
+        @Override
+        public RecipeSerializer<?> getType() {
+            return RecipeSerializer.SMELTING_RECIPE;
+        }
+
+        @Override
+        public JsonObject serializeAdvancement() {
+            return null;
+        }
+
+        @Override
+        public ResourceLocation getAdvancementId() {
+            return null;
+        }
+    }
 }

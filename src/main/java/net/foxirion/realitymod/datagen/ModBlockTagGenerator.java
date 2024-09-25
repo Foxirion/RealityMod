@@ -22,11 +22,14 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
+
+        //Blocks Tags
+
+        this.tag(BlockTags.FENCE_GATES)
+                .add(ModBlocks.PALM_FENCE_GATE.get());
+
         this.tag(BlockTags.LEAVES)
                 .add(ModBlocks.PALM_LEAVES.get());
-
-        this.tag(BlockTags.PLANKS)
-                .add(ModBlocks.PALM_PLANKS.get());
 
         this.tag(BlockTags.LOGS_THAT_BURN)
                 .add(ModBlocks.PALM_LOG.get(),
@@ -34,15 +37,55 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.STRIPPED_PALM_LOG.get(),
                         ModBlocks.STRIPPED_PALM_WOOD.get());
 
+        this.tag(BlockTags.PLANKS)
+                .add(ModBlocks.PALM_PLANKS.get());
+
         this.tag(ModTags.Blocks.PALM_LOGS)
                 .add(ModBlocks.PALM_LOG.get(),
                         ModBlocks.PALM_WOOD.get(),
                         ModBlocks.STRIPPED_PALM_LOG.get(),
                         ModBlocks.STRIPPED_PALM_WOOD.get());
 
+        this.tag(BlockTags.LEAVES)
+                .add(ModBlocks.PALM_LEAVES.get());
+
+        this.tag(BlockTags.WOODEN_BUTTONS)
+                .add(ModBlocks.PALM_BUTTON.get());
+
+        this.tag(BlockTags.WOODEN_DOORS)
+                .add(ModBlocks.PALM_DOOR.get());
+
+        this.tag(BlockTags.WOODEN_FENCES)
+                .add(ModBlocks.PALM_FENCE.get());
+
+        this.tag(BlockTags.WOODEN_PRESSURE_PLATES)
+                .add(ModBlocks.PALM_PRESSURE_PLATE.get());
+
+        this.tag(BlockTags.WOODEN_SLABS)
+                .add(ModBlocks.PALM_SLAB.get());
+
+        this.tag(BlockTags.WOODEN_STAIRS)
+                .add(ModBlocks.PALM_STAIRS.get());
+
+        this.tag(BlockTags.WOODEN_TRAPDOORS)
+                .add(ModBlocks.PALM_TRAPDOOR.get());
+
+
+
+        //Mineable Tags
+
         this.tag(BlockTags.MINEABLE_WITH_AXE)
-                .add(ModBlocks.PALM_LOG.get(),
+                .add(
+                        ModBlocks.PALM_BUTTON.get(),
+                        ModBlocks.PALM_DOOR.get(),
+                        ModBlocks.PALM_FENCE.get(),
+                        ModBlocks.PALM_FENCE_GATE.get(),
+                        ModBlocks.PALM_LOG.get(),
                         ModBlocks.PALM_PLANKS.get(),
+                        ModBlocks.PALM_PRESSURE_PLATE.get(),
+                        ModBlocks.PALM_SLAB.get(),
+                        ModBlocks.PALM_STAIRS.get(),
+                        ModBlocks.PALM_TRAPDOOR.get(),
                         ModBlocks.PALM_WOOD.get(),
                         ModBlocks.STRIPPED_PALM_LOG.get(),
                         ModBlocks.STRIPPED_PALM_WOOD.get());

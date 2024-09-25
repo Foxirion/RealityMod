@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_oasis_clay": {
+    "has_palm_planks": {
       "conditions": {
         "items": [
           {
             "items": [
-              "realitymod:oasis_clay"
+              "realitymod:palm_planks"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "realitymod:_from_smelting_oasis_clay"
+        "recipe": "realitymod:palm_fence_gate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_oasis_clay",
+      "has_palm_planks",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "realitymod:_from_smelting_oasis_clay"
+      "realitymod:palm_fence_gate"
     ]
   },
   "sends_telemetry_event": false

@@ -1,10 +1,11 @@
-// 1.20.1	2024-09-22T22:38:36.4529083	Tags for minecraft:block mod id realitymod
+// 1.20.1	2024-09-23T22:18:36.3057193	Tags for minecraft:block mod id realitymod
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/forge/tags/blocks/needs_gold_tool.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/forge/tags/blocks/needs_netherite_tool.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/forge/tags/blocks/needs_wood_tool.json
-606d6773d7a9b635eb7509b7e1227c215b66dc9d data/minecraft/tags/blocks/leaves.json
+9890231dd49d1c78e445ba44fe98967ff0356963 data/minecraft/tags/blocks/fence_gates.json
+200192e6fb94e6e29943da212d2fb8df589ec757 data/minecraft/tags/blocks/leaves.json
 6e19d248b1a9f2f40107084480c3708b9aceb968 data/minecraft/tags/blocks/logs_that_burn.json
-faf9320dc8a54bc4ccb57c393a12f92b7cc27675 data/minecraft/tags/blocks/mineable/axe.json
+c2adee31b8ea17791518924e6c4a6a38aa269781 data/minecraft/tags/blocks/mineable/axe.json
 606d6773d7a9b635eb7509b7e1227c215b66dc9d data/minecraft/tags/blocks/mineable/hoe.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/blocks/mineable/pickaxe.json
 66c533aa8d2ef2f76e62e30a7ab3b4f2db317e69 data/minecraft/tags/blocks/mineable/shovel.json
@@ -12,4 +13,11 @@ faf9320dc8a54bc4ccb57c393a12f92b7cc27675 data/minecraft/tags/blocks/mineable/axe
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/blocks/needs_iron_tool.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/blocks/needs_stone_tool.json
 e718001019663e34aad6e0536eb2a495d314348b data/minecraft/tags/blocks/planks.json
+cbd0092f378a6d690ef45329c17fdf5211314cc8 data/minecraft/tags/blocks/wooden_buttons.json
+c8d94835d8223326cf839844ed607c8ddb109cfe data/minecraft/tags/blocks/wooden_doors.json
+e3b302beeafe02d8d2bc87fd6a12d0cf4b4fef5c data/minecraft/tags/blocks/wooden_fences.json
+cb38216cf3c328f2ae14a03590e30e47b95ece77 data/minecraft/tags/blocks/wooden_pressure_plates.json
+bd95b756ed58b608321470538b2d309affd4cba0 data/minecraft/tags/blocks/wooden_slabs.json
+27350fd58f19f72819cd88899bc91fd17ed65a4f data/minecraft/tags/blocks/wooden_stairs.json
+bb159c5cb85175edbc364c78775c3b62821b15c7 data/minecraft/tags/blocks/wooden_trapdoors.json
 6e19d248b1a9f2f40107084480c3708b9aceb968 data/realitymod/tags/blocks/palm_logs.json

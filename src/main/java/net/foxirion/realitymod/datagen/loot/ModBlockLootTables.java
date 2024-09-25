@@ -25,20 +25,37 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
+        //dropSelf
+
+        this.dropSelf(ModBlocks.PALM_BUTTON.get());
+        this.dropSelf(ModBlocks.PALM_FENCE.get());
+        this.dropSelf(ModBlocks.PALM_FENCE_GATE.get());
         this.dropSelf(ModBlocks.PALM_PLANKS.get());
+        this.dropSelf(ModBlocks.PALM_PRESSURE_PLATE.get());
         this.dropSelf(ModBlocks.PALM_LOG.get());
+        this.dropSelf(ModBlocks.PALM_STAIRS.get());
         this.dropSelf(ModBlocks.PALM_SAPLING.get());
+        this.dropSelf(ModBlocks.PALM_TRAPDOOR.get());
         this.dropSelf(ModBlocks.PALM_WOOD.get());
         this.dropSelf(ModBlocks.STRIPPED_PALM_LOG.get());
         this.dropSelf(ModBlocks.STRIPPED_PALM_WOOD.get());
 
+        //Complex drops
+
         this.add(ModBlocks.OASIS_CLAY.get(),
                 (block) -> createOasisClayDrops(ModBlocks.OASIS_CLAY.get(), ModItems.OASIS_CLAY_BALL.get()));
+
+        this.add(ModBlocks.PALM_DOOR.get(),
+                block -> createDoorTable(ModBlocks.PALM_DOOR.get()));
 
         this.add(ModBlocks.PALM_LEAVES.get(),
                 (block) -> createPalmLeavesDrops(ModBlocks.PALM_LEAVES.get(), ModBlocks.PALM_SAPLING.get(), 0.05F, 0.0625F, 0.083333336F, 0.1F));
 
+        this.add(ModBlocks.PALM_SLAB.get(),
+                block -> createSlabItemTable(ModBlocks.PALM_SLAB.get()));
     }
+
+    //Methods
 
     protected LootTable.Builder createPalmLeavesDrops(Block pPalmLeavesBlock, Block pSaplingBlock, float... pChances) {
         return this.createLeavesDrops(pPalmLeavesBlock, pSaplingBlock, pChances)

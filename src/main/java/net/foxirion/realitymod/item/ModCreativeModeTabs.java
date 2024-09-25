@@ -24,6 +24,13 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModBlocks.STRIPPED_PALM_LOG.get());
                         pOutput.accept(ModBlocks.STRIPPED_PALM_WOOD.get());
                         pOutput.accept(ModBlocks.PALM_PLANKS.get());
+                        pOutput.accept(ModBlocks.PALM_BUTTON.get());
+                        pOutput.accept(ModBlocks.PALM_DOOR.get());
+                        pOutput.accept(ModBlocks.PALM_TRAPDOOR.get());
+                        pOutput.accept(ModBlocks.PALM_SLAB.get());
+                        pOutput.accept(ModBlocks.PALM_STAIRS.get());
+                        pOutput.accept(ModBlocks.PALM_FENCE.get());
+                        pOutput.accept(ModBlocks.PALM_FENCE_GATE.get());
                     })
                     .build());
 
@@ -34,8 +41,10 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModBlocks.OASIS_CLAY.get());
                         pOutput.accept(ModBlocks.PALM_LOG.get());
                         pOutput.accept(ModBlocks.PALM_LEAVES.get());
+                        pOutput.accept(ModBlocks.PALM_SAPLING.get());
                     })
                     .build());
+
 
     public static final RegistryObject<CreativeModeTab> RM_INGREDIENTS = CREATIVE_MODE_TABS.register("rm_ingredients",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.DESERT_TURTLE_SCUTE.get()))

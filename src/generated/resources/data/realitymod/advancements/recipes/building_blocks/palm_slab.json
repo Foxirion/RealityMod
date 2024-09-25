@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_oasis_clay_ball": {
+    "has_palm_planks": {
       "conditions": {
         "items": [
           {
             "items": [
-              "realitymod:oasis_clay_ball"
+              "realitymod:palm_planks"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "realitymod:_from_smelting_oasis_clay_ball"
+        "recipe": "realitymod:palm_slab"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_oasis_clay_ball",
+      "has_palm_planks",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "realitymod:_from_smelting_oasis_clay_ball"
+      "realitymod:palm_slab"
     ]
   },
   "sends_telemetry_event": false
