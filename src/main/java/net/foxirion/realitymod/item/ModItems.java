@@ -1,7 +1,10 @@
 package net.foxirion.realitymod.item;
 
 import net.foxirion.realitymod.RealityMod;
+import net.foxirion.realitymod.entity.ModEntities;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SpawnEggItem;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -22,6 +25,11 @@ public class ModItems {
     //Desert Turtle Scute
     public static final RegistryObject<Item> DESERT_TURTLE_SCUTE = ITEMS.register("desert_turtle_scute",
             () -> new Item(new Item.Properties()));
+
+    //Desert Turtle Spawn Egg
+    public static final RegistryObject<Item> DESERT_TURTLE_SPAWN_EGG = ITEMS.register("desert_turtle_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.DESERT_TURTLE, 0x8D4B38, 0x6A5220,
+                    new Item.Properties()));
 
     //Oasis Clay Ball
     public static final RegistryObject<Item> OASIS_CLAY_BALL = ITEMS.register("oasis_clay_ball",

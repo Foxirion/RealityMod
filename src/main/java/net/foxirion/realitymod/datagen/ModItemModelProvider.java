@@ -36,6 +36,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         evenSimplerBlockItem(ModBlocks.PALM_SLAB);
         evenSimplerBlockItem(ModBlocks.PALM_STAIRS);
 
+        //Existing Parent
+        withExistingParent(ModItems.DESERT_TURTLE_SPAWN_EGG.getId().getPath(),mcLoc("item/template_spawn_egg"));
+
         //Rest of the Items & BlockItems
 
         buttonItem(ModBlocks.PALM_BUTTON, ModBlocks.PALM_PLANKS);

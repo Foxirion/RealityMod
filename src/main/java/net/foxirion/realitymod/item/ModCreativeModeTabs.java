@@ -65,6 +65,14 @@ public class ModCreativeModeTabs {
                     })
                     .build());
 
+    public static final RegistryObject<CreativeModeTab> RM_SPAWN_EGGS = CREATIVE_MODE_TABS.register("rm_spawn_eggs",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.DESERT_TURTLE_SPAWN_EGG.get()))
+                    .title(Component.translatable("creativetab.rm_spawn_eggs"))
+                    .displayItems((pParameters, pOutput) -> {
+                        pOutput.accept(ModItems.DESERT_TURTLE_SPAWN_EGG.get());
+                    })
+                    .build());
+
 
     public static void register(IEventBus eventBus){
         CREATIVE_MODE_TABS.register(eventBus);

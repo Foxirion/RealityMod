@@ -16,7 +16,7 @@ public class ModEntities {
     //Register Desert Turtle
     public static final RegistryObject<EntityType<DesertTurtleEntity>> DESERT_TURTLE =
             ENTITY_TYPES.register("desert_turtle", () -> EntityType.Builder.of(DesertTurtleEntity::new, MobCategory.CREATURE)
-                    .sized(0.7F, 0.7F).build("desert_turtle"));
+                    .sized(1.0F, 0.75F).build("desert_turtle"));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

@@ -10,7 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class DesertTurtleRenderer extends MobRenderer<DesertTurtleEntity, DesertTurtleModel<DesertTurtleEntity>> {
     public DesertTurtleRenderer(EntityRendererProvider.Context pContext) {
-        super(pContext, new DesertTurtleModel<>(pContext.bakeLayer(ModModelLayers.DESERT_TURTLE_LAYER)), 0.5F);
+        super(pContext, new DesertTurtleModel<>(pContext.bakeLayer(ModModelLayers.DESERT_TURTLE_LAYER)), 0.8F);
     }
 
     @Override
