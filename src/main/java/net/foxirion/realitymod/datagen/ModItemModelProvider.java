@@ -38,6 +38,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         //Existing Parent
         withExistingParent(ModItems.DESERT_TURTLE_SPAWN_EGG.getId().getPath(),mcLoc("item/template_spawn_egg"));
+        withExistingParent("desert_turtle_egg", mcLoc("item/turtle_egg"))
+                .texture("layer0", modLoc("item/desert_turtle_egg"));
 
         //Rest of the Items & BlockItems
 

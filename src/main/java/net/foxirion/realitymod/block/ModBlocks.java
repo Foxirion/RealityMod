@@ -1,6 +1,7 @@
 package net.foxirion.realitymod.block;
 
 import net.foxirion.realitymod.RealityMod;
+import net.foxirion.realitymod.block.custom.DesertTurtleEggBlock;
 import net.foxirion.realitymod.block.custom.ModFlammableRotatedPillarBlock;
 import net.foxirion.realitymod.block.custom.ModLeaves;
 import net.foxirion.realitymod.block.custom.ModPlanks;
@@ -24,6 +25,10 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, RealityMod.MOD_ID);
 
+
+    //Desert Turtle Egg
+    public static final RegistryObject<Block> DESERT_TURTLE_EGG = registerBlock("desert_turtle_egg",
+            () -> new DesertTurtleEggBlock(BlockBehaviour.Properties.copy(Blocks.TURTLE_EGG)));
 
     //Oasis Clay
     public static final RegistryObject<Block> OASIS_CLAY = registerBlock("oasis_clay",

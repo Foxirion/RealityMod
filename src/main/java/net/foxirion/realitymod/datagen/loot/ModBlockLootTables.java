@@ -2,6 +2,9 @@ package net.foxirion.realitymod.datagen.loot;
 
 import net.foxirion.realitymod.block.ModBlocks;
 import net.foxirion.realitymod.item.ModItems;
+import net.minecraft.advancements.critereon.EnchantmentPredicate;
+import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
@@ -13,6 +16,7 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
+import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -53,6 +57,13 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
         this.add(ModBlocks.PALM_SLAB.get(),
                 block -> createSlabItemTable(ModBlocks.PALM_SLAB.get()));
+
+        this.add(ModBlocks.DESERT_TURTLE_EGG.get(),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(ModBlocks.DESERT_TURTLE_EGG.get())
+                                        .when(MatchTool.toolMatches(ItemPredicate.Builder.item()
+                                                .hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.atLeast(1))))))));
     }
 
     //Methods

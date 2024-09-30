@@ -44,9 +44,10 @@ public class RealityMod
         modEventBus.addListener(this::addCreative);
     }
 
-    private void commonSetup(final FMLCommonSetupEvent event)
-    {
-
+    private void commonSetup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            ModSetup.init();
+        });
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event){
