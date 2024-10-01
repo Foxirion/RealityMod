@@ -71,7 +71,6 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(ModBlocks.PALM_TRAPDOOR.get());
 
 
-
         //Mineable Tags
 
         this.tag(BlockTags.MINEABLE_WITH_AXE)

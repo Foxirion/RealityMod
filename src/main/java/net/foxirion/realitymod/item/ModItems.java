@@ -1,8 +1,11 @@
 package net.foxirion.realitymod.item;
 
 import net.foxirion.realitymod.RealityMod;
+import net.foxirion.realitymod.block.ModBlocks;
 import net.foxirion.realitymod.entity.ModEntities;
+import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SignItem;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -34,6 +37,8 @@ public class ModItems {
     //Oasis Clay Ball
     public static final RegistryObject<Item> OASIS_CLAY_BALL = ITEMS.register("oasis_clay_ball",
             () -> new Item(new Item.Properties()));
+
+
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

@@ -1,7 +1,8 @@
-// 1.20.1	2024-09-23T22:18:36.3057193	Tags for minecraft:block mod id realitymod
+// 1.20.1	2024-10-01T15:55:04.136286	Tags for minecraft:block mod id realitymod
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/forge/tags/blocks/needs_gold_tool.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/forge/tags/blocks/needs_netherite_tool.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/forge/tags/blocks/needs_wood_tool.json
+5983c744149f8b018583b89a00fbd507694cee69 data/minecraft/tags/blocks/ceiling_hanging_signs.json
 9890231dd49d1c78e445ba44fe98967ff0356963 data/minecraft/tags/blocks/fence_gates.json
 200192e6fb94e6e29943da212d2fb8df589ec757 data/minecraft/tags/blocks/leaves.json
 6e19d248b1a9f2f40107084480c3708b9aceb968 data/minecraft/tags/blocks/logs_that_burn.json
@@ -13,6 +14,9 @@ c2adee31b8ea17791518924e6c4a6a38aa269781 data/minecraft/tags/blocks/mineable/axe
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/blocks/needs_iron_tool.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/blocks/needs_stone_tool.json
 e718001019663e34aad6e0536eb2a495d314348b data/minecraft/tags/blocks/planks.json
+e6d962f340a09902ecb3246f6008103dce14e81a data/minecraft/tags/blocks/standing_signs.json
+503d82f116975bfee76db8028c599da72ebf489e data/minecraft/tags/blocks/wall_hanging_signs.json
+85152407266e2424f4e9b00182d4c5c74e7c90e0 data/minecraft/tags/blocks/wall_signs.json
 cbd0092f378a6d690ef45329c17fdf5211314cc8 data/minecraft/tags/blocks/wooden_buttons.json
 c8d94835d8223326cf839844ed607c8ddb109cfe data/minecraft/tags/blocks/wooden_doors.json
 e3b302beeafe02d8d2bc87fd6a12d0cf4b4fef5c data/minecraft/tags/blocks/wooden_fences.json

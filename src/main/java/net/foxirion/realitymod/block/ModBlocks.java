@@ -1,11 +1,9 @@
 package net.foxirion.realitymod.block;
 
 import net.foxirion.realitymod.RealityMod;
-import net.foxirion.realitymod.block.custom.DesertTurtleEggBlock;
-import net.foxirion.realitymod.block.custom.ModFlammableRotatedPillarBlock;
-import net.foxirion.realitymod.block.custom.ModLeaves;
-import net.foxirion.realitymod.block.custom.ModPlanks;
+import net.foxirion.realitymod.block.custom.*;
 import net.foxirion.realitymod.item.ModItems;
+import net.foxirion.realitymod.util.ModWoodTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;

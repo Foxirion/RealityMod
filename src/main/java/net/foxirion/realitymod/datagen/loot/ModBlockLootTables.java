@@ -46,6 +46,13 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
         //Complex drops
 
+        this.add(ModBlocks.DESERT_TURTLE_EGG.get(),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(ModBlocks.DESERT_TURTLE_EGG.get())
+                                        .when(MatchTool.toolMatches(ItemPredicate.Builder.item()
+                                                .hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.atLeast(1))))))));
+
         this.add(ModBlocks.OASIS_CLAY.get(),
                 (block) -> createOasisClayDrops(ModBlocks.OASIS_CLAY.get(), ModItems.OASIS_CLAY_BALL.get()));
 
@@ -58,12 +65,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.add(ModBlocks.PALM_SLAB.get(),
                 block -> createSlabItemTable(ModBlocks.PALM_SLAB.get()));
 
-        this.add(ModBlocks.DESERT_TURTLE_EGG.get(),
-                LootTable.lootTable()
-                        .withPool(LootPool.lootPool()
-                                .add(LootItem.lootTableItem(ModBlocks.DESERT_TURTLE_EGG.get())
-                                        .when(MatchTool.toolMatches(ItemPredicate.Builder.item()
-                                                .hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.atLeast(1))))))));
     }
 
     //Methods

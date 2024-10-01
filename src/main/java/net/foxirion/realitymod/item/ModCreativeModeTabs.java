@@ -16,7 +16,7 @@ public class ModCreativeModeTabs {
 
     public static final RegistryObject<CreativeModeTab> RM_BUILDING_BLOCKS = CREATIVE_MODE_TABS.register("rm_building_blocks",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.PALM_PLANKS.get()))
-                    .title(Component.translatable("creativetab.rm_natural_blocks"))
+                    .title(Component.translatable("creativetab.rm_building_blocks"))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModBlocks.OASIS_CLAY.get());
                         pOutput.accept(ModBlocks.PALM_LOG.get());
@@ -44,6 +44,14 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModBlocks.PALM_LEAVES.get());
                         pOutput.accept(ModBlocks.PALM_SAPLING.get());
                         pOutput.accept(ModBlocks.DESERT_TURTLE_EGG.get());
+                    })
+                    .build());
+
+    public static final RegistryObject<CreativeModeTab> RM_FUNCTIONAL_BLOCKS = CREATIVE_MODE_TABS.register("rm_functional_blocks",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.PALM_PRESSURE_PLATE.get()))
+                    .title(Component.translatable("creativetab.rm_functional_blocks"))
+                    .displayItems((pParameters, pOutput) -> {
+
                     })
                     .build());
 

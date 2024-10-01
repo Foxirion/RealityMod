@@ -2,6 +2,7 @@ package net.foxirion.realitymod.datagen;
 
 import net.foxirion.realitymod.RealityMod;
 import net.foxirion.realitymod.block.ModBlocks;
+import net.foxirion.realitymod.item.ModItems;
 import net.foxirion.realitymod.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -22,22 +23,27 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
+            //Leaves
         this.tag(ItemTags.LEAVES)
                 .add(ModBlocks.PALM_LEAVES.get().asItem());
 
-        this.tag(ItemTags.PLANKS)
-                .add(ModBlocks.PALM_PLANKS.get().asItem());
-
+            //Logs that burn
         this.tag(ItemTags.LOGS_THAT_BURN)
                 .add(ModBlocks.PALM_LOG.get().asItem(),
                         ModBlocks.PALM_WOOD.get().asItem(),
                         ModBlocks.STRIPPED_PALM_LOG.get().asItem(),
                         ModBlocks.STRIPPED_PALM_WOOD.get().asItem());
 
+            //Palm Logs
         this.tag(ModTags.Items.PALM_LOGS)
                 .add(ModBlocks.PALM_LOG.get().asItem(),
                         ModBlocks.PALM_WOOD.get().asItem().asItem(),
                         ModBlocks.STRIPPED_PALM_LOG.get().asItem(),
                         ModBlocks.STRIPPED_PALM_WOOD.get().asItem());
+
+            //Planks
+        this.tag(ItemTags.PLANKS)
+                .add(ModBlocks.PALM_PLANKS.get().asItem());
+
     }
 }

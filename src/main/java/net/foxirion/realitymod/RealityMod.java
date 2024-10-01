@@ -6,6 +6,8 @@ import net.foxirion.realitymod.entity.ModEntities;
 import net.foxirion.realitymod.entity.client.DesertTurtleRenderer;
 import net.foxirion.realitymod.item.ModCreativeModeTabs;
 import net.foxirion.realitymod.item.ModItems;
+import net.foxirion.realitymod.util.ModWoodTypes;
+import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -67,7 +69,9 @@ public class RealityMod
     {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
+
             EntityRenderers.register(ModEntities.DESERT_TURTLE.get(), DesertTurtleRenderer::new);
+
         }
     }
 }

@@ -1,9 +1,12 @@
 package net.foxirion.realitymod.entity.custom;
 
+import net.foxirion.realitymod.block.ModBlocks;
+import net.foxirion.realitymod.block.custom.DesertTurtleEggBlock;
 import net.foxirion.realitymod.entity.ModEntities;
 import net.foxirion.realitymod.entity.goal.DesertTurtleLayEggGoal;
 import net.foxirion.realitymod.item.ModItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -26,6 +29,7 @@ import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
 public class DesertTurtleEntity extends Animal {
@@ -40,16 +44,16 @@ public class DesertTurtleEntity extends Animal {
     public void tick() {
         super.tick();
 
-        if(this.level().isClientSide()){
+        if (this.level().isClientSide()) {
             setupAnimationStates();
         }
     }
 
-    private void setupAnimationStates(){
-        if(this.idleAnimationTimeout <= 0){
+    private void setupAnimationStates() {
+        if (this.idleAnimationTimeout <= 0) {
             this.idleAnimationTimeout = this.random.nextInt(40) + 80;
             this.idleAnimationState.start(this.tickCount);
-        }else {
+        } else {
             --this.idleAnimationTimeout;
         }
     }
@@ -57,10 +61,9 @@ public class DesertTurtleEntity extends Animal {
     @Override
     protected void updateWalkAnimation(float pPartialTick) {
         float f;
-        if (this.getPose() == Pose.STANDING){
+        if (this.getPose() == Pose.STANDING) {
             f = Math.min(pPartialTick * 6F, 1F);
-        }
-        else {
+        } else {
             f = 0;
         }
         this.walkAnimation.update(f, 0.2F);
@@ -77,7 +80,7 @@ public class DesertTurtleEntity extends Animal {
         this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
     }
 
-    public static AttributeSupplier.Builder createAttributes(){
+    public static AttributeSupplier.Builder createAttributes() {
         return Animal.createLivingAttributes()
                 .add(Attributes.MAX_HEALTH, 40.0D)
                 .add(Attributes.FOLLOW_RANGE, 24D)
@@ -138,6 +141,7 @@ public class DesertTurtleEntity extends Animal {
             this.breedingCooldown--;
         }
     }
+
     @Override
     public boolean canMate(Animal otherAnimal) {
         if (!(otherAnimal instanceof DesertTurtleEntity)) {
@@ -146,15 +150,6 @@ public class DesertTurtleEntity extends Animal {
             DesertTurtleEntity otherTurtle = (DesertTurtleEntity) otherAnimal;
             return this.isInLove() && otherTurtle.isInLove() && !this.hasEgg() && !otherTurtle.hasEgg() && this.breedingCooldown == 0 && otherTurtle.breedingCooldown == 0;
         }
-    }
-
-    @Override
-    public void spawnChildFromBreeding(ServerLevel world, Animal mate) {
-        // Don't call super.spawnChildFromBreeding() to avoid spawning a baby
-        this.setHasEgg(true);
-        this.breedingCooldown = BREEDING_COOLDOWN;
-        this.resetLove();
-        mate.resetLove();
     }
 
     @Nullable
@@ -197,6 +192,7 @@ public class DesertTurtleEntity extends Animal {
             this.level().addFreshEntity(new ExperienceOrb(this.level(), this.getX(), this.getY(), this.getZ(), i));
         }
     }
+
     //Despawn = false
     @Override
     public boolean removeWhenFarAway(double distanceToClosestPlayer) {
@@ -227,26 +223,15 @@ public class DesertTurtleEntity extends Animal {
             return false;
         }
 
-        // Check for nearby water (desert oasis) (not necesarry)
-        boolean nearWater = false;
-        int checkRadius = 4;
-        for (BlockPos checkPos : BlockPos.betweenClosed(pos.offset(-checkRadius, -1, -checkRadius), pos.offset(checkRadius, 1, checkRadius))) {
-            if (level.getBlockState(checkPos).is(Blocks.WATER)) {
-                nearWater = true;
-                break;
-            }
-        }
-        if (!nearWater) {
-            return true;
-        }
+        // Remove the water check to increase spawn chances
 
         // Check light level (desert turtles prefer lighter areas)
         if (level.getBrightness(LightLayer.SKY, pos) > 8) {
             return true;
         }
 
-        // Spawn chance (adjust this value to control spawn rate)
-        if (random.nextFloat() > 0.1f) {  // 10% chance of spawning
+        // Increase spawn chance
+        if (random.nextFloat() > 0.3f) {  // 30% chance of spawning (increased from 10%)
             return false;
         }
 
@@ -254,4 +239,46 @@ public class DesertTurtleEntity extends Animal {
         return DesertTurtleEntity.checkAnimalSpawnRules(entityType, level, spawnType, pos, random);
     }
 
+    @Override
+    public void spawnChildFromBreeding(ServerLevel world, Animal mate) {
+        // Ensure we're dealing with another DesertTurtleEntity
+        if (!(mate instanceof DesertTurtleEntity)) {
+            return;
+        }
+
+        DesertTurtleEntity mateDesertTurtle = (DesertTurtleEntity) mate;
+
+        // Randomly choose which turtle will be considered the "egg layer"
+        DesertTurtleEntity eggLayer = world.random.nextBoolean() ? this : mateDesertTurtle;
+
+        // Only set hasEgg for the chosen turtle
+        eggLayer.setHasEgg(true);
+
+        // Set breeding cooldown for both turtles
+        this.breedingCooldown = BREEDING_COOLDOWN;
+        mateDesertTurtle.breedingCooldown = BREEDING_COOLDOWN;
+
+        // Reset love for both turtles
+        this.resetLove();
+        mate.resetLove();
+
+        // Spawn eggs only once for the chosen turtle
+        BlockPos eggPos = eggLayer.blockPosition().offset(0, 0, 1);  // Spawn eggs in front of the egg-laying turtle
+        int eggCount = world.random.nextInt(4) + 1; // 1, 2, 3, or 4
+        if (eggCount > 0) {
+            BlockState eggState = ModBlocks.DESERT_TURTLE_EGG.get().defaultBlockState().setValue(DesertTurtleEggBlock.EGGS, eggCount);
+            world.setBlock(eggPos, eggState, 3);
+
+            // Create green particles
+            for (int i = 0; i < eggCount; i++) {
+                double x = eggPos.getX() + 0.5 + world.random.nextDouble() * 0.2 - 0.1;
+                double y = eggPos.getY() + 0.5;
+                double z = eggPos.getZ() + 0.5 + world.random.nextDouble() * 0.2 - 0.1;
+                world.addParticle(ParticleTypes.HAPPY_VILLAGER, x, y, z, 0.0, 0.2, 0.0);
+            }
+        }
+
+        // The other turtle doesn't spawn eggs
+        mateDesertTurtle.setHasEgg(false);
+    }
 }
