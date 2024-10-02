@@ -1,11 +1,13 @@
-// 1.20.1	2024-10-01T15:55:04.1373916	Item Models: realitymod
+// 1.20.1	2024-10-02T14:33:03.1152979	Item Models: realitymod
 f0070f80ad335539d2784012aecdc8f5a33105a4 assets/realitymod/models/item/coconut.json
 d9448569a4dacdb934c9bf7a095449581f6f2a9a assets/realitymod/models/item/coconut_milk.json
 3fd072a285ac0df2fbeef3490d8ba3944ab9fd63 assets/realitymod/models/item/desert_turtle_egg.json
 3ab95d9d25e1e2c97403535161323a9cb0755a36 assets/realitymod/models/item/desert_turtle_scute.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/realitymod/models/item/desert_turtle_spawn_egg.json
 4d8d552c9fb3ccea9082a194cfc9b84466cb2fc2 assets/realitymod/models/item/oasis_clay_ball.json
+0af1c95b42ec9f26e5dabddd6eaad8541521c5f5 assets/realitymod/models/item/palm_boat.json
 d77c5c755db829c1b2f4b533472a0f92c53edfb0 assets/realitymod/models/item/palm_button.json
+0b33f7c2b9c4790f88e9ea5818f1119bb126e704 assets/realitymod/models/item/palm_chest_boat.json
 229bf150907cee282710e665ff80b707d5c7f0b1 assets/realitymod/models/item/palm_door.json
 4c8de8f24f0ff988cc6d6da2744c0b449ebacc78 assets/realitymod/models/item/palm_fence.json
 d2781337933a5e42b6ed3143b305db80c002a685 assets/realitymod/models/item/palm_fence_gate.json

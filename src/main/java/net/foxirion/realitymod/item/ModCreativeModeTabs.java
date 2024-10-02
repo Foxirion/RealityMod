@@ -56,6 +56,14 @@ public class ModCreativeModeTabs {
                     })
                     .build());
 
+    public static final RegistryObject<CreativeModeTab> RM_TOOLS_AND_UTILITIES = CREATIVE_MODE_TABS.register("rm_tools_and_utilities",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.PALM_BOAT.get()))
+                    .title(Component.translatable("creativetab.rm_tools_and_utilities"))
+                    .displayItems((pParameters, pOutput) -> {
+                        pOutput.accept(ModItems.PALM_BOAT.get());
+                        pOutput.accept(ModItems.PALM_CHEST_BOAT.get());
+                    })
+                    .build());
 
     public static final RegistryObject<CreativeModeTab> RM_INGREDIENTS = CREATIVE_MODE_TABS.register("rm_ingredients",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.DESERT_TURTLE_SCUTE.get()))

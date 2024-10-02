@@ -3,6 +3,10 @@ package net.foxirion.realitymod.item;
 import net.foxirion.realitymod.RealityMod;
 import net.foxirion.realitymod.block.ModBlocks;
 import net.foxirion.realitymod.entity.ModEntities;
+import net.foxirion.realitymod.entity.custom.ModBoatEntity;
+import net.foxirion.realitymod.entity.custom.ModChestBoatEntity;
+import net.foxirion.realitymod.item.custom.ModBoatItem;
+import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SignItem;
@@ -37,6 +41,15 @@ public class ModItems {
     //Oasis Clay Ball
     public static final RegistryObject<Item> OASIS_CLAY_BALL = ITEMS.register("oasis_clay_ball",
             () -> new Item(new Item.Properties()));
+
+    //Palm Boats (Normal and chest)
+    public static final RegistryObject<Item> PALM_BOAT = ITEMS.register("palm_boat",
+            () -> new ModBoatItem(false, ModBoatEntity.Type.PALM, new Item.Properties()
+                    .stacksTo(1)));
+    public static final RegistryObject<Item> PALM_CHEST_BOAT = ITEMS.register("palm_chest_boat",
+            () -> new ModBoatItem(true, ModBoatEntity.Type.PALM, new Item.Properties()
+                    .stacksTo(1)));
+
 
     //Palm Signs (Normal and hanging)
     public static final RegistryObject<Item> PALM_SIGN = ITEMS.register("palm_sign",

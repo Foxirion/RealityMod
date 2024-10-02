@@ -34,10 +34,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 //Smelting
 
         // Oasis Clay & Ball
-// Oasis Clay & Ball
         customSmelting(pWriter, ModBlocks.OASIS_CLAY.get(), Items.TERRACOTTA, 2, 0.7f, 200, "oasis_clay_to_terracotta");
         customSmelting(pWriter, ModItems.OASIS_CLAY_BALL.get(), Items.BRICK, 2, 0.6f, 200, "oasis_clay_ball_to_brick");
-        //Crafting
+
+
+            //Crafting
 
         //Coconut
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.COCONUT_MILK.get())
@@ -55,6 +56,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(pWriter);
 
         //Palm Blocks and non-Blocks
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModItems.PALM_CHEST_BOAT.get())
+                .requires(ModItems.PALM_BOAT.get(), 1)
+                .requires(Blocks.CHEST, 1)
+                .unlockedBy(getHasName(ModItems.PALM_BOAT.get()), has(ModItems.PALM_BOAT.get()))
+                .save(pWriter);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.PALM_PLANKS.get(), 4)
                 .requires(ModBlocks.PALM_LOG.get())
@@ -78,6 +85,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.PALM_BUTTON.get())
                 .requires(ModBlocks.PALM_PLANKS.get())
+                .unlockedBy(getHasName(ModBlocks.PALM_PLANKS.get()), has(ModBlocks.PALM_PLANKS.get()))
+                .save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModItems.PALM_BOAT.get())
+                .pattern("# #")
+                .pattern("###")
+                .define('#', ModBlocks.PALM_PLANKS.get())
                 .unlockedBy(getHasName(ModBlocks.PALM_PLANKS.get()), has(ModBlocks.PALM_PLANKS.get()))
                 .save(pWriter);
 

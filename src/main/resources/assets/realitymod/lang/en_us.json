@@ -23,15 +23,20 @@
   "creativetab.rm_building_blocks": "RealityMod Building Blocks",
   "creativetab.rm_natural_blocks": "RealityMod Natural Blocks",
   "creativetab.rm_functional_blocks": "RealityMod Functional Blocks",
+  "creativetab.rm_tools_and_utilities": "RealityMod Tools & Utilities",
   "creativetab.rm_ingredients": "RealityMod Ingredients",
   "creativetab.rm_food_and_drinks": "RealityMod Food & Drinks",
   "creativetab.rm_spawn_eggs": "RealityMod Spawn Eggs",
+
+  "entity.realitymod.mod_chest_boat": "Boat with Chest",
 
   "item.realitymod.coconut": "Coconut",
   "item.realitymod.coconut_milk": "Coconut Milk",
   "item.realitymod.desert_turtle_scute": "Desert Turtle Scute",
   "item.realitymod.desert_turtle_spawn_egg": "Desert Turtle Spawn Egg",
   "item.realitymod.oasis_clay_ball": "Oasis Clay Ball",
+  "item.realitymod.palm_boat": "Palm Boat",
+  "item.realitymod.palm_chest_boat": "Palm Boat with Chest",
   "item.minecraft.scute": "Sea Turtle Scute",
   "item.minecraft.turtle_helmet": "Sea Turtle Shell",
   "item.minecraft.turtle_spawn_egg": "Sea Turtle Spawn Egg"

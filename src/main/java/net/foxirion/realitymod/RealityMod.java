@@ -5,6 +5,7 @@ import net.foxirion.realitymod.block.ModBlocks;
 import net.foxirion.realitymod.block.entity.ModBlockEntities;
 import net.foxirion.realitymod.entity.ModEntities;
 import net.foxirion.realitymod.entity.client.DesertTurtleRenderer;
+import net.foxirion.realitymod.entity.client.ModBoatRenderer;
 import net.foxirion.realitymod.item.ModCreativeModeTabs;
 import net.foxirion.realitymod.item.ModItems;
 import net.foxirion.realitymod.util.ModWoodTypes;
@@ -74,6 +75,8 @@ public class RealityMod
         public static void onClientSetup(FMLClientSetupEvent event) {
 
             EntityRenderers.register(ModEntities.DESERT_TURTLE.get(), DesertTurtleRenderer::new);
+            EntityRenderers.register(ModEntities.MOD_BOAT.get(), pContext -> new ModBoatRenderer(pContext, false));
+            EntityRenderers.register(ModEntities.MOD_CHEST_BOAT.get(), pContext -> new ModBoatRenderer(pContext, true));
 
             Sheets.addWoodType(ModWoodTypes.PALM);
 
