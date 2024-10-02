@@ -51,8 +51,9 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         fenceItem(ModBlocks.PALM_FENCE, ModBlocks.PALM_PLANKS);
 
-        trapdoorItem(ModBlocks.PALM_TRAPDOOR);
+        saplingItem(ModBlocks.PALM_SAPLING);
 
+        trapdoorItem(ModBlocks.PALM_TRAPDOOR);
 
     }
 
@@ -82,6 +83,12 @@ public class ModItemModelProvider extends ItemModelProvider {
     public void buttonItem(RegistryObject<Block> block, RegistryObject<Block> baseBlock) {
         this.withExistingParent(ForgeRegistries.BLOCKS.getKey(block.get()).getPath(), mcLoc("block/button_inventory"))
                 .texture("texture",  new ResourceLocation(RealityMod.MOD_ID, "block/" + ForgeRegistries.BLOCKS.getKey(baseBlock.get()).getPath()));
+    }
+
+    private ItemModelBuilder saplingItem(RegistryObject<Block> item) {
+        return withExistingParent(item.getId().getPath(),
+                new ResourceLocation("item/generated")).texture("layer0",
+                new ResourceLocation(RealityMod.MOD_ID,"block/" + item.getId().getPath()));
     }
 
     public void wallItem(RegistryObject<Block> block, RegistryObject<Block> baseBlock) {

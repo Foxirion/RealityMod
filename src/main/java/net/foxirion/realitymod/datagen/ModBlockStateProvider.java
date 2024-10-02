@@ -48,6 +48,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         pressurePlateBlock(((PressurePlateBlock) ModBlocks.PALM_PRESSURE_PLATE.get()),blockTexture(ModBlocks.PALM_PLANKS.get()));
 
+        saplingBlock(ModBlocks.PALM_SAPLING);
+
         slabBlock(((SlabBlock) ModBlocks.PALM_SLAB.get()),blockTexture(ModBlocks.PALM_PLANKS.get()), blockTexture(ModBlocks.PALM_PLANKS.get()));
 
         signBlock(((StandingSignBlock) ModBlocks.PALM_SIGN.get()), ((WallSignBlock) ModBlocks.PALM_WALL_SIGN.get()),
@@ -84,6 +86,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
         axisBlock(block,
                 new ResourceLocation(RealityMod.MOD_ID, "block/" + getName(block)),
                 new ResourceLocation(RealityMod.MOD_ID, "block/" + getName(block) + "_top"));
+    }
+
+    private void saplingBlock(RegistryObject<Block> blockRegistryObject) {
+        simpleBlock(blockRegistryObject.get(),
+                models().cross(ForgeRegistries.BLOCKS.getKey(blockRegistryObject.get()).getPath(), blockTexture(blockRegistryObject.get())).renderType("cutout"));
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {

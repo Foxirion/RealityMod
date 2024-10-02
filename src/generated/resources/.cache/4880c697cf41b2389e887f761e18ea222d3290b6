@@ -1,4 +1,4 @@
-// 1.20.1	2024-10-01T23:20:40.7396196	Block States: realitymod
+// 1.20.1	2024-10-02T16:25:31.0730124	Block States: realitymod
 429ab252d6469b72d7bab31e3cc845c4589e240d assets/realitymod/blockstates/oasis_clay.json
 e7910a1f67917dbe29c36a8aa6bf1353a2204bfd assets/realitymod/blockstates/palm_button.json
 37c8192cb0cd27391066282430a548c357904aa0 assets/realitymod/blockstates/palm_door.json
@@ -9,6 +9,7 @@ ab841f398ffc9c466ba98bfc314897a9bdf38400 assets/realitymod/blockstates/palm_fenc
 eb2237cd79066e6b24db47c32802b52202a71737 assets/realitymod/blockstates/palm_log.json
 8eb9b42686e8278008d824dc9dde1ac7677a5a9e assets/realitymod/blockstates/palm_planks.json
 d3f7cb76df953cb56068dc1728d1aa3b62f00395 assets/realitymod/blockstates/palm_pressure_plate.json
+565aac22f0453698bd5cb8278c61f143350fb324 assets/realitymod/blockstates/palm_sapling.json
 5a7a5735fbf4b26410529461816662df6d1f72c6 assets/realitymod/blockstates/palm_sign.json
 2fcb2fceed9deb5d44580c1b234bd32e2988990c assets/realitymod/blockstates/palm_slab.json
 b2416a676b84138521c2fed5e1d7dcbce6a88a30 assets/realitymod/blockstates/palm_stairs.json
@@ -42,6 +43,7 @@ c61402ad7e201712891a36d4493c21920f023539 assets/realitymod/models/block/palm_log
 1aaa06e3162dfa2097607598d432dda13ab56c18 assets/realitymod/models/block/palm_planks.json
 fc284b4a2d7848be1a448c05b1ca0eac769d50f0 assets/realitymod/models/block/palm_pressure_plate.json
 d1e796d585dd44725f39d3bb991c33a342186df7 assets/realitymod/models/block/palm_pressure_plate_down.json
+e3db5f07cfdcbdcc45f23cbe3a327bff726893fc assets/realitymod/models/block/palm_sapling.json
 5692e6666b544d2207e7ac209f8620b456badeda assets/realitymod/models/block/palm_sign.json
 b3dcf41aa8f071d3d63c426849f0354f00d8fbf5 assets/realitymod/models/block/palm_slab.json
 b31d028872f4d46a767e4cb33c398b58f51baf15 assets/realitymod/models/block/palm_slab_top.json
