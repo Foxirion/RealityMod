@@ -48,10 +48,11 @@ public class ModCreativeModeTabs {
                     .build());
 
     public static final RegistryObject<CreativeModeTab> RM_FUNCTIONAL_BLOCKS = CREATIVE_MODE_TABS.register("rm_functional_blocks",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.PALM_PRESSURE_PLATE.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.PALM_SIGN.get()))
                     .title(Component.translatable("creativetab.rm_functional_blocks"))
                     .displayItems((pParameters, pOutput) -> {
-
+                        pOutput.accept(ModItems.PALM_SIGN.get());
+                        pOutput.accept(ModItems.PALM_HANGING_SIGN.get());
                     })
                     .build());
 

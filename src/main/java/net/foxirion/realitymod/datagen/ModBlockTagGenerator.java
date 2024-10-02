@@ -25,6 +25,9 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
         //Blocks Tags
 
+        this.tag(BlockTags.CEILING_HANGING_SIGNS)
+                .add(ModBlocks.PALM_HANGING_SIGN.get());
+
         this.tag(BlockTags.FENCE_GATES)
                 .add(ModBlocks.PALM_FENCE_GATE.get());
 
@@ -48,6 +51,15 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
         this.tag(BlockTags.LEAVES)
                 .add(ModBlocks.PALM_LEAVES.get());
+
+        this.tag(BlockTags.STANDING_SIGNS)
+                .add(ModBlocks.PALM_SIGN.get());
+
+        this.tag(BlockTags.WALL_HANGING_SIGNS)
+                .add(ModBlocks.PALM_WALL_HANGING_SIGN.get());
+
+        this.tag(BlockTags.WALL_SIGNS)
+                .add(ModBlocks.PALM_WALL_SIGN.get());
 
         this.tag(BlockTags.WOODEN_BUTTONS)
                 .add(ModBlocks.PALM_BUTTON.get());
@@ -79,12 +91,16 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.PALM_DOOR.get(),
                         ModBlocks.PALM_FENCE.get(),
                         ModBlocks.PALM_FENCE_GATE.get(),
+                        ModBlocks.PALM_HANGING_SIGN.get(),
                         ModBlocks.PALM_LOG.get(),
                         ModBlocks.PALM_PLANKS.get(),
                         ModBlocks.PALM_PRESSURE_PLATE.get(),
+                        ModBlocks.PALM_SIGN.get(),
                         ModBlocks.PALM_SLAB.get(),
                         ModBlocks.PALM_STAIRS.get(),
                         ModBlocks.PALM_TRAPDOOR.get(),
+                        ModBlocks.PALM_WALL_HANGING_SIGN.get(),
+                        ModBlocks.PALM_WALL_SIGN.get(),
                         ModBlocks.PALM_WOOD.get(),
                         ModBlocks.STRIPPED_PALM_LOG.get(),
                         ModBlocks.STRIPPED_PALM_WOOD.get());

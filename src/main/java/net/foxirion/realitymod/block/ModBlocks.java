@@ -78,6 +78,17 @@ public class ModBlocks {
     public static final RegistryObject<Block> PALM_SLAB = registerBlock("palm_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SLAB)));
 
+    //Palm Signs(Normal, hanging & wall(for both of them))
+    public static final RegistryObject<Block> PALM_SIGN = BLOCKS.register("palm_sign",
+            () -> new ModStandingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SIGN), ModWoodTypes.PALM));
+    public static final RegistryObject<Block> PALM_WALL_SIGN = BLOCKS.register("palm_wall_sign",
+            () -> new ModWallSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WALL_SIGN), ModWoodTypes.PALM));
+    public static final RegistryObject<Block> PALM_HANGING_SIGN = BLOCKS.register("palm_hanging_sign",
+            () -> new ModHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_HANGING_SIGN), ModWoodTypes.PALM));
+    public static final RegistryObject<Block> PALM_WALL_HANGING_SIGN = BLOCKS.register("palm_wall_hanging_sign",
+            () -> new ModWallHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WALL_HANGING_SIGN), ModWoodTypes.PALM));
+
+
     //Palm Stairs
     public static final RegistryObject<Block> PALM_STAIRS = registerBlock("palm_stairs",
             () -> new StairBlock(() -> ModBlocks.PALM_PLANKS.get().defaultBlockState(),

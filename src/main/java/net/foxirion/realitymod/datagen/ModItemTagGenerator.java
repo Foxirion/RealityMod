@@ -45,5 +45,11 @@ public class ModItemTagGenerator extends ItemTagsProvider {
         this.tag(ItemTags.PLANKS)
                 .add(ModBlocks.PALM_PLANKS.get().asItem());
 
+            //Signs
+        this.tag(ItemTags.HANGING_SIGNS)
+                .add(ModItems.PALM_HANGING_SIGN.get());
+        this.tag(ItemTags.SIGNS)
+                .add(ModItems.PALM_SIGN.get());
+
     }
 }

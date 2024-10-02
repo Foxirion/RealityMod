@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "realitymod:stripped_palm_log"
+    },
+    "|": {
+      "item": "minecraft:chain"
+    }
+  },
+  "pattern": [
+    "| |",
+    "###",
+    "###"
+  ],
+  "result": {
+    "item": "realitymod:palm_hanging_sign"
+  },
+  "show_notification": true
+}

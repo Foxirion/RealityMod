@@ -1,6 +1,7 @@
 package net.foxirion.realitymod.event;
 
 import net.foxirion.realitymod.RealityMod;
+import net.foxirion.realitymod.block.entity.ModBlockEntities;
 import net.foxirion.realitymod.entity.client.DesertTurtleModel;
 import net.foxirion.realitymod.entity.client.ModModelLayers;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
@@ -20,6 +21,8 @@ public class ModEventBusClientEvents {
 
     @SubscribeEvent
     public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerBlockEntityRenderer(ModBlockEntities.MOD_SIGN.get(), SignRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.MOD_HANGING_SIGN.get(), HangingSignRenderer::new);
     }
 
 }

@@ -44,9 +44,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         fenceGateBlock(((FenceGateBlock) ModBlocks.PALM_FENCE_GATE.get()),blockTexture(ModBlocks.PALM_PLANKS.get()));
 
+        hangingSignBlock(ModBlocks.PALM_HANGING_SIGN.get(), ModBlocks.PALM_WALL_HANGING_SIGN.get(), blockTexture(ModBlocks.PALM_PLANKS.get()));
+
         pressurePlateBlock(((PressurePlateBlock) ModBlocks.PALM_PRESSURE_PLATE.get()),blockTexture(ModBlocks.PALM_PLANKS.get()));
 
         slabBlock(((SlabBlock) ModBlocks.PALM_SLAB.get()),blockTexture(ModBlocks.PALM_PLANKS.get()), blockTexture(ModBlocks.PALM_PLANKS.get()));
+
+        signBlock(((StandingSignBlock) ModBlocks.PALM_SIGN.get()), ((WallSignBlock) ModBlocks.PALM_WALL_SIGN.get()),
+                blockTexture(ModBlocks.PALM_PLANKS.get()));
 
         stairsBlock(((StairBlock)ModBlocks.PALM_STAIRS.get()),blockTexture(ModBlocks.PALM_PLANKS.get()));
 

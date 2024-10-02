@@ -65,6 +65,15 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.add(ModBlocks.PALM_SLAB.get(),
                 block -> createSlabItemTable(ModBlocks.PALM_SLAB.get()));
 
+        this.add(ModBlocks.PALM_SIGN.get(), block ->
+                createSingleItemTable(ModItems.PALM_SIGN.get()));
+        this.add(ModBlocks.PALM_WALL_SIGN.get(), block ->
+                createSingleItemTable(ModItems.PALM_SIGN.get()));
+        this.add(ModBlocks.PALM_HANGING_SIGN.get(), block ->
+                createSingleItemTable(ModItems.PALM_HANGING_SIGN.get()));
+        this.add(ModBlocks.PALM_WALL_HANGING_SIGN.get(), block ->
+                createSingleItemTable(ModItems.PALM_HANGING_SIGN.get()));
+
     }
 
     //Methods

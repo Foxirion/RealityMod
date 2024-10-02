@@ -2,6 +2,7 @@ package net.foxirion.realitymod;
 
 import com.mojang.logging.LogUtils;
 import net.foxirion.realitymod.block.ModBlocks;
+import net.foxirion.realitymod.block.entity.ModBlockEntities;
 import net.foxirion.realitymod.entity.ModEntities;
 import net.foxirion.realitymod.entity.client.DesertTurtleRenderer;
 import net.foxirion.realitymod.item.ModCreativeModeTabs;
@@ -42,6 +43,8 @@ public class RealityMod
 
         modEventBus.addListener(this::commonSetup);
 
+        ModBlockEntities.register(modEventBus);
+
         MinecraftForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);
     }
@@ -71,6 +74,8 @@ public class RealityMod
         public static void onClientSetup(FMLClientSetupEvent event) {
 
             EntityRenderers.register(ModEntities.DESERT_TURTLE.get(), DesertTurtleRenderer::new);
+
+            Sheets.addWoodType(ModWoodTypes.PALM);
 
         }
     }

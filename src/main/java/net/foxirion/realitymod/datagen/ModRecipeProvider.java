@@ -105,9 +105,27 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModBlocks.PALM_PLANKS.get()), has(ModBlocks.PALM_PLANKS.get()))
                 .save(pWriter);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.PALM_HANGING_SIGN.get())
+                .pattern("| |")
+                .pattern("###")
+                .pattern("###")
+                .define('#', ModBlocks.STRIPPED_PALM_LOG.get())
+                .define('|', Items.CHAIN)
+                .unlockedBy(getHasName(ModBlocks.STRIPPED_PALM_LOG.get()), has(ModBlocks.STRIPPED_PALM_LOG.get()))
+                .save(pWriter);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.PALM_PRESSURE_PLATE.get())
                 .pattern("##")
                 .define('#', ModBlocks.PALM_PLANKS.get())
+                .unlockedBy(getHasName(ModBlocks.PALM_PLANKS.get()), has(ModBlocks.PALM_PLANKS.get()))
+                .save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.PALM_SIGN.get())
+                .pattern("###")
+                .pattern("###")
+                .pattern(" | ")
+                .define('#', ModBlocks.PALM_PLANKS.get())
+                .define('|', Items.STICK)
                 .unlockedBy(getHasName(ModBlocks.PALM_PLANKS.get()), has(ModBlocks.PALM_PLANKS.get()))
                 .save(pWriter);
 

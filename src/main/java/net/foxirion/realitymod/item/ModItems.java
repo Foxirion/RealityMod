@@ -38,6 +38,15 @@ public class ModItems {
     public static final RegistryObject<Item> OASIS_CLAY_BALL = ITEMS.register("oasis_clay_ball",
             () -> new Item(new Item.Properties()));
 
+    //Palm Signs (Normal and hanging)
+    public static final RegistryObject<Item> PALM_SIGN = ITEMS.register("palm_sign",
+            () -> new SignItem(new Item.Properties().stacksTo(16),
+                    ModBlocks.PALM_SIGN.get(), ModBlocks.PALM_WALL_SIGN.get()));
+    public static final RegistryObject<Item> PALM_HANGING_SIGN = ITEMS.register("palm_hanging_sign",
+            () -> new HangingSignItem(ModBlocks.PALM_HANGING_SIGN.get(), ModBlocks.PALM_WALL_HANGING_SIGN.get(),
+                    new Item.Properties().stacksTo(16)));
+
+
 
 
     public static void register(IEventBus eventBus){
