@@ -1,9 +1,10 @@
-// 1.20.1	2024-10-02T16:25:31.0770133	Item Models: realitymod
+// 1.20.1	2024-10-02T23:46:30.5125066	Item Models: realitymod
 f0070f80ad335539d2784012aecdc8f5a33105a4 assets/realitymod/models/item/coconut.json
 d9448569a4dacdb934c9bf7a095449581f6f2a9a assets/realitymod/models/item/coconut_milk.json
 3fd072a285ac0df2fbeef3490d8ba3944ab9fd63 assets/realitymod/models/item/desert_turtle_egg.json
 3ab95d9d25e1e2c97403535161323a9cb0755a36 assets/realitymod/models/item/desert_turtle_scute.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/realitymod/models/item/desert_turtle_spawn_egg.json
+4c1d154167e902951501edc85037bad5c82c988e assets/realitymod/models/item/fossil.json
 4d8d552c9fb3ccea9082a194cfc9b84466cb2fc2 assets/realitymod/models/item/oasis_clay_ball.json
 0af1c95b42ec9f26e5dabddd6eaad8541521c5f5 assets/realitymod/models/item/palm_boat.json
 d77c5c755db829c1b2f4b533472a0f92c53edfb0 assets/realitymod/models/item/palm_button.json

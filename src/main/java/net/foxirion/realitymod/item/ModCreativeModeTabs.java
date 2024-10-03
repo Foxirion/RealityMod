@@ -43,6 +43,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModBlocks.PALM_LOG.get());
                         pOutput.accept(ModBlocks.PALM_LEAVES.get());
                         pOutput.accept(ModBlocks.PALM_SAPLING.get());
+                        pOutput.accept(ModBlocks.FOSSIL.get());
                         pOutput.accept(ModBlocks.DESERT_TURTLE_EGG.get());
                     })
                     .build());

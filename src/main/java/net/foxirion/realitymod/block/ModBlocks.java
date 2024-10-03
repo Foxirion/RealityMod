@@ -28,6 +28,10 @@ public class ModBlocks {
     public static final RegistryObject<Block> DESERT_TURTLE_EGG = registerBlock("desert_turtle_egg",
             () -> new DesertTurtleEggBlock(BlockBehaviour.Properties.copy(Blocks.TURTLE_EGG)));
 
+    //Fossil
+    public static final RegistryObject<Block> FOSSIL = registerBlock("fossil",
+            () -> new FossilBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
+
     //Oasis Clay
     public static final RegistryObject<Block> OASIS_CLAY = registerBlock("oasis_clay",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.CLAY)

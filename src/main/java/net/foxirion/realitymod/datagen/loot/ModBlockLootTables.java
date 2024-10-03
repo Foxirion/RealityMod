@@ -8,16 +8,21 @@ import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer;
+import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Set;
@@ -53,6 +58,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                                         .when(MatchTool.toolMatches(ItemPredicate.Builder.item()
                                                 .hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.atLeast(1))))))));
 
+        this.add(ModBlocks.FOSSIL.get(), this::createFossilDrops);
+
         this.add(ModBlocks.OASIS_CLAY.get(),
                 (block) -> createOasisClayDrops(ModBlocks.OASIS_CLAY.get(), ModItems.OASIS_CLAY_BALL.get()));
 
@@ -77,6 +84,48 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     }
 
     //Methods
+    private LootTable.Builder createFossilDrops(Block block) {
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(AlternativesEntry.alternatives(
+                                                LootItem.lootTableItem(block)
+                                                        .when(MatchTool.toolMatches(ItemPredicate.Builder.item()
+                                                                .hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.atLeast(1)))))
+                                        )
+                                        .otherwise(LootItem.lootTableItem(Items.BONE_MEAL)
+                                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3)))
+                                                .apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))
+                                                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(2))
+                                                        .when(MatchTool.toolMatches(ItemPredicate.Builder.item()
+                                                                .hasEnchantment(new EnchantmentPredicate(Enchantments.BLOCK_FORTUNE, MinMaxBounds.Ints.exactly(3))))))
+                                        )
+                        )
+                )
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .when(LootItemRandomChanceCondition.randomChance(0.75f))
+                        .when(MatchTool.toolMatches(ItemPredicate.Builder.item()
+                                .hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.exactly(0)))))
+                        .add(LootItem.lootTableItem(Items.BONE)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 1)))
+                                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))
+                                        .when(LootItemRandomChanceCondition.randomChance(0.6f)))
+                                .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))
+                                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(2))
+                                        .when(MatchTool.toolMatches(ItemPredicate.Builder.item()
+                                                .hasEnchantment(new EnchantmentPredicate(Enchantments.BLOCK_FORTUNE, MinMaxBounds.Ints.exactly(3))))))
+                        )
+                )
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .when(LootItemRandomChanceCondition.randomChance(0.004f))
+                        .when(MatchTool.toolMatches(ItemPredicate.Builder.item()
+                                .hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.exactly(0)))))
+                        .add(LootItem.lootTableItem(Items.SKELETON_SKULL))
+                        .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))
+                );
+    }
 
     protected LootTable.Builder createPalmLeavesDrops(Block pPalmLeavesBlock, Block pSaplingBlock, float... pChances) {
         return this.createLeavesDrops(pPalmLeavesBlock, pSaplingBlock, pChances)

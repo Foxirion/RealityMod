@@ -1,5 +1,6 @@
-// 1.20.1	2024-10-01T15:55:04.1342896	Loot Tables
+// 1.20.1	2024-10-03T00:17:13.7701814	Loot Tables
 1c2d050e3362ba564b9ebea6ba8e657fcc5096fe data/realitymod/loot_tables/blocks/desert_turtle_egg.json
+c126a1d356d59c7b3f3cef0d5b607b81e73d09ee data/realitymod/loot_tables/blocks/fossil.json
 693ad0a6b49977a6aaef8246a5d2c0ebeb1f7a75 data/realitymod/loot_tables/blocks/oasis_clay.json
 fd004ed3afc0884776aa16da04fe8c5f9af5869c data/realitymod/loot_tables/blocks/palm_button.json
 0e958ae3644a97245cb9e93c78a83c969ac54791 data/realitymod/loot_tables/blocks/palm_door.json

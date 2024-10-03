@@ -3,10 +3,13 @@ package net.foxirion.realitymod.datagen;
 import net.foxirion.realitymod.RealityMod;
 import net.foxirion.realitymod.block.ModBlocks;
 import net.foxirion.realitymod.block.custom.ModFlammableRotatedPillarBlock;
+import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -35,6 +38,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         buttonBlock(((ButtonBlock) ModBlocks.PALM_BUTTON.get()),blockTexture(ModBlocks.PALM_PLANKS.get()));
 
+        createFossilBlock();
+
         doorBlockWithRenderType(((DoorBlock) ModBlocks.PALM_DOOR.get()),
                 modLoc("block/palm_door_bottom"),
                 modLoc("block/palm_door_top"),
@@ -62,6 +67,28 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 true,
                 "cutout");
 
+    }
+
+    private void createFossilBlock() {
+        Block fossilBlock = ModBlocks.FOSSIL.get();
+        ResourceLocation name = new ResourceLocation(RealityMod.MOD_ID, "fossil");
+
+        // Generate block model JSON
+        ModelFile model = models().getBuilder(name.getPath())
+                .parent(models().getExistingFile(mcLoc("block/orientable")))
+                .texture("front", modLoc("block/fossil_face"))
+                .texture("side", modLoc("block/fossil_side"))
+                .texture("top", modLoc("block/fossil_side"));
+
+        // Generate blockstate JSON with facing variants
+        getVariantBuilder(fossilBlock)
+                .forAllStates(state -> {
+                    Direction dir = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+                    return ConfiguredModel.builder()
+                            .modelFile(model)
+                            .rotationY((int) dir.getOpposite().toYRot())
+                            .build();
+                });
     }
 
     public void hangingSignBlock(Block signBlock, Block wallSignBlock, ResourceLocation texture) {
