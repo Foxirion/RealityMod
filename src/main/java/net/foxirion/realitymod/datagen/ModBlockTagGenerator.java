@@ -31,6 +31,12 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
         this.tag(BlockTags.FENCE_GATES)
                 .add(ModBlocks.PALM_FENCE_GATE.get());
 
+        this.tag(ModTags.Blocks.FOSSILS)
+                .add(ModBlocks.FOSSIL.get(),
+                        ModBlocks.DEEPSLATE_FOSSIL.get(),
+                        ModBlocks.FROZEN_FOSSIL.get(),
+                        ModBlocks.NETHER_FOSSIL.get());
+
         this.tag(BlockTags.LEAVES)
                 .add(ModBlocks.PALM_LEAVES.get());
 
@@ -109,7 +115,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(ModBlocks.PALM_LEAVES.get());
 
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                .add(ModBlocks.FOSSIL.get());
+                .addTag(ModTags.Blocks.FOSSILS);
 
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL)
                 .add(ModBlocks.OASIS_CLAY.get());
@@ -123,7 +129,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
         this.tag(Tags.Blocks.NEEDS_GOLD_TOOL);
 
         this.tag(BlockTags.NEEDS_STONE_TOOL)
-                .add(ModBlocks.FOSSIL.get());
+                .add(ModBlocks.FOSSIL.get(),
+                        ModBlocks.DEEPSLATE_FOSSIL.get());
 
         this.tag(Tags.Blocks.NEEDS_WOOD_TOOL);
     }

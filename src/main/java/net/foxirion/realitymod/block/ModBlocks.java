@@ -8,7 +8,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.grower.AbstractTreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.material.MapColor;
@@ -28,9 +27,19 @@ public class ModBlocks {
     public static final RegistryObject<Block> DESERT_TURTLE_EGG = registerBlock("desert_turtle_egg",
             () -> new DesertTurtleEggBlock(BlockBehaviour.Properties.copy(Blocks.TURTLE_EGG)));
 
-    //Fossil
+    //Fossils
+    public static final RegistryObject<Block> DEEPSLATE_FOSSIL = registerBlock("deepslate_fossil",
+            () -> new ModFossilBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE)
+                    .mapColor(MapColor.DEEPSLATE)));
     public static final RegistryObject<Block> FOSSIL = registerBlock("fossil",
-            () -> new FossilBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
+            () -> new ModFossilBlock(BlockBehaviour.Properties.copy(Blocks.STONE)
+                    .mapColor(MapColor.STONE)));
+    public static final RegistryObject<Block> FROZEN_FOSSIL = registerBlock("frozen_fossil",
+            () -> new ModFossilBlock(BlockBehaviour.Properties.copy(Blocks.PACKED_ICE)
+                    .mapColor(MapColor.ICE)));
+    public static final RegistryObject<Block> NETHER_FOSSIL = registerBlock("nether_fossil",
+            () -> new ModFossilBlock(BlockBehaviour.Properties.copy(Blocks.NETHER_GOLD_ORE)
+                    .mapColor(MapColor.NETHER)));
 
     //Oasis Clay
     public static final RegistryObject<Block> OASIS_CLAY = registerBlock("oasis_clay",

@@ -1,10 +1,13 @@
-// 1.20.1	2024-10-02T23:46:30.5125066	Item Models: realitymod
+// 1.20.1	2024-10-04T20:28:32.2687305	Item Models: realitymod
 f0070f80ad335539d2784012aecdc8f5a33105a4 assets/realitymod/models/item/coconut.json
 d9448569a4dacdb934c9bf7a095449581f6f2a9a assets/realitymod/models/item/coconut_milk.json
+abd2a4cbcec1137a06cc263c4776ed358438c2a8 assets/realitymod/models/item/deepslate_fossil.json
 3fd072a285ac0df2fbeef3490d8ba3944ab9fd63 assets/realitymod/models/item/desert_turtle_egg.json
 3ab95d9d25e1e2c97403535161323a9cb0755a36 assets/realitymod/models/item/desert_turtle_scute.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/realitymod/models/item/desert_turtle_spawn_egg.json
 4c1d154167e902951501edc85037bad5c82c988e assets/realitymod/models/item/fossil.json
+402b68fcc68aaa93777b01fb07b05f88b1355330 assets/realitymod/models/item/frozen_fossil.json
+ba0d4ce61e37e97d96169dc27a54126c5425aa69 assets/realitymod/models/item/nether_fossil.json
 4d8d552c9fb3ccea9082a194cfc9b84466cb2fc2 assets/realitymod/models/item/oasis_clay_ball.json
 0af1c95b42ec9f26e5dabddd6eaad8541521c5f5 assets/realitymod/models/item/palm_boat.json
 d77c5c755db829c1b2f4b533472a0f92c53edfb0 assets/realitymod/models/item/palm_button.json

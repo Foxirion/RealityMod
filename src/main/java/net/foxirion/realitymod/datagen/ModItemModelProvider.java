@@ -36,6 +36,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         //EvenSimpler Items & Block Items
 
         evenSimplerBlockItem(ModBlocks.FOSSIL);
+        evenSimplerBlockItem(ModBlocks.DEEPSLATE_FOSSIL);
+        evenSimplerBlockItem(ModBlocks.FROZEN_FOSSIL);
+        evenSimplerBlockItem(ModBlocks.NETHER_FOSSIL);
         evenSimplerBlockItem(ModBlocks.PALM_FENCE_GATE);
         evenSimplerBlockItem(ModBlocks.PALM_PRESSURE_PLATE);
         evenSimplerBlockItem(ModBlocks.PALM_SLAB);

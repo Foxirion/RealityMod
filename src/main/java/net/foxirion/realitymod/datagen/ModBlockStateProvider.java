@@ -38,7 +38,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         buttonBlock(((ButtonBlock) ModBlocks.PALM_BUTTON.get()),blockTexture(ModBlocks.PALM_PLANKS.get()));
 
-        createFossilBlock();
+        createFossilBlock(ModBlocks.FOSSIL.get(), "fossil", "fossil_front", "fossil_side");
+        createFossilBlock(ModBlocks.DEEPSLATE_FOSSIL.get(), "deepslate_fossil", "deepslate_fossil_front", "deepslate_fossil_side");
+        createFossilBlock(ModBlocks.FROZEN_FOSSIL.get(), "frozen_fossil", "frozen_fossil_front", "frozen_fossil_side");
+        createFossilBlock(ModBlocks.NETHER_FOSSIL.get(), "nether_fossil", "nether_fossil_front", "nether_fossil_side");
 
         doorBlockWithRenderType(((DoorBlock) ModBlocks.PALM_DOOR.get()),
                 modLoc("block/palm_door_bottom"),
@@ -69,18 +72,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     }
 
-    private void createFossilBlock() {
-        Block fossilBlock = ModBlocks.FOSSIL.get();
-        ResourceLocation name = new ResourceLocation(RealityMod.MOD_ID, "fossil");
+    private void createFossilBlock(Block fossilBlock, String fossilName, String frontTexture, String sideTexture) {
+        ResourceLocation name = new ResourceLocation(RealityMod.MOD_ID, fossilName);
 
-        // Generate block model JSON
         ModelFile model = models().getBuilder(name.getPath())
                 .parent(models().getExistingFile(mcLoc("block/orientable")))
-                .texture("front", modLoc("block/fossil_face"))
-                .texture("side", modLoc("block/fossil_side"))
-                .texture("top", modLoc("block/fossil_side"));
+                .texture("front", modLoc("block/" + frontTexture))
+                .texture("side", modLoc("block/" + sideTexture))
+                .texture("top", modLoc("block/" + sideTexture));
 
-        // Generate blockstate JSON with facing variants
         getVariantBuilder(fossilBlock)
                 .forAllStates(state -> {
                     Direction dir = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
@@ -90,6 +90,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                             .build();
                 });
     }
+
 
     public void hangingSignBlock(Block signBlock, Block wallSignBlock, ResourceLocation texture) {
         ModelFile sign = models().sign(name(signBlock), texture);

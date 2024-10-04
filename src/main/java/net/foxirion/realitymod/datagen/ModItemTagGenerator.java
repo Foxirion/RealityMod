@@ -23,6 +23,13 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
+            //Fossils
+        this.tag(ModTags.Items.FOSSILS)
+                .add(ModBlocks.FOSSIL.get().asItem(),
+                        ModBlocks.DEEPSLATE_FOSSIL.get().asItem(),
+                        ModBlocks.FROZEN_FOSSIL.get().asItem(),
+                        ModBlocks.NETHER_FOSSIL.get().asItem());
+
             //Leaves
         this.tag(ItemTags.LEAVES)
                 .add(ModBlocks.PALM_LEAVES.get().asItem());

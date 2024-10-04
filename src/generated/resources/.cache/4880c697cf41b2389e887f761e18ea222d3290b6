@@ -1,5 +1,8 @@
-// 1.20.1	2024-10-02T23:40:49.0827555	Block States: realitymod
+// 1.20.1	2024-10-04T18:45:49.0483938	Block States: realitymod
+f0e4858269875a9ed9bb13ae68a5aaca34794856 assets/realitymod/blockstates/deepslate_fossil.json
 48c5ac88ee0ba738850979eb6e998307a28fc1ff assets/realitymod/blockstates/fossil.json
+8ba23c3e9172f30067d419088e5fdc9b18ac096a assets/realitymod/blockstates/frozen_fossil.json
+f055ac02df051c3bb016bb9a42ddfc93bc9a9ff5 assets/realitymod/blockstates/nether_fossil.json
 429ab252d6469b72d7bab31e3cc845c4589e240d assets/realitymod/blockstates/oasis_clay.json
 e7910a1f67917dbe29c36a8aa6bf1353a2204bfd assets/realitymod/blockstates/palm_button.json
 37c8192cb0cd27391066282430a548c357904aa0 assets/realitymod/blockstates/palm_door.json
@@ -20,7 +23,10 @@ b2416a676b84138521c2fed5e1d7dcbce6a88a30 assets/realitymod/blockstates/palm_stai
 b0353170ec50c3c87d23b9b877cd91bdd13c7326 assets/realitymod/blockstates/palm_wood.json
 6010f34fd1bbde332e7787d9451cacd8fe05a55b assets/realitymod/blockstates/stripped_palm_log.json
 908083988abe06855ea98fae411918a32ee8adf2 assets/realitymod/blockstates/stripped_palm_wood.json
-d5d4a50a75ad364c01aeb534124a7c163bc93f79 assets/realitymod/models/block/fossil.json
+20aa28edacb8014c51014755c698e7ccff1b4706 assets/realitymod/models/block/deepslate_fossil.json
+cf0e858263cb33fda4637265eba9c3f8e27e69d9 assets/realitymod/models/block/fossil.json
+e649ce18d96ea49ec2f1da6e0834da943f7b7002 assets/realitymod/models/block/frozen_fossil.json
+7460622fbd687ec780f1c350c9dac7c40e367a29 assets/realitymod/models/block/nether_fossil.json
 d6b14b26a4d99ed6c803f5b1993af5fcf1044390 assets/realitymod/models/block/oasis_clay.json
 344365f192447c0104dc7c4662b11c106bf0a748 assets/realitymod/models/block/palm_button.json
 31a1569504a9f84c238ab35fe71c571a5196d39c assets/realitymod/models/block/palm_button_pressed.json
