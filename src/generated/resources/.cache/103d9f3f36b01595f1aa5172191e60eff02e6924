@@ -1,0 +1,7 @@
+// 1.20.1	2024-10-05T17:25:26.5992506	Registries
+f25e7f0890b862abac9789a1404462d96b81943a data/realitymod/forge/biome_modifier/add_fossil.json
+087b3e886c8d6c123f51b1d71b5a4ede796c1d22 data/realitymod/forge/biome_modifier/add_nether_fossil.json
+5baff9c9c1550bbf90b682cfd479834be976761a data/realitymod/worldgen/configured_feature/nether_fossil.json
+92d7848bc40887fdf9f31f83f5284a2e8c5b3185 data/realitymod/worldgen/configured_feature/overworld_fossil.json
+ddadef17b2c2603a8fff662df71b414ef9646445 data/realitymod/worldgen/placed_feature/fossil_placed_key.json
+4a6e64355358f6d4480086f4d6cc8f004fe8f646 data/realitymod/worldgen/placed_feature/nether_fossil_placed_key.json
