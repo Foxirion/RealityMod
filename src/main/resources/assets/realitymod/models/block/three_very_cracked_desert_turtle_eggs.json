@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/three_template_turtle_eggs",
-  "textures": {
-    "all": "realitymod:block/very_cracked_desert_turtle_egg"
-  }
-}
