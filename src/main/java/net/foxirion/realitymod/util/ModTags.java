@@ -9,14 +9,13 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
 public class ModTags {
-    public static class Blocks{
+    public static class Blocks {
         public static final TagKey<Block> PALM_LOGS = tag("palm_logs");
         public static final TagKey<Block> FOSSILS = tag("fossils");
 
-        private static TagKey<Block> tag(String name){
+        private static TagKey<Block> tag(String name) {
             return BlockTags.create(new ResourceLocation(RealityMod.MOD_ID, name));
         }
-
     }
 
     public static class Items {

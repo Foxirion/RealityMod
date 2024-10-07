@@ -312,7 +312,7 @@ public class DesertTurtleEntity extends Animal {
             return false;
         }
 
-        // Check if it's night time (similar to sea turtles)
+        // Check if it's nighttime (similar to sea turtles)
         long timeOfDay = level.getLevelData().getDayTime() % 24000;
         if (timeOfDay < 13000 || timeOfDay > 23000) {
             return false;

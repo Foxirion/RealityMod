@@ -7,7 +7,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -35,8 +34,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModBlocks.PALM_STAIRS.get());
                         pOutput.accept(ModBlocks.PALM_FENCE.get());
                         pOutput.accept(ModBlocks.PALM_FENCE_GATE.get());
-                    })
-                    .build());
+                    }).build());
 
     public static final RegistryObject<CreativeModeTab> RM_NATURAL_BLOCKS = CREATIVE_MODE_TABS.register("rm_natural_blocks",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.PALM_LOG.get()))
@@ -52,8 +50,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModBlocks.FROZEN_FOSSIL.get());
                         pOutput.accept(ModBlocks.NETHER_FOSSIL.get());
                         pOutput.accept(ModBlocks.DESERT_TURTLE_EGG.get());
-                    })
-                    .build());
+                    }).build());
 
     public static final RegistryObject<CreativeModeTab> RM_FUNCTIONAL_BLOCKS = CREATIVE_MODE_TABS.register("rm_functional_blocks",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.PALM_SIGN.get()))
@@ -62,8 +59,7 @@ public class ModCreativeModeTabs {
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModItems.PALM_SIGN.get());
                         pOutput.accept(ModItems.PALM_HANGING_SIGN.get());
-                    })
-                    .build());
+                    }).build());
 
     public static final RegistryObject<CreativeModeTab> RM_TOOLS_AND_UTILITIES = CREATIVE_MODE_TABS.register("rm_tools_and_utilities",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.PALM_BOAT.get()))
@@ -72,8 +68,7 @@ public class ModCreativeModeTabs {
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModItems.PALM_BOAT.get());
                         pOutput.accept(ModItems.PALM_CHEST_BOAT.get());
-                    })
-                    .build());
+                    }).build());
 
     public static final RegistryObject<CreativeModeTab> RM_INGREDIENTS = CREATIVE_MODE_TABS.register("rm_ingredients",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.DESERT_TURTLE_SCUTE.get()))
@@ -82,8 +77,7 @@ public class ModCreativeModeTabs {
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModItems.DESERT_TURTLE_SCUTE.get());
                         pOutput.accept(ModItems.OASIS_CLAY_BALL.get());
-                    })
-                    .build());
+                    }).build());
 
     public static final RegistryObject<CreativeModeTab> RM_FOOD_AND_DRINKS = CREATIVE_MODE_TABS.register("rm_food_and_drinks",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.COCONUT.get()))
@@ -92,8 +86,7 @@ public class ModCreativeModeTabs {
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModItems.COCONUT.get());
                         pOutput.accept(ModItems.COCONUT_MILK.get());
-                    })
-                    .build());
+                    }).build());
 
     public static final RegistryObject<CreativeModeTab> RM_SPAWN_EGGS = CREATIVE_MODE_TABS.register("rm_spawn_eggs",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.DESERT_TURTLE_SPAWN_EGG.get()))
@@ -101,11 +94,5 @@ public class ModCreativeModeTabs {
                     .withTabsBefore(ModCreativeModeTabs.RM_FOOD_AND_DRINKS.getKey())
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModItems.DESERT_TURTLE_SPAWN_EGG.get());
-                    })
-                    .build());
-
-
-    public static void register(IEventBus eventBus){
-        CREATIVE_MODE_TABS.register(eventBus);
-    }
+                    }).build());
 }

@@ -1,6 +1,5 @@
 package net.foxirion.realitymod.event;
 
-import net.foxirion.realitymod.RealityMod;
 import net.foxirion.realitymod.block.entity.ModBlockEntities;
 import net.foxirion.realitymod.entity.ModEntities;
 import net.foxirion.realitymod.entity.client.DesertTurtleModel;
@@ -20,7 +19,9 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
-@Mod.EventBusSubscriber(modid = RealityMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+import static net.foxirion.realitymod.RealityMod.MOD_ID;
+
+@Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ModEventBusClientEvents {
 
     @SubscribeEvent
@@ -44,5 +45,4 @@ public class ModEventBusClientEvents {
         event.registerBlockEntityRenderer(ModBlockEntities.MOD_SIGN.get(), SignRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.MOD_HANGING_SIGN.get(), HangingSignRenderer::new);
     }
-
 }

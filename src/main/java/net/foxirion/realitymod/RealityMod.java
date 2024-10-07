@@ -25,22 +25,12 @@ public class RealityMod {
     public RealityMod(FMLJavaModLoadingContext context) {
         IEventBus bus = context.getModEventBus();
 
-        ModCreativeModeTabs.register(bus);
-        ModItems.register(bus);
-        ModBlocks.register(bus);
-        ModEntities.register(bus);
-        ModBlockEntities.register(bus);
+        ModCreativeModeTabs.CREATIVE_MODE_TABS.register(bus);
+        ModItems.ITEMS.register(bus);
+        ModBlocks.BLOCKS.register(bus);
+        ModEntities.ENTITY_TYPES.register(bus);
+        ModBlockEntities.BLOCK_ENTITIES.register(bus);
 
-        bus.addListener(this::commonSetup);
     }
 
-    private void commonSetup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
-            SpawnPlacements.register(
-                    ModEntities.DESERT_TURTLE.get(),
-                    SpawnPlacements.Type.ON_GROUND,
-                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                    DesertTurtleEntity::checkDesertTurtleSpawnRules);
-        });
-    }
 }

@@ -33,7 +33,7 @@ public class ModConfiguredFeatures {
     public static void boostrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
         RuleTest stoneReplaceables = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
         RuleTest deepslateReplaceables = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
-        RuleTest netherrackReplacables = new BlockMatchTest(Blocks.NETHERRACK);
+        RuleTest netherrackReplaceables = new BlockMatchTest(Blocks.NETHERRACK);
         RuleTest iceReplaceables = new BlockMatchTest(Blocks.PACKED_ICE);
 
         List<OreConfiguration.TargetBlockState> overworldFossils = List.of(
@@ -42,24 +42,24 @@ public class ModConfiguredFeatures {
                 OreConfiguration.target(iceReplaceables, ModBlocks.FROZEN_FOSSIL.get().defaultBlockState()));
 
         register(context, OVERWORLD_FOSSIL_KEY, Feature.ORE, new OreConfiguration(overworldFossils, 4));
-        register(context, NETHER_FOSSIL_KEY, Feature.ORE, new OreConfiguration(netherrackReplacables,
+        register(context, NETHER_FOSSIL_KEY, Feature.ORE, new OreConfiguration(netherrackReplaceables,
                 ModBlocks.NETHER_FOSSIL.get().defaultBlockState(), 4));
 
         register(context, PALM_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(ModBlocks.PALM_LOG.get()),
-                new StraightTrunkPlacer(5,4,3),
+                new StraightTrunkPlacer(5, 4, 3),
 
                 BlockStateProvider.simple(ModBlocks.PALM_LEAVES.get()),
                 new BlobFoliagePlacer(ConstantInt.of(3), ConstantInt.of(2), 3),
 
-                new TwoLayersFeatureSize(1,0,2)).build());
+                new TwoLayersFeatureSize(1, 0, 2)).build());
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(RealityMod.MOD_ID, name));
     }
-    private static <FC extends FeatureConfiguration, F extends Feature<FC>> void register(BootstapContext<ConfiguredFeature<?, ?>> context,
-                                                                                          ResourceKey<ConfiguredFeature<?, ?>> key, F feature, FC configuration) {
+
+    private static <FC extends FeatureConfiguration, F extends Feature<FC>> void register(BootstapContext<ConfiguredFeature<?, ?>> context, ResourceKey<ConfiguredFeature<?, ?>> key, F feature, FC configuration) {
         context.register(key, new ConfiguredFeature<>(feature, configuration));
     }
 }

@@ -23,26 +23,25 @@ import java.util.List;
 
 @Mod.EventBusSubscriber(modid = RealityMod.MOD_ID)
 public class ModEvents {
-            //Mob Spawning
-    //Desert Turtle
+
+    //Mob Spawning
     @SubscribeEvent
     public static void onSpawnPlacementRegister(SpawnPlacementRegisterEvent event) {
         event.register(
-            ModEntities.DESERT_TURTLE.get(),
-            SpawnPlacements.Type.ON_GROUND,
-            Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-            DesertTurtleEntity::checkDesertTurtleSpawnRules,
-            SpawnPlacementRegisterEvent.Operation.AND);
-            }
+                ModEntities.DESERT_TURTLE.get(),
+                SpawnPlacements.Type.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                DesertTurtleEntity::checkDesertTurtleSpawnRules,
+                SpawnPlacementRegisterEvent.Operation.AND);
+    }
 
 
-            //Custom Trades Villagers & Wandering Trader
+    //Custom Trades Villagers & Wandering Trader
     //Villagers
-
     @SubscribeEvent
-    public static void addCustomTrades(VillagerTradesEvent event){
+    public static void addCustomTrades(VillagerTradesEvent event) {
         //Farmer
-        if (event.getType() == VillagerProfession.FARMER){
+        if (event.getType() == VillagerProfession.FARMER) {
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
 
             //Apprentice
@@ -54,9 +53,8 @@ public class ModEvents {
     }
 
     //Wandering Traders
-
     @SubscribeEvent
-    public static void  addCustomWanderingTrades(WandererTradesEvent event){
+    public static void addCustomWanderingTrades(WandererTradesEvent event) {
         List<VillagerTrades.ItemListing> genericTrades = event.getGenericTrades();
         List<VillagerTrades.ItemListing> rareTrades = event.getRareTrades();
 

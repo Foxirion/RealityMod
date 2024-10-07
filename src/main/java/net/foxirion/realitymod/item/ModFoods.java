@@ -1,6 +1,5 @@
 package net.foxirion.realitymod.item;
 
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
 
 public class ModFoods {
