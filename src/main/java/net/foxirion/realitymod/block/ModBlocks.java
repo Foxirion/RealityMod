@@ -4,6 +4,7 @@ import net.foxirion.realitymod.RealityMod;
 import net.foxirion.realitymod.block.custom.*;
 import net.foxirion.realitymod.item.ModItems;
 import net.foxirion.realitymod.util.ModWoodTypes;
+import net.foxirion.realitymod.worldgen.tree.PalmTreeGrower;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -85,7 +86,7 @@ public class ModBlocks {
 
     //Palm Sapling
     public static final RegistryObject<Block> PALM_SAPLING = registerBlock("palm_sapling",
-            () -> new SaplingBlock(null, BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
+            () -> new PalmSaplingBlock(new PalmTreeGrower(), BlockBehaviour.Properties.copy(Blocks.ACACIA_SAPLING)));
 
     //Palm Slab
     public static final RegistryObject<Block> PALM_SLAB = registerBlock("palm_slab",

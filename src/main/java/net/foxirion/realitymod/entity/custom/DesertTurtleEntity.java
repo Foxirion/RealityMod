@@ -4,37 +4,53 @@ import net.foxirion.realitymod.block.ModBlocks;
 import net.foxirion.realitymod.block.custom.DesertTurtleEggBlock;
 import net.foxirion.realitymod.entity.ModEntities;
 import net.foxirion.realitymod.entity.goal.DesertTurtleLayEggGoal;
+import net.foxirion.realitymod.entity.goal.DesertTurtleBreedGoal;
+import net.foxirion.realitymod.entity.goal.DesertTurtlePanicGoal;
 import net.foxirion.realitymod.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.Turtle;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LightLayer;
-import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.TurtleEggBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
 public class DesertTurtleEntity extends Animal {
+    private static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(DesertTurtleEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> LAYING_EGG = SynchedEntityData.defineId(DesertTurtleEntity.class, EntityDataSerializers.BOOLEAN);
+
+     public int layEggCounter;
+
     public DesertTurtleEntity(EntityType<? extends Animal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
+    }
+
+    @Override
+    public RandomSource getRandom() {
+        return super.getRandom();
     }
 
     public final AnimationState idleAnimationState = new AnimationState();
@@ -69,10 +85,12 @@ public class DesertTurtleEntity extends Animal {
         this.walkAnimation.update(f, 0.2F);
     }
 
+    //Attributes
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new BreedGoal(this, 0.45D));
+        this.goalSelector.addGoal(0, new DesertTurtlePanicGoal(this, 0.45D));
+        this.goalSelector.addGoal(1, new DesertTurtleBreedGoal(this, 0.45D, this));
         this.goalSelector.addGoal(1, new DesertTurtleLayEggGoal(this, 0.45D));
         this.goalSelector.addGoal(2, new TemptGoal(this, 0.5D, Ingredient.of(Items.CACTUS), false));
         this.goalSelector.addGoal(3, new WaterAvoidingRandomStrollGoal(this, 0.4D));
@@ -89,16 +107,26 @@ public class DesertTurtleEntity extends Animal {
                 .add(Attributes.KNOCKBACK_RESISTANCE, 0.5f);
     }
 
+    public boolean isPushedByFluid() {
+        return true;
+    }
+
+    public boolean canBreatheUnderwater() {
+        return false;
+    }
+
     //Food
-    @Override
     public boolean isFood(ItemStack pStack) {
-        return pStack.is(Items.CACTUS);
+        return pStack.is(Blocks.CACTUS.asItem());
     }
 
     //Sounds
     @Override
     protected @Nullable SoundEvent getAmbientSound() {
         return SoundEvents.TURTLE_AMBIENT_LAND;
+    }
+    public int getAmbientSoundInterval() {
+        return 200;
     }
 
     @Override
@@ -111,34 +139,93 @@ public class DesertTurtleEntity extends Animal {
         return SoundEvents.TURTLE_DEATH;
     }
 
+
+
     //Breeding
-    private static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(DesertTurtleEntity.class, EntityDataSerializers.BOOLEAN);
     private static final int BREEDING_COOLDOWN = 6000; // 5 minutes in ticks
     private int breedingCooldown = 0;
+
+    public boolean hasEgg() {
+        return this.entityData.get(HAS_EGG);
+    }
+
+    public void setHasEgg(boolean pHasEgg) {
+        this.entityData.set(HAS_EGG, pHasEgg);
+    }
+
+    public boolean isLayingEgg() {
+        return this.entityData.get(LAYING_EGG);
+    }
+
+    public void setLayingEgg(boolean pIsLayingEgg) {
+        this.layEggCounter = pIsLayingEgg ? 1 : 0;
+        this.entityData.set(LAYING_EGG, pIsLayingEgg);
+    }
+
+    public boolean canFallInLove() {
+        return super.canFallInLove() && !this.hasEgg();
+    }
+
+    protected float nextStep() {
+        return this.moveDist + 0.15F;
+    }
+
+    public float getScale() {
+        return this.isBaby() ? 0.3F : 1.0F;
+    }
+
+    @javax.annotation.Nullable
+    public AgeableMob getBreedOffspring(ServerLevel pLevel, AgeableMob pOtherParent) {
+        return ModEntities.DESERT_TURTLE.get().create(pLevel);
+    }
 
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(HAS_EGG, false);
+        this.entityData.define(LAYING_EGG, false);
     }
 
-    private boolean hasEgg;
-
-    public boolean hasEgg() {
-        return this.hasEgg;
+    public void addAdditionalSaveData(CompoundTag pCompound) {
+        super.addAdditionalSaveData(pCompound);
+        pCompound.putBoolean("HasEgg", this.hasEgg());
     }
 
-    public void setHasEgg(boolean hasEgg) {
-        this.hasEgg = hasEgg;
+    public void readAdditionalSaveData(CompoundTag pCompound) {
+        int i = pCompound.getInt("HomePosX");
+        int j = pCompound.getInt("HomePosY");
+        int k = pCompound.getInt("HomePosZ");
+        super.readAdditionalSaveData(pCompound);
+        this.setHasEgg(pCompound.getBoolean("HasEgg"));
+        int l = pCompound.getInt("TravelPosX");
+        int i1 = pCompound.getInt("TravelPosY");
+        int j1 = pCompound.getInt("TravelPosZ");
     }
 
-    @Override
+    @javax.annotation.Nullable
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pReason, @javax.annotation.Nullable SpawnGroupData pSpawnData, @javax.annotation.Nullable CompoundTag pDataTag) {
+        return super.finalizeSpawn(pLevel, pDifficulty, pReason, pSpawnData, pDataTag);
+    }
+
+    public static boolean checkDesertTurtleSpawnRules(EntityType<Turtle> pTurtle, LevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
+        return pPos.getY() < pLevel.dayTime() + 4 && TurtleEggBlock.onSand(pLevel, pPos) && isBrightEnoughToSpawn(pLevel, pPos);
+    }
+
+    public float getWalkTargetValue(BlockPos pPos, LevelReader pLevel) {
+        if (pLevel.getFluidState(pPos).is(FluidTags.WATER)) {
+            return 10.0F;
+        } else {
+            return DesertTurtleEggBlock.onSand(pLevel, pPos) ? 10.0F : pLevel.getPathfindingCostFromLightLevels(pPos);
+        }
+    }
+
     public void aiStep() {
         super.aiStep();
-        if (!this.level().isClientSide && this.isAlive() && this.tickCount % 6000 == 0) {
-            this.heal(1.0F);
-        } else if (this.breedingCooldown > 0) {
-            this.breedingCooldown--;
+        if (this.isAlive() && this.isLayingEgg() && this.layEggCounter >= 1 && this.layEggCounter % 5 == 0) {
+            BlockPos blockpos = this.blockPosition();
+            if (DesertTurtleEggBlock.onSand(this.level(), blockpos)) {
+                this.level().levelEvent(2001, blockpos, Block.getId(this.level().getBlockState(blockpos.below())));
+            }
         }
     }
 
@@ -152,10 +239,14 @@ public class DesertTurtleEntity extends Animal {
         }
     }
 
-    @Nullable
-    @Override
-    public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
-        return ModEntities.DESERT_TURTLE.get().create(serverLevel);
+    public boolean canUse() {
+        if (this.isBaby()) {
+            return false;
+        } else if (this.hasEgg()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     //Drop Dead Bush at Lightning hit (easter egg)
@@ -200,13 +291,17 @@ public class DesertTurtleEntity extends Animal {
     }
 
     //Babies growing drops
-    @Override
-    public void setAge(int age) {
-        int oldAge = this.getAge();
-        super.setAge(age);
-        if (oldAge < 0 && age >= 0 && !this.level().isClientSide()) {
-            this.spawnAtLocation(ModItems.DESERT_TURTLE_SCUTE.get());
+    protected void ageBoundaryReached() {
+        super.ageBoundaryReached();
+        if (!this.isBaby() && this.level().getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)) {
+            this.spawnAtLocation(ModItems.DESERT_TURTLE_SCUTE.get(), 1);
         }
+
+    }
+
+    //Unleashable
+    public boolean canBeLeashed(Player pPlayer) {
+        return false;
     }
 
     //Desert Turtle Spawn rules
@@ -277,8 +372,5 @@ public class DesertTurtleEntity extends Animal {
                 world.addParticle(ParticleTypes.HAPPY_VILLAGER, x, y, z, 0.0, 0.2, 0.0);
             }
         }
-
-        // The other turtle doesn't spawn eggs
-        mateDesertTurtle.setHasEgg(false);
     }
 }

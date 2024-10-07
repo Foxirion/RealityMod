@@ -1,10 +1,13 @@
 package net.foxirion.realitymod.worldgen;
 
 import net.foxirion.realitymod.RealityMod;
+import net.foxirion.realitymod.block.ModBlocks;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.placement.PlacementUtils;
+import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
@@ -12,12 +15,15 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.placement.PlacementModifier;
+import net.minecraft.world.level.levelgen.placement.RarityFilter;
 
 import java.util.List;
 
 public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> FOSSIL_PLACED_KEY = registerKey("fossil_placed_key");
     public static final ResourceKey<PlacedFeature> NETHER_FOSSIL_PLACED_KEY = registerKey("nether_fossil_placed_key");
+
+    public static final ResourceKey<PlacedFeature> PALM_PLACED_KEY = registerKey("palm_placed");
 
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -29,6 +35,10 @@ public class ModPlacedFeatures {
         register(context, NETHER_FOSSIL_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.NETHER_FOSSIL_KEY),
                 ModOrePlacement.commonOrePlacement(8,
                         HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(320))));
+
+        register(context, PALM_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.PALM_KEY),
+                VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(20),
+                        ModBlocks.PALM_SAPLING.get()));
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {
