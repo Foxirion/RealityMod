@@ -14,5 +14,4 @@ public class ModEventBusEvents {
     public static void registerAttributes(EntityAttributeCreationEvent event) {
         event.put(ModEntities.DESERT_TURTLE.get(), DesertTurtleEntity.createAttributes().build());
     }
-
 }

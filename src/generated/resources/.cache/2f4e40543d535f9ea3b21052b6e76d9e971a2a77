@@ -1,8 +1,0 @@
-// 1.20.1	2024-10-04T18:45:49.0509026	Tags for minecraft:item mod id realitymod
-5983c744149f8b018583b89a00fbd507694cee69 data/minecraft/tags/items/hanging_signs.json
-606d6773d7a9b635eb7509b7e1227c215b66dc9d data/minecraft/tags/items/leaves.json
-6e19d248b1a9f2f40107084480c3708b9aceb968 data/minecraft/tags/items/logs_that_burn.json
-e718001019663e34aad6e0536eb2a495d314348b data/minecraft/tags/items/planks.json
-e6d962f340a09902ecb3246f6008103dce14e81a data/minecraft/tags/items/signs.json
-8f94164f03d85f4b0b2104ab40f3eec7acd8fbec data/realitymod/tags/items/fossils.json
-6e19d248b1a9f2f40107084480c3708b9aceb968 data/realitymod/tags/items/palm_logs.json
