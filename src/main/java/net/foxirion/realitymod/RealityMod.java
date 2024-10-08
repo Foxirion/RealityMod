@@ -6,6 +6,7 @@ import net.foxirion.realitymod.entity.ModEntities;
 import net.foxirion.realitymod.entity.custom.DesertTurtleEntity;
 import net.foxirion.realitymod.item.ModCreativeModeTabs;
 import net.foxirion.realitymod.item.ModItems;
+import net.foxirion.realitymod.worldgen.tree.ModTrunkPlacerTypes;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -30,6 +31,7 @@ public class RealityMod {
         ModBlocks.BLOCKS.register(bus);
         ModEntities.ENTITY_TYPES.register(bus);
         ModBlockEntities.BLOCK_ENTITIES.register(bus);
+        ModTrunkPlacerTypes.TRUNK_PLACER.register(bus);
 
     }
 

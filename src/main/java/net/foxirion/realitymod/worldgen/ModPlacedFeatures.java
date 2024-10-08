@@ -36,7 +36,7 @@ public class ModPlacedFeatures {
                         HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(320))));
 
         register(context, PALM_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.PALM_KEY),
-                VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(20),
+                VegetationPlacements.treePlacement(RarityFilter.onAverageOnceEvery(50),
                         ModBlocks.PALM_SAPLING.get()));
     }
 
