@@ -1,10 +1,11 @@
 package net.foxirion.realitymod.worldgen.tree.custom;
 
-import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.foxirion.realitymod.worldgen.tree.ModTrunkPlacerTypes;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.block.state.BlockState;
@@ -12,14 +13,15 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
-import net.minecraft.core.Direction;
 
 import java.util.List;
+import java.util.OptionalInt;
 import java.util.function.BiConsumer;
 
 public class PalmTrunkPlacer extends TrunkPlacer {
     public static final Codec<PalmTrunkPlacer> CODEC = RecordCodecBuilder.create(palmTrunkPlacerInstance ->
-            trunkPlacerParts(palmTrunkPlacerInstance).apply(palmTrunkPlacerInstance, PalmTrunkPlacer::new));
+            trunkPlacerParts(palmTrunkPlacerInstance).apply(palmTrunkPlacerInstance, PalmTrunkPlacer::new)
+    );
 
     public PalmTrunkPlacer(int pBaseHeight, int pHeightRandA, int pHeightRandB) {
         super(pBaseHeight, pHeightRandA, pHeightRandB);
@@ -29,67 +31,35 @@ public class PalmTrunkPlacer extends TrunkPlacer {
     protected TrunkPlacerType<?> type() {
         return ModTrunkPlacerTypes.PALM_TRUNK_PLACER.get();
     }
-    
 
     @Override
-    public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedReader pLevel, BiConsumer<BlockPos, BlockState> pBlockSetter,
-                                                            RandomSource pRandom, int pFreeTreeHeight, BlockPos pPos, TreeConfiguration pConfig) {
+    public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedReader pLevel, BiConsumer<BlockPos, BlockState> pBlockSetter, RandomSource pRandom, int pFreeTreeHeight, BlockPos pPos, TreeConfiguration pConfig) {
+        List<FoliagePlacer.FoliageAttachment> list = Lists.newArrayList();
+        Direction direction = Direction.Plane.HORIZONTAL.getRandomDirection(pRandom);
+        int i = pFreeTreeHeight - pRandom.nextInt(4) - 1;
+        int j = 3 - pRandom.nextInt(3);
+        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+        int k = pPos.getX();
+        int l = pPos.getZ();
+        OptionalInt optionalint = OptionalInt.empty();
 
-        // Setting the trunk height to match the visual pattern
-        int height = 8; // Fixed height to achieve 7-9 logs in total
-
-        BlockPos currentPos = pPos;
-
-        // Randomly select a variant (0, 1, 2) for the trunk shape
-        int variant = pRandom.nextInt(3); // 0, 1, or 2
-
-        // Randomly select a direction (N, S, E, W)
-        Direction direction = Direction.from2DDataValue(pRandom.nextInt(4)); // Randomly choose direction
-
-        if (variant == 0) {
-            // Variant 1
-            for (int i = 0; i < height; i++) {
-                placeLog(pLevel, pBlockSetter, pRandom, currentPos, pConfig);
-
-                // Adjust placement for variant 1
-                if (i < 3) {  // Place the first three logs in a step-like formation
-                    currentPos = currentPos.above().relative(direction.getOpposite()); // Go up and then back
-                } else {
-                    currentPos = currentPos.above(); // Continue growing vertically for the remaining logs
-                }
+        for(int i1 = 0; i1 < pFreeTreeHeight; ++i1) {
+            int j1 = pPos.getY() + i1;
+            if (i1 >= i && j > 0) {
+                k += direction.getStepX();
+                l += direction.getStepZ();
+                --j;
             }
-        } else if (variant == 1) {
-            // Variant 2
-            for (int i = 0; i < height; i++) {
-                placeLog(pLevel, pBlockSetter, pRandom, currentPos, pConfig);
 
-                // Adjust placement for variant 2
-                if (i < 3) {  // Place the first three logs in a diagonal formation
-                    currentPos = currentPos.above().relative(direction); // Go up and shift based on direction
-                } else {
-                    currentPos = currentPos.above(); // Continue growing vertically for the remaining logs
-                }
-            }
-        } else {
-            // Variant 3 (small and rare)
-            for (int i = 0; i < height; i++) {
-                placeLog(pLevel, pBlockSetter, pRandom, currentPos, pConfig);
-
-                // Adjust placement for variant 3
-                if (i == 0) { // First log is placed slightly up
-                    currentPos = currentPos.above().relative(direction.getOpposite().getOpposite()); // Shift up and back
-                } else if (i == 1) { // Second log is placed directly below
-                    currentPos = currentPos.above().relative(direction); // Shift again based on direction
-                } else {
-                    currentPos = currentPos.above(); // Continue growing vertically
-                }
+            if (this.placeLog(pLevel, pBlockSetter, pRandom, blockpos$mutableblockpos.set(k, j1, l), pConfig)) {
+                optionalint = OptionalInt.of(j1 + 1);
             }
         }
 
-        // Position for foliage attachment at the top
-        BlockPos foliagePos = currentPos.above();
+        if (optionalint.isPresent()) {
+            list.add(new FoliagePlacer.FoliageAttachment(new BlockPos(k, optionalint.getAsInt(), l), 1, false));
+        }
 
-        return ImmutableList.of(new FoliagePlacer.FoliageAttachment(foliagePos, 0, false));
+        return list;
     }
-
 }
