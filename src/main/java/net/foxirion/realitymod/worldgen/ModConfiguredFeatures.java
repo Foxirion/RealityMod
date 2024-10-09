@@ -2,6 +2,7 @@ package net.foxirion.realitymod.worldgen;
 
 import net.foxirion.realitymod.RealityMod;
 import net.foxirion.realitymod.block.ModBlocks;
+import net.foxirion.realitymod.worldgen.tree.custom.PalmFoliagePlacer;
 import net.foxirion.realitymod.worldgen.tree.custom.PalmTrunkPlacer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
@@ -50,7 +51,7 @@ public class ModConfiguredFeatures {
                 new PalmTrunkPlacer(4, 1, 2),
 
                 BlockStateProvider.simple(ModBlocks.PALM_LEAVES.get()),
-                new BlobFoliagePlacer(ConstantInt.of(3), ConstantInt.of(2), 3),
+                new PalmFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 1),
 
                 new TwoLayersFeatureSize(1, 0, 2)).build());
     }
