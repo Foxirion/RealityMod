@@ -58,5 +58,9 @@ public class ModItemTagGenerator extends ItemTagsProvider {
         this.tag(ItemTags.SIGNS)
                 .add(ModItems.PALM_SIGN.get());
 
+            //Trimmable Armor
+        this.tag(ItemTags.TRIMMABLE_ARMOR)
+                .add(ModItems.DESERT_TURTLE_HELMET.get());
+
     }
 }

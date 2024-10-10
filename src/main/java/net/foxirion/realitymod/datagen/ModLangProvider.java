@@ -4,7 +4,6 @@ import net.foxirion.realitymod.RealityMod;
 import net.foxirion.realitymod.block.ModBlocks;
 import net.foxirion.realitymod.entity.ModEntities;
 import net.foxirion.realitymod.item.ModItems;
-import net.foxirion.realitymod.item.ModCreativeModeTabs;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
@@ -47,6 +46,7 @@ public class ModLangProvider extends LanguageProvider {
         // Item translations
         add(ModItems.COCONUT.get(), "Coconut");
         add(ModItems.COCONUT_MILK.get(), "Coconut Milk");
+        add(ModItems.DESERT_TURTLE_HELMET.get(), "Desert Turtle Shell");
         add(ModItems.DESERT_TURTLE_SCUTE.get(), "Desert Turtle Scute");
         add(ModItems.DESERT_TURTLE_SPAWN_EGG.get(), "Desert Turtle Spawn Egg");
         add(ModItems.OASIS_CLAY_BALL.get(), "Oasis Clay Ball");
@@ -64,8 +64,9 @@ public class ModLangProvider extends LanguageProvider {
         add("creativetab.rm_natural_blocks", "RealityMod Natural Blocks");
         add("creativetab.rm_functional_blocks", "RealityMod Functional Blocks");
         add("creativetab.rm_tools_and_utilities", "RealityMod Tools & Utilities");
-        add("creativetab.rm_ingredients", "RealityMod Ingredients");
+        add("creativetab.rm_combat", "RealityMod Combat");
         add("creativetab.rm_food_and_drinks", "RealityMod Food & Drinks");
+        add("creativetab.rm_ingredients", "RealityMod Ingredients");
         add("creativetab.rm_spawn_eggs", "RealityMod Spawn Eggs");
     }
 }

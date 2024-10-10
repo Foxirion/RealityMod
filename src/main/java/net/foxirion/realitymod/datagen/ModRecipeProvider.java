@@ -47,6 +47,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModItems.COCONUT_MILK.get()), has(ModItems.COCONUT_MILK.get()))
                 .save(pWriter);
 
+        //Desert Turtle Helmet
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.DESERT_TURTLE_HELMET.get())
+                .pattern("###")
+                .pattern("# #")
+                .define('#', ModItems.DESERT_TURTLE_SCUTE.get())
+                .unlockedBy(getHasName(ModItems.DESERT_TURTLE_SCUTE.get()), has(ModItems.DESERT_TURTLE_SCUTE.get()))
+                .save(pWriter);
+
+
         //Oasis Clay
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.OASIS_CLAY.get())
                 .pattern("##")
@@ -179,7 +188,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModBlocks.STRIPPED_PALM_LOG.get()), has(ModBlocks.STRIPPED_PALM_LOG.get()))
                 .unlockedBy(getHasName(ModBlocks.STRIPPED_PALM_WOOD.get()), has(ModBlocks.STRIPPED_PALM_WOOD.get()))
                 .save(pWriter);
-
 
     }
 

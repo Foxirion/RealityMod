@@ -70,28 +70,36 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.PALM_CHEST_BOAT.get());
                     }).build());
 
-    public static final RegistryObject<CreativeModeTab> RM_INGREDIENTS = CREATIVE_MODE_TABS.register("rm_ingredients",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.DESERT_TURTLE_SCUTE.get()))
-                    .title(Component.translatable("creativetab.rm_ingredients"))
+    public static final RegistryObject<CreativeModeTab> RM_COMBAT = CREATIVE_MODE_TABS.register("rm_combat",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.DESERT_TURTLE_HELMET.get()))
+                    .title(Component.translatable("creativetab.rm_combat"))
                     .withTabsBefore(ModCreativeModeTabs.RM_TOOLS_AND_UTILITIES.getKey())
                     .displayItems((pParameters, pOutput) -> {
-                        pOutput.accept(ModItems.DESERT_TURTLE_SCUTE.get());
-                        pOutput.accept(ModItems.OASIS_CLAY_BALL.get());
+                        pOutput.accept(ModItems.DESERT_TURTLE_HELMET.get());
                     }).build());
 
     public static final RegistryObject<CreativeModeTab> RM_FOOD_AND_DRINKS = CREATIVE_MODE_TABS.register("rm_food_and_drinks",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.COCONUT.get()))
                     .title(Component.translatable("creativetab.rm_food_and_drinks"))
-                    .withTabsBefore(ModCreativeModeTabs.RM_INGREDIENTS.getKey())
+                    .withTabsBefore(ModCreativeModeTabs.RM_COMBAT.getKey())
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModItems.COCONUT.get());
                         pOutput.accept(ModItems.COCONUT_MILK.get());
                     }).build());
 
+    public static final RegistryObject<CreativeModeTab> RM_INGREDIENTS = CREATIVE_MODE_TABS.register("rm_ingredients",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.DESERT_TURTLE_SCUTE.get()))
+                    .title(Component.translatable("creativetab.rm_ingredients"))
+                    .withTabsBefore(ModCreativeModeTabs.RM_FOOD_AND_DRINKS.getKey())
+                    .displayItems((pParameters, pOutput) -> {
+                        pOutput.accept(ModItems.DESERT_TURTLE_SCUTE.get());
+                        pOutput.accept(ModItems.OASIS_CLAY_BALL.get());
+                    }).build());
+
     public static final RegistryObject<CreativeModeTab> RM_SPAWN_EGGS = CREATIVE_MODE_TABS.register("rm_spawn_eggs",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.DESERT_TURTLE_SPAWN_EGG.get()))
                     .title(Component.translatable("creativetab.rm_spawn_eggs"))
-                    .withTabsBefore(ModCreativeModeTabs.RM_FOOD_AND_DRINKS.getKey())
+                    .withTabsBefore(ModCreativeModeTabs.RM_INGREDIENTS.getKey())
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModItems.DESERT_TURTLE_SPAWN_EGG.get());
                     }).build());

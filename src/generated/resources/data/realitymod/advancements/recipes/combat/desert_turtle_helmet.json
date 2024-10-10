@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_desert_turtle_scute": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "realitymod:desert_turtle_scute"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "realitymod:desert_turtle_helmet"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_desert_turtle_scute",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "realitymod:desert_turtle_helmet"
+    ]
+  },
+  "sends_telemetry_event": false
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "realitymod:desert_turtle_scute"
+    }
+  },
+  "pattern": [
+    "###",
+    "# #"
+  ],
+  "result": {
+    "item": "realitymod:desert_turtle_helmet"
+  },
+  "show_notification": true
+}
