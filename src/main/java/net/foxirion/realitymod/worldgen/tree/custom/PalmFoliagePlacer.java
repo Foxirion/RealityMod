@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.foxirion.realitymod.worldgen.tree.ModFoliagePlacers;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.LevelSimulatedReader;
@@ -13,13 +14,13 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerTy
 
 public class PalmFoliagePlacer extends FoliagePlacer {
     public static final Codec<PalmFoliagePlacer> CODEC = RecordCodecBuilder.create(palmFoliagePlacerInstance
-            -> foliagePlacerParts(palmFoliagePlacerInstance).and(Codec.intRange(0, 16).fieldOf("height")
-            .forGetter(fp -> fp.height)).apply(palmFoliagePlacerInstance, PalmFoliagePlacer::new));
-    private final int height;
+            -> foliagePlacerParts(palmFoliagePlacerInstance).and(Codec.intRange(1, 4).fieldOf("frond_length")
+            .forGetter(fp -> fp.frondLength)).apply(palmFoliagePlacerInstance, PalmFoliagePlacer::new));
+    private final int frondLength;
 
-    public PalmFoliagePlacer(IntProvider pRadius, IntProvider pOffset, int height) {
+    public PalmFoliagePlacer(IntProvider pRadius, IntProvider pOffset, int frondLength) {
         super(pRadius, pOffset);
-        this.height = height;
+        this.frondLength = frondLength;
     }
 
     @Override
@@ -30,71 +31,52 @@ public class PalmFoliagePlacer extends FoliagePlacer {
     @Override
     protected void createFoliage(LevelSimulatedReader level, FoliageSetter blockSetter, RandomSource random, TreeConfiguration config,
                                  int maxFreeTreeHeight, FoliageAttachment attachment, int foliageHeight, int foliageRadius, int offset) {
+        BlockPos pos = attachment.pos().above(offset);
 
-        // Define the top of the trunk
-        BlockPos topPos = attachment.pos().above(foliageHeight - 1);
-
-        // Define offsets for a lighter top layer
-        int[][] topLayerOffsets = {
-                {0, 0},    // Center log position
-                {1, 0},    // Right
-                {-1, 0},   // Left
-                {0, 1},    // Front
-                {0, -1},   // Back
-                {1, -1},   // Top-right diagonal
-                {-1, -1},  // Top-left diagonal
-                {1, 1},    // Bottom-right diagonal
-                {-1, 1},   // Bottom-left diagonal
-        };
-
-        // Place the leaves for the lighter top layer
-        for (int[] leafOffset : topLayerOffsets) {
-            tryPlaceLeaf(level, blockSetter, random, config, topPos.offset(leafOffset[0], 0, leafOffset[1]));
+        // Create the top cluster
+        tryPlaceLeaf(level, blockSetter, random, config, pos);
+        for (Direction direction : Direction.Plane.HORIZONTAL) {
+            tryPlaceLeaf(level, blockSetter, random, config, pos.relative(direction));
         }
 
-        // Define offsets for the main layer
-        int[][] mainLayerOffsets = {
-                {0, 0},    // Center log position
-                {1, 0},    // Right
-                {-1, 0},   // Left
-                {0, 1},    // Front
-                {0, -1},   // Back
-                {1, 1},    // Bottom-right diagonal
-                {1, -1},   // Top-right diagonal
-                {-1, 1},   // Bottom-left diagonal
-                {-1, -1},  // Top-left diagonal
-                {2, 0},    // Right 2
-                {-2, 0},   // Left 2
-                {0, 2},    // Front 2
-                {0, -2},   // Back 2
-                {2, 1},    // Bottom-right diagonal 2
-                {2, -1},   // Top-right diagonal 2
-                {-2, 1},   // Bottom-left diagonal 2
-                {-2, -1},  // Top-left diagonal 2
-                {1, 2},    // Front-right diagonal
-                {1, -2},   // Back-right diagonal
-                {-1, 2},   // Front-left diagonal
-                {-1, -2},  // Back-left diagonal
-        };
-
-        // Place the leaves for the main layer
-        for (int[] leafOffset : mainLayerOffsets) {
-            tryPlaceLeaf(level, blockSetter, random, config, topPos.below().offset(leafOffset[0], 0, leafOffset[1]));
+        // Create the palm fronds
+        for (Direction direction : Direction.Plane.HORIZONTAL) {
+            createFrond(level, blockSetter, random, config, pos, direction);
         }
+    }
 
-        // Additional connections to avoid decay at the bottom layer
-        for (int i = -2; i <= 2; i++) {
-            for (int j = -2; j <= 2; j++) {
-                if (Math.abs(i) + Math.abs(j) <= 2) { // Create a filled area
-                    tryPlaceLeaf(level, blockSetter, random, config, topPos.below(2).offset(i, 0, j)); // Increased leaf count
-                }
+    private void createFrond(LevelSimulatedReader level, FoliageSetter blockSetter, RandomSource random,
+                             TreeConfiguration config, BlockPos startPos, Direction direction) {
+        BlockPos.MutableBlockPos currentPos = startPos.mutable();
+
+        for (int i = 0; i < frondLength; i++) {
+            currentPos.move(direction).move(Direction.DOWN);
+
+            if (i == 0) {
+                // First block of the frond
+                tryPlaceLeaf(level, blockSetter, random, config, currentPos.above());
+                tryPlaceLeaf(level, blockSetter, random, config, currentPos);
+            } else if (i == 1) {
+                // Second block of the frond
+                tryPlaceLeaf(level, blockSetter, random, config, currentPos.above());
+                tryPlaceLeaf(level, blockSetter, random, config, currentPos);
+                tryPlaceLeaf(level, blockSetter, random, config, currentPos.relative(direction));
+            } else if (i == 2) {
+                // Third block of the frond
+                tryPlaceLeaf(level, blockSetter, random, config, currentPos);
+                tryPlaceLeaf(level, blockSetter, random, config, currentPos.relative(direction));
+            }
+
+            // Add some randomness to the frond length
+            if (i == frondLength - 1 && random.nextBoolean()) {
+                tryPlaceLeaf(level, blockSetter, random, config, currentPos.relative(direction));
             }
         }
     }
 
     @Override
     public int foliageHeight(RandomSource pRandom, int pHeight, TreeConfiguration pConfig) {
-        return this.height;
+        return 0; // Palm trees typically have leaves only at the top
     }
 
     @Override

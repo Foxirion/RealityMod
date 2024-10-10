@@ -10,7 +10,7 @@
     },
     "foliage_placer": {
       "type": "realitymod:palm_foliage_placer",
-      "height": 1,
+      "frond_length": 3,
       "offset": 0,
       "radius": 2
     },
