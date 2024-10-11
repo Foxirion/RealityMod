@@ -7,6 +7,7 @@ import net.foxirion.realitymod.item.ModCreativeModeTabs;
 import net.foxirion.realitymod.item.ModItems;
 import net.foxirion.realitymod.worldgen.tree.ModFoliagePlacers;
 import net.foxirion.realitymod.worldgen.tree.ModTrunkPlacerTypes;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -31,6 +32,10 @@ public class RealityMod {
         ModTrunkPlacerTypes.TRUNK_PLACER.register(bus);
         ModFoliagePlacers.FOLIAGE_PLACERS.register(bus);
 
+    }
+
+    public static ResourceLocation rl(String path) {
+        return new ResourceLocation(MOD_ID, path);
     }
 
 }
