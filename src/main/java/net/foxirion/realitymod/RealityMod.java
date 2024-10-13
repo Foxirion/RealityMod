@@ -5,7 +5,6 @@ import net.foxirion.realitymod.block.entity.ModBlockEntities;
 import net.foxirion.realitymod.entity.ModEntities;
 import net.foxirion.realitymod.item.ModCreativeModeTabs;
 import net.foxirion.realitymod.item.ModItems;
-import net.foxirion.realitymod.worldgen.ModStructureTypes;
 import net.foxirion.realitymod.worldgen.tree.ModFoliagePlacers;
 import net.foxirion.realitymod.worldgen.tree.ModTrunkPlacerTypes;
 import net.minecraft.resources.ResourceLocation;
@@ -32,7 +31,6 @@ public class RealityMod {
         ModBlockEntities.BLOCK_ENTITIES.register(bus);
         ModTrunkPlacerTypes.TRUNK_PLACER.register(bus);
         ModFoliagePlacers.FOLIAGE_PLACERS.register(bus);
-        ModStructureTypes.STRUCTURE_TYPES.register(bus);
 
     }
 
