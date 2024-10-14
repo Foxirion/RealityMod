@@ -1,0 +1,7 @@
+{
+  "type": "realitymod:oasis",
+  "biomes": "#realitymod:has_structure/oasis",
+  "spawn_overrides": {},
+  "step": "surface_structures",
+  "terrain_adaptation": "beard_thin"
+}
