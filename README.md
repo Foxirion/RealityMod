@@ -60,7 +60,7 @@ Alpha Version 1.0.0a ALMOST READY FOR RELEASE!
 
 ## ℹ️ About
 
-RealityMod is a Minecraft mod designed to immerse players in a more realistic gaming experience. By introducing elements inspired by real life, we aim to add depth and authenticity to your adventures, all while maintaining the classic Minecraft feel
+RealityMod is a Minecraft mod designed to immerse players in a more realistic gaming experience. By introducing elements inspired by real life, we aim to add depth and authenticity to your adventures, all while maintaining the classic Minecraft feel.
 
 ## ✨ Features
 
