@@ -3,7 +3,7 @@
     {
       "element": {
         "element_type": "minecraft:legacy_single_pool_element",
-        "location": "realitymod:oasis/oasis_plants",
+        "location": "realitymod:oasis/oasis_top",
         "processors": {
           "processors": []
         },

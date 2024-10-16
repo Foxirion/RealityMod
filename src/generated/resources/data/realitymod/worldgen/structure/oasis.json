@@ -8,7 +8,7 @@
   "start_height": {
     "absolute": 0
   },
-  "start_pool": "realitymod:oasis/oasis_lake",
+  "start_pool": "realitymod:oasis/oasis_base",
   "step": "surface_structures",
   "terrain_adaptation": "beard_thin",
   "use_expansion_hack": true

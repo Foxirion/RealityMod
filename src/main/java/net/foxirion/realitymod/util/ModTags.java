@@ -28,12 +28,4 @@ public class ModTags {
             return ItemTags.create(new ResourceLocation(RealityMod.MOD_ID, name));
         }
     }
-
-    public static class BiomeTags {
-        public static final TagKey<Biome> HAS_OASIS = create("has_structure/oasis");
-
-        private static TagKey<Biome> create(String name) {
-            return TagKey.create(Registries.BIOME, RealityMod.rl(name));
-        }
-    }
 }
