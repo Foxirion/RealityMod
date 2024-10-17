@@ -19,7 +19,7 @@ import java.util.function.BiConsumer;
 
 public class ModChestLoot implements LootTableSubProvider {
     private static final Set<ResourceLocation> LOCATIONS = Sets.newHashSet();
-    public static final ResourceLocation OASIS = register("chests/oasis");
+    public static final ResourceLocation OASIS = register("chests/oasis_treasure");
 
     @Override
     public void generate(BiConsumer<ResourceLocation, LootTable.Builder> consumer) {
