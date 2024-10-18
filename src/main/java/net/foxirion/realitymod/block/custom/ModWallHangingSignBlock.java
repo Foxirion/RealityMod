@@ -8,8 +8,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
 public class ModWallHangingSignBlock extends WallHangingSignBlock {
-    public ModWallHangingSignBlock(Properties pProperties, WoodType pType) {
-        super(pProperties, pType);
+    public ModWallHangingSignBlock(WoodType type, Properties properties) {
+        super(type, properties);
     }
 
     @Override

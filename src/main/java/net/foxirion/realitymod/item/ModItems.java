@@ -4,50 +4,45 @@ import net.foxirion.realitymod.RealityMod;
 import net.foxirion.realitymod.block.ModBlocks;
 import net.foxirion.realitymod.entity.ModEntities;
 import net.foxirion.realitymod.entity.custom.ModBoatEntity;
-import net.foxirion.realitymod.item.custom.DesertTurtleHelmetItem;
 import net.foxirion.realitymod.item.custom.ModArmorMaterials;
 import net.foxirion.realitymod.item.custom.ModBoatItem;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.HangingSignItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SignItem;
-import net.minecraftforge.common.ForgeSpawnEggItem;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraft.world.item.*;
+import net.neoforged.neoforge.common.DeferredSpawnEggItem;
+import net.neoforged.neoforge.registries.DeferredItem;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModItems {
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, RealityMod.MOD_ID);
+    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(RealityMod.MODID);
 
     // Boats
-    public static final RegistryObject<Item> PALM_BOAT = ITEMS.register("palm_boat",
+    public static final DeferredItem<Item> PALM_BOAT = ITEMS.register("palm_boat",
             () -> new ModBoatItem(false, ModBoatEntity.Type.PALM, new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> PALM_CHEST_BOAT = ITEMS.register("palm_chest_boat",
+    public static final DeferredItem<Item> PALM_CHEST_BOAT = ITEMS.register("palm_chest_boat",
             () -> new ModBoatItem(true, ModBoatEntity.Type.PALM, new Item.Properties().stacksTo(1)));
 
     // Coconut
-    public static final RegistryObject<Item> COCONUT = ITEMS.register("coconut",
+    public static final DeferredItem<Item> COCONUT = ITEMS.register("coconut",
             () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> COCONUT_MILK = ITEMS.register("coconut_milk",
+    public static final DeferredItem<Item> COCONUT_MILK = ITEMS.register("coconut_milk",
             () -> new Item(new Item.Properties().food(ModFoods.COCONUT_MILK)));
 
     // Desert Turtle
-    public static final RegistryObject<Item> DESERT_TURTLE_HELMET = ITEMS.register("desert_turtle_helmet",
-            () -> new DesertTurtleHelmetItem(ModArmorMaterials.DESERT_TURTLE, ArmorItem.Type.HELMET, new Item.Properties()));
-    public static final RegistryObject<Item> DESERT_TURTLE_SCUTE = ITEMS.register("desert_turtle_scute",
+    public static final DeferredItem<Item> DESERT_TURTLE_HELMET = ITEMS.register("desert_turtle_helmet",
+            () -> new ArmorItem(ModArmorMaterials.DESERT_TURTLE, ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(26))));
+    public static final DeferredItem<Item> DESERT_TURTLE_SCUTE = ITEMS.register("desert_turtle_scute",
             () -> new Item(new Item.Properties()));
 
     // Oasis Clay Ball
-    public static final RegistryObject<Item> OASIS_CLAY_BALL = ITEMS.register("oasis_clay_ball",
+    public static final DeferredItem<Item> OASIS_CLAY_BALL = ITEMS.register("oasis_clay_ball",
             () -> new Item(new Item.Properties()));
 
     // Signs
-    public static final RegistryObject<Item> PALM_HANGING_SIGN = ITEMS.register("palm_hanging_sign",
+    public static final DeferredItem<Item> PALM_HANGING_SIGN = ITEMS.register("palm_hanging_sign",
             () -> new HangingSignItem(ModBlocks.PALM_HANGING_SIGN.get(), ModBlocks.PALM_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16)));
-    public static final RegistryObject<Item> PALM_SIGN = ITEMS.register("palm_sign",
+    public static final DeferredItem<Item> PALM_SIGN = ITEMS.register("palm_sign",
             () -> new SignItem(new Item.Properties().stacksTo(16), ModBlocks.PALM_SIGN.get(), ModBlocks.PALM_WALL_SIGN.get()));
 
     // Spawn Eggs
-    public static final RegistryObject<Item> DESERT_TURTLE_SPAWN_EGG = ITEMS.register("desert_turtle_spawn_egg",
-            () -> new ForgeSpawnEggItem(ModEntities.DESERT_TURTLE, 0x8D4B38, 0x6A5220, new Item.Properties()));
+    public static final DeferredItem<SpawnEggItem> DESERT_TURTLE_SPAWN_EGG = ITEMS.register("desert_turtle_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.DESERT_TURTLE, 0x8D4B38, 0x6A5220, new Item.Properties()));
 }

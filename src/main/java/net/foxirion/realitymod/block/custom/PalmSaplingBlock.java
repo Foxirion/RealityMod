@@ -4,18 +4,15 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SaplingBlock;
-import net.minecraft.world.level.block.grower.AbstractTreeGrower;
+import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.IPlantable;
+import net.neoforged.neoforge.common.util.TriState;
 
 public class PalmSaplingBlock extends SaplingBlock {
-
-    public PalmSaplingBlock(AbstractTreeGrower pTreeGrower, Properties pProperties) {
-        super(pTreeGrower, pProperties);
+    public PalmSaplingBlock(TreeGrower treeGrower, Properties properties) {
+        super(treeGrower, properties);
     }
 
     @Override
@@ -24,10 +21,10 @@ public class PalmSaplingBlock extends SaplingBlock {
     }
 
     @Override
-    public boolean canSustainPlant(BlockState state, BlockGetter world, BlockPos pos, Direction facing, IPlantable plantable) {
-        if (plantable instanceof PalmSaplingBlock)
-            return state.is(BlockTags.SAND);
-
-        return super.canSustainPlant(state, world, pos, facing, plantable);
+    public TriState canSustainPlant(BlockState state, BlockGetter level, BlockPos soilPosition, Direction facing, BlockState plant) {
+        if (state.is(BlockTags.SAND)) {
+            return TriState.TRUE;
+        }
+        return super.canSustainPlant(state, level, soilPosition, facing, plant);
     }
 }

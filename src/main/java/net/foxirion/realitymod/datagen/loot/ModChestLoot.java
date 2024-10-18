@@ -1,27 +1,24 @@
 package net.foxirion.realitymod.datagen.loot;
 
-import com.google.common.collect.Sets;
-import net.foxirion.realitymod.RealityMod;
 import net.foxirion.realitymod.block.ModBlocks;
 import net.foxirion.realitymod.item.ModItems;
+import net.foxirion.realitymod.util.ModTags;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.LootTableSubProvider;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 
-import java.util.Set;
 import java.util.function.BiConsumer;
 
-public class ModChestLoot implements LootTableSubProvider {
-    private static final Set<ResourceLocation> LOCATIONS = Sets.newHashSet();
-    public static final ResourceLocation OASIS = register("chests/oasis_treasure");
+public record ModChestLoot(HolderLookup.Provider registries) implements LootTableSubProvider {
 
     @Override
-    public void generate(BiConsumer<ResourceLocation, LootTable.Builder> consumer) {
-        consumer.accept(OASIS, this.oasisSiteLootTable());
+    public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> output) {
+        output.accept(ModTags.ChestLoot.OASIS, this.oasisSiteLootTable());
     }
 
     public LootTable.Builder oasisSiteLootTable() {
@@ -73,17 +70,5 @@ public class ModChestLoot implements LootTableSubProvider {
                                 .setWeight(1).setQuality(2))
                 );
 
-    }
-
-    private static ResourceLocation register(String pId) {
-        return register(new ResourceLocation(RealityMod.MOD_ID, pId));
-    }
-
-    private static ResourceLocation register(ResourceLocation pId) {
-        if (LOCATIONS.add(pId)) {
-            return pId;
-        } else {
-            throw new IllegalArgumentException(pId + " is already a registered built-in loot table");
-        }
     }
 }

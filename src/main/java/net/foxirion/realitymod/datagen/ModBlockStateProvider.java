@@ -4,22 +4,22 @@ import net.foxirion.realitymod.RealityMod;
 import net.foxirion.realitymod.block.ModBlocks;
 import net.foxirion.realitymod.block.custom.DesertTurtleEggBlock;
 import net.foxirion.realitymod.block.custom.ModFlammableRotatedPillarBlock;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.client.model.generators.ConfiguredModel;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredBlock;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
-        super(output, RealityMod.MOD_ID, exFileHelper);
+        super(output, RealityMod.MODID, exFileHelper);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         pressurePlateBlock(((PressurePlateBlock) ModBlocks.PALM_PRESSURE_PLATE.get()), blockTexture(ModBlocks.PALM_PLANKS.get()));
 
-        saplingBlock(ModBlocks.PALM_SAPLING);
+        createSaplingBlock(ModBlocks.PALM_SAPLING.get(), ModBlocks.POTTED_PALM_SAPLING.get());
 
         slabBlock(((SlabBlock) ModBlocks.PALM_SLAB.get()), blockTexture(ModBlocks.PALM_PLANKS.get()), blockTexture(ModBlocks.PALM_PLANKS.get()));
 
@@ -132,7 +132,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 
     private void createFossilBlock(Block fossilBlock, String fossilName, String frontTexture, String sideTexture) {
-        ResourceLocation name = new ResourceLocation(RealityMod.MOD_ID, fossilName);
+        ResourceLocation name = RealityMod.rl(fossilName);
 
         ModelFile model = models().getBuilder(name.getPath())
                 .parent(models().getExistingFile(mcLoc("block/orientable")))
@@ -162,21 +162,27 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     private void logBlock(ModFlammableRotatedPillarBlock block) {
         axisBlock(block,
-                new ResourceLocation(RealityMod.MOD_ID, "block/" + name(block)),
-                new ResourceLocation(RealityMod.MOD_ID, "block/" + name(block) + "_top"));
+                RealityMod.rl("block/" + name(block)),
+                RealityMod.rl("block/" + name(block) + "_top"));
     }
 
-    private void saplingBlock(RegistryObject<Block> blockRegistryObject) {
-        simpleBlock(blockRegistryObject.get(),
-                models().cross(ForgeRegistries.BLOCKS.getKey(blockRegistryObject.get()).getPath(), blockTexture(blockRegistryObject.get())).renderType("cutout"));
+    private void createSaplingBlock(Block block, Block pottedSaplingBlock) {
+        simpleBlock(block, models().cross(name(block), blockTexture(block)).renderType(RenderType.CUTOUT.name));
+
+        simpleBlock(pottedSaplingBlock, models().withExistingParent(name(pottedSaplingBlock), "block/flower_pot_cross")
+                .texture("plant", blockTexture(block)).renderType(RenderType.CUTOUT.name));
+
+        itemModels().getBuilder(name(block))
+                .parent(itemModels().getExistingFile(mcLoc("item/generated")))
+                .texture("layer0", "block/" + name(block));
     }
 
-    private void blockWithItem(RegistryObject<Block> blockRegistryObject) {
+    private void blockWithItem(DeferredBlock<Block> blockRegistryObject) {
         simpleBlockWithItem(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));
     }
 
-    private void blockItem(RegistryObject<Block> blockRegistryObject) {
-        simpleBlockItem(blockRegistryObject.get(), new ModelFile.UncheckedModelFile(RealityMod.MOD_ID + ":block/" + name(blockRegistryObject.get())));
+    private void blockItem(DeferredBlock<Block> blockRegistryObject) {
+        simpleBlockItem(blockRegistryObject.get(), new ModelFile.UncheckedModelFile(RealityMod.MODID + ":block/" + name(blockRegistryObject.get())));
     }
 
     // Other stuff

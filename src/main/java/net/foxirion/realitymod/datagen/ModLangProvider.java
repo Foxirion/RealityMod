@@ -7,12 +7,12 @@ import net.foxirion.realitymod.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.common.data.LanguageProvider;
+import net.neoforged.neoforge.common.data.LanguageProvider;
 
 public class ModLangProvider extends LanguageProvider {
 
     public ModLangProvider(PackOutput output) {
-        super(output, RealityMod.MOD_ID, "en_us");
+        super(output, RealityMod.MODID, "en_us");
     }
 
     @Override

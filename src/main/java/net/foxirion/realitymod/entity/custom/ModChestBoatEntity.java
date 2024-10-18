@@ -11,8 +11,10 @@ import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.entity.vehicle.ChestBoat;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
+
 public class ModChestBoatEntity extends ChestBoat {
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE = SynchedEntityData.defineId(Boat.class, EntityDataSerializers.INT);
+
     public ModChestBoatEntity(EntityType<? extends ChestBoat> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
@@ -35,18 +37,22 @@ public class ModChestBoatEntity extends ChestBoat {
     public void setVariant(ModBoatEntity.Type pVariant) {
         this.entityData.set(DATA_ID_TYPE, pVariant.ordinal());
     }
+
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(DATA_ID_TYPE, ModBoatEntity.Type.PALM.ordinal());
     }
+
     protected void addAdditionalSaveData(CompoundTag pCompound) {
         pCompound.putString("Type", this.getModVariant().getSerializedName());
     }
+
     protected void readAdditionalSaveData(CompoundTag pCompound) {
         if (pCompound.contains("Type", 8)) {
             this.setVariant(ModBoatEntity.Type.byName(pCompound.getString("Type")));
         }
     }
+
     public ModBoatEntity.Type getModVariant() {
         return ModBoatEntity.Type.byId(this.entityData.get(DATA_ID_TYPE));
     }

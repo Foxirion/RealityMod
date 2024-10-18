@@ -3,6 +3,7 @@ package net.foxirion.realitymod.datagen;
 import net.foxirion.realitymod.RealityMod;
 import net.foxirion.realitymod.block.ModBlocks;
 import net.foxirion.realitymod.item.ModItems;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -12,17 +13,16 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.armortrim.TrimMaterial;
 import net.minecraft.world.item.armortrim.TrimMaterials;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.client.model.generators.ItemModelBuilder;
-import net.minecraftforge.client.model.generators.ItemModelProvider;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
+import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredBlock;
 
 import java.util.LinkedHashMap;
 
 public class ModItemModelProvider extends ItemModelProvider {
-    private static LinkedHashMap<ResourceKey<TrimMaterial>, Float> trimMaterials = new LinkedHashMap<>();
+    public static LinkedHashMap<ResourceKey<TrimMaterial>, Float> trimMaterials = new LinkedHashMap<>();
 
     static {
         trimMaterials.put(TrimMaterials.QUARTZ, 0.1F);
@@ -38,23 +38,22 @@ public class ModItemModelProvider extends ItemModelProvider {
     }
 
     public ModItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
-        super(output, RealityMod.MOD_ID, existingFileHelper);
+        super(output, RealityMod.MODID, existingFileHelper);
     }
 
     @Override
     protected void registerModels() {
-        //Simple Items & BlockItems
+        // Basic Item
+        basicItem(ModItems.COCONUT.get());
+        basicItem(ModItems.COCONUT_MILK.get());
+        basicItem(ModItems.DESERT_TURTLE_SCUTE.get());
+        basicItem(ModItems.OASIS_CLAY_BALL.get());
+        basicItem(ModItems.PALM_BOAT.get());
+        basicItem(ModItems.PALM_CHEST_BOAT.get());
+        basicItem(ModItems.PALM_HANGING_SIGN.get());
+        basicItem(ModItems.PALM_SIGN.get());
 
-        simpleItem(ModItems.COCONUT);
-        simpleItem(ModItems.COCONUT_MILK);
-        simpleItem(ModItems.DESERT_TURTLE_SCUTE);
-        simpleItem(ModItems.OASIS_CLAY_BALL);
-        simpleItem(ModItems.PALM_BOAT);
-        simpleItem(ModItems.PALM_CHEST_BOAT);
-        simpleItem(ModItems.PALM_HANGING_SIGN);
-        simpleItem(ModItems.PALM_SIGN);
-
-        simpleBlockItem(ModBlocks.PALM_DOOR);
+        simpleBlockItem(ModBlocks.PALM_DOOR.get());
 
         //EvenSimpler Items & Block Items
 
@@ -78,65 +77,40 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         fenceItem(ModBlocks.PALM_FENCE, ModBlocks.PALM_PLANKS);
 
-        saplingItem(ModBlocks.PALM_SAPLING);
-
         trapdoorItem(ModBlocks.PALM_TRAPDOOR);
 
-        trimmedArmorItem(ModItems.DESERT_TURTLE_HELMET);
-
+        trimmableArmorItem(ModItems.DESERT_TURTLE_HELMET.get());
     }
 
     //Methods
-
-    private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
-        return withExistingParent(item.getId().getPath(),
-                new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(RealityMod.MOD_ID, "item/" + item.getId().getPath()));
+    public void evenSimplerBlockItem(DeferredBlock<Block> block) {
+        this.withExistingParent(RealityMod.MODID + ":" + BuiltInRegistries.BLOCK.getKey(block.get()).getPath(),
+                modLoc("block/" + BuiltInRegistries.BLOCK.getKey(block.get()).getPath()));
     }
 
-    public void evenSimplerBlockItem(RegistryObject<Block> block) {
-        this.withExistingParent(RealityMod.MOD_ID + ":" + ForgeRegistries.BLOCKS.getKey(block.get()).getPath(),
-                modLoc("block/" + ForgeRegistries.BLOCKS.getKey(block.get()).getPath()));
+    public void trapdoorItem(DeferredBlock<Block> block) {
+        this.withExistingParent(BuiltInRegistries.BLOCK.getKey(block.get()).getPath(),
+                modLoc("block/" + BuiltInRegistries.BLOCK.getKey(block.get()).getPath() + "_bottom"));
     }
 
-    public void trapdoorItem(RegistryObject<Block> block) {
-        this.withExistingParent(ForgeRegistries.BLOCKS.getKey(block.get()).getPath(),
-                modLoc("block/" + ForgeRegistries.BLOCKS.getKey(block.get()).getPath() + "_bottom"));
+    public void fenceItem(DeferredBlock<Block> block, DeferredBlock<Block> baseBlock) {
+        this.withExistingParent(BuiltInRegistries.BLOCK.getKey(block.get()).getPath(), mcLoc("block/fence_inventory"))
+                .texture("texture", ResourceLocation.fromNamespaceAndPath(RealityMod.MODID, "block/" + BuiltInRegistries.BLOCK.getKey(baseBlock.get()).getPath()));
     }
 
-    public void fenceItem(RegistryObject<Block> block, RegistryObject<Block> baseBlock) {
-        this.withExistingParent(ForgeRegistries.BLOCKS.getKey(block.get()).getPath(), mcLoc("block/fence_inventory"))
-                .texture("texture", new ResourceLocation(RealityMod.MOD_ID, "block/" + ForgeRegistries.BLOCKS.getKey(baseBlock.get()).getPath()));
+    public void buttonItem(DeferredBlock<Block> block, DeferredBlock<Block> baseBlock) {
+        this.withExistingParent(BuiltInRegistries.BLOCK.getKey(block.get()).getPath(), mcLoc("block/button_inventory"))
+                .texture("texture", RealityMod.rl("block/" + BuiltInRegistries.BLOCK.getKey(baseBlock.get()).getPath()));
     }
 
-    public void buttonItem(RegistryObject<Block> block, RegistryObject<Block> baseBlock) {
-        this.withExistingParent(ForgeRegistries.BLOCKS.getKey(block.get()).getPath(), mcLoc("block/button_inventory"))
-                .texture("texture", new ResourceLocation(RealityMod.MOD_ID, "block/" + ForgeRegistries.BLOCKS.getKey(baseBlock.get()).getPath()));
-    }
+    private void trimmableArmorItem(Item item) {
+        String name = getItemName(item);
+        String itemName = "item/" + name;
+        ModelFile mcItem = getExistingFile(mcLoc("item/generated"));
 
-    private ItemModelBuilder saplingItem(RegistryObject<Block> item) {
-        return withExistingParent(item.getId().getPath(),
-                new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(RealityMod.MOD_ID, "block/" + item.getId().getPath()));
-    }
-
-    public void wallItem(RegistryObject<Block> block, RegistryObject<Block> baseBlock) {
-        this.withExistingParent(ForgeRegistries.BLOCKS.getKey(block.get()).getPath(), mcLoc("block/wall_inventory"))
-                .texture("wall", new ResourceLocation(RealityMod.MOD_ID, "block/" + ForgeRegistries.BLOCKS.getKey(baseBlock.get()).getPath()));
-    }
-
-    private ItemModelBuilder simpleBlockItem(RegistryObject<Block> item) {
-        return withExistingParent(item.getId().getPath(),
-                new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(RealityMod.MOD_ID, "item/" + item.getId().getPath()));
-    }
-
-    private void trimmedArmorItem(RegistryObject<Item> itemRegistryObject) {
-        final String MOD_ID = RealityMod.MOD_ID; // Change this to your mod id
-        if (itemRegistryObject.get() instanceof ArmorItem armorItem) {
+        if (item instanceof ArmorItem armorItem) {
             trimMaterials.entrySet().forEach(entry -> {
-                ResourceKey<TrimMaterial> trimMaterial = entry.getKey();
-                float trimValue = entry.getValue();
+                // Variables
                 String armorType = switch (armorItem.getEquipmentSlot()) {
                     case HEAD -> "helmet";
                     case CHEST -> "chestplate";
@@ -144,30 +118,38 @@ public class ModItemModelProvider extends ItemModelProvider {
                     case FEET -> "boots";
                     default -> "";
                 };
-                String armorItemPath = "item/" + armorItem;
-                String trimPath = "trims/items/" + armorType + "_trim_" + trimMaterial.location().getPath();
-                String currentTrimName = armorItemPath + "_" + trimMaterial.location().getPath() + "_trim";
-                ResourceLocation armorItemResLoc = new ResourceLocation(MOD_ID, armorItemPath);
-                ResourceLocation trimResLoc = new ResourceLocation(trimPath); // minecraft namespace
-                ResourceLocation trimNameResLoc = new ResourceLocation(MOD_ID, currentTrimName);
-                // This is used for making the ExistingFileHelper acknowledge that this texture exist, so this will
-                // avoid an IllegalArgumentException
-                existingFileHelper.trackGenerated(trimResLoc, PackType.CLIENT_RESOURCES, ".png", "textures");
-                // Trimmed armorItem files
-                getBuilder(currentTrimName)
-                        .parent(new ModelFile.UncheckedModelFile("item/generated"))
-                        .texture("layer0", armorItemResLoc)
-                        .texture("layer1", trimResLoc);
-                // Non-trimmed armorItem file (normal variant)
-                this.withExistingParent(itemRegistryObject.getId().getPath(),
-                                mcLoc("item/generated"))
+
+                String trimType = entry.getKey().location().getPath();
+                float trimValue = entry.getValue();
+                ResourceLocation textureLocation;
+                if (entry.getKey().location().getNamespace().equals("minecraft")) { // Vanilla trims
+                    textureLocation = mcLoc("trims/items/" + armorType + "_trim_" + trimType);
+                } else { // Modded trims (assuming they're in your mod's namespace)
+                    textureLocation = modLoc("trims/items/" + armorType + "_trim_" + trimType);
+                }
+
+                ModelFile model = new ModelFile.UncheckedModelFile(modLoc(itemName + "_" + trimType + "_trim"));
+
+                //existingFileHelper.trackGenerated(textureLocation, PackType.CLIENT_RESOURCES, ".png", "textures");
+
+                // Trimmed parts
+                getBuilder(name + "_" + trimType + "_trim")
+                        .parent(mcItem)
+                        .texture("layer0", itemName)
+                        .texture("layer1", textureLocation);
+
+                // Armor with trimmed parts
+                getBuilder(name)
+                        .parent(mcItem)
                         .override()
-                        .model(new ModelFile.UncheckedModelFile(trimNameResLoc))
-                        .predicate(mcLoc("trim_type"), trimValue).end()
-                        .texture("layer0",
-                                new ResourceLocation(MOD_ID,
-                                        "item/" + itemRegistryObject.getId().getPath()));
+                        .predicate(ResourceLocation.parse("trim_type"), trimValue)
+                        .model(model).end()
+                        .texture("layer0", modLoc(itemName));
             });
         }
+    }
+
+    private String getItemName(Item item) {
+        return BuiltInRegistries.ITEM.getKey(item).toString().replace(RealityMod.MODID + ":", "");
     }
 }

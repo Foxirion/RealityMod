@@ -5,5 +5,5 @@ import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
 public class ModWoodTypes {
-    public static final WoodType PALM = WoodType.register(new WoodType(RealityMod.MOD_ID + ":palm", BlockSetType.OAK));
+    public static final WoodType PALM = WoodType.register(new WoodType(RealityMod.MODID + ":palm", BlockSetType.OAK));
 }

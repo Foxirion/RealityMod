@@ -36,6 +36,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.TurtleEggBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.fluids.FluidType;
 import org.jetbrains.annotations.Nullable;
 
 public class DesertTurtleEntity extends Animal {
@@ -107,14 +108,6 @@ public class DesertTurtleEntity extends Animal {
                 .add(Attributes.KNOCKBACK_RESISTANCE, 0.5f);
     }
 
-    public boolean isPushedByFluid() {
-        return true;
-    }
-
-    public boolean canBreatheUnderwater() {
-        return false;
-    }
-
     //Food
     public boolean isFood(ItemStack pStack) {
         return pStack.is(Blocks.CACTUS.asItem());
@@ -138,7 +131,6 @@ public class DesertTurtleEntity extends Animal {
     protected @Nullable SoundEvent getDeathSound() {
         return SoundEvents.TURTLE_DEATH;
     }
-
 
 
     //Breeding
@@ -180,10 +172,10 @@ public class DesertTurtleEntity extends Animal {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(HAS_EGG, false);
-        this.entityData.define(LAYING_EGG, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(HAS_EGG, false);
+        builder.define(LAYING_EGG, false);
     }
 
     public void addAdditionalSaveData(CompoundTag pCompound) {
@@ -200,11 +192,6 @@ public class DesertTurtleEntity extends Animal {
         int l = pCompound.getInt("TravelPosX");
         int i1 = pCompound.getInt("TravelPosY");
         int j1 = pCompound.getInt("TravelPosZ");
-    }
-
-    @javax.annotation.Nullable
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pReason, @javax.annotation.Nullable SpawnGroupData pSpawnData, @javax.annotation.Nullable CompoundTag pDataTag) {
-        return super.finalizeSpawn(pLevel, pDifficulty, pReason, pSpawnData, pDataTag);
     }
 
     public static boolean checkDesertTurtleSpawnRules(EntityType<Turtle> pTurtle, LevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
@@ -300,12 +287,13 @@ public class DesertTurtleEntity extends Animal {
     }
 
     //Unleashable
-    public boolean canBeLeashed(Player pPlayer) {
+    @Override
+    public boolean canBeLeashed() {
         return false;
     }
 
-    //Desert Turtle Spawn rules
 
+    //Desert Turtle Spawn rules
     public static boolean checkDesertTurtleSpawnRules(EntityType<DesertTurtleEntity> entityType, ServerLevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
         // Check if it's a desert biome and on sand
         if (!level.getBiome(pos).is(Biomes.DESERT) || !level.getBlockState(pos.below()).is(Blocks.SAND)) {

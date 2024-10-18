@@ -32,11 +32,13 @@ public class DesertTurtleEggBlock extends TurtleEggBlock {
         if (this.shouldUpdateHatchLevel(level) && onSand(level, pos)) {
             int i = state.getValue(HATCH);
             if (i < 2) {
-                level.playSound((Player)null, pos, SoundEvents.TURTLE_EGG_CRACK, SoundSource.BLOCKS, 0.7F, 0.9F + random.nextFloat() * 0.2F);
+                level.playSound(null, pos, SoundEvents.TURTLE_EGG_CRACK, SoundSource.BLOCKS, 0.7F, 0.9F + random.nextFloat() * 0.2F);
                 level.setBlock(pos, state.setValue(HATCH, Integer.valueOf(i + 1)), 2);
+                level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(state));
             } else {
-                level.playSound((Player)null, pos, SoundEvents.TURTLE_EGG_HATCH, SoundSource.BLOCKS, 0.7F, 0.9F + random.nextFloat() * 0.2F);
+                level.playSound(null, pos, SoundEvents.TURTLE_EGG_HATCH, SoundSource.BLOCKS, 0.7F, 0.9F + random.nextFloat() * 0.2F);
                 level.removeBlock(pos, false);
+                level.gameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Context.of(state));
 
                 for(int j = 0; j < state.getValue(EGGS); ++j) {
                     level.levelEvent(2001, pos, Block.getId(state));
@@ -49,68 +51,57 @@ public class DesertTurtleEggBlock extends TurtleEggBlock {
                 }
             }
         }
-
     }
 
-    private boolean shouldUpdateHatchLevel(ServerLevel level) {
+    private boolean shouldUpdateHatchLevel(Level level) {
         float f = level.getTimeOfDay(1.0F);
-        if ((double)f < 0.69D && (double)f > 0.65D) {
-            return true;
-        } else {
-            return level.random.nextInt(500) == 0;
-        }
+        return (double)f < 0.69 && (double)f > 0.65 ? true : level.random.nextInt(500) == 0;
     }
 
     // Trample Eggs
     @Override
-    public void stepOn(Level pLevel, BlockPos pPos, BlockState pState, Entity pEntity) {
-        if (!pEntity.isSteppingCarefully()) {
-            this.destroyEgg(pLevel, pState, pPos, pEntity, 100);
+    public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
+        if (!entity.isSteppingCarefully()) {
+            this.destroyEgg(level, state, pos, entity, 100);
         }
 
-        super.stepOn(pLevel, pPos, pState, pEntity);
+        super.stepOn(level, pos, state, entity);
     }
 
     @Override
-    public void fallOn(Level pLevel, BlockState pState, BlockPos pPos, Entity pEntity, float pFallDistance) {
-        if (!(pEntity instanceof Zombie)) {
-            this.destroyEgg(pLevel, pState, pPos, pEntity, 3);
+    public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
+        if (!(entity instanceof Zombie)) {
+            this.destroyEgg(level, state, pos, entity, 3);
         }
 
-        super.fallOn(pLevel, pState, pPos, pEntity, pFallDistance);
+        super.fallOn(level, state, pos, entity, fallDistance);
     }
 
-    private void destroyEgg(Level pLevel, BlockState pState, BlockPos pPos, Entity pEntity, int pChance) {
-        if (this.canDestroyEgg(pLevel, pEntity)) {
-            if (!pLevel.isClientSide && pLevel.random.nextInt(pChance) == 0 && pState.is(ModBlocks.DESERT_TURTLE_EGG.get())) {
-                this.decreaseEggs(pLevel, pPos, pState);
+    private void destroyEgg(Level level, BlockState state, BlockPos pos, Entity entity, int chance) {
+        if (this.canDestroyEgg(level, entity)) {
+            if (!level.isClientSide && level.random.nextInt(chance) == 0 && state.is(ModBlocks.DESERT_TURTLE_EGG)) {
+                this.decreaseEggs(level, pos, state);
             }
-
         }
     }
 
-    private void decreaseEggs(Level pLevel, BlockPos pPos, BlockState pState) {
-        pLevel.playSound((Player)null, pPos, SoundEvents.TURTLE_EGG_BREAK, SoundSource.BLOCKS, 0.7F, 0.9F + pLevel.random.nextFloat() * 0.2F);
-        int i = pState.getValue(EGGS);
+    private void decreaseEggs(Level level, BlockPos pos, BlockState state) {
+        level.playSound(null, pos, SoundEvents.TURTLE_EGG_BREAK, SoundSource.BLOCKS, 0.7F, 0.9F + level.random.nextFloat() * 0.2F);
+        int i = state.getValue(EGGS);
         if (i <= 1) {
-            pLevel.destroyBlock(pPos, false);
+            level.destroyBlock(pos, false);
         } else {
-            pLevel.setBlock(pPos, pState.setValue(EGGS, Integer.valueOf(i - 1)), 2);
-            pLevel.gameEvent(GameEvent.BLOCK_DESTROY, pPos, GameEvent.Context.of(pState));
-            pLevel.levelEvent(2001, pPos, Block.getId(pState));
+            level.setBlock(pos, state.setValue(EGGS, Integer.valueOf(i - 1)), 2);
+            level.gameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Context.of(state));
+            level.levelEvent(2001, pos, Block.getId(state));
         }
-
     }
 
-    private boolean canDestroyEgg(Level pLevel, Entity pEntity) {
-        if (!(pEntity instanceof Turtle) && !(pEntity instanceof Bat)) {
-            if (!(pEntity instanceof LivingEntity)) {
-                return false;
-            } else {
-                return pEntity instanceof Player || net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(pLevel, pEntity);
-            }
-        } else {
+    private boolean canDestroyEgg(Level level, Entity entity) {
+        if (entity instanceof Turtle || entity instanceof Bat) {
             return false;
+        } else {
+            return !(entity instanceof LivingEntity) ? false : entity instanceof Player || net.neoforged.neoforge.event.EventHooks.canEntityGrief(level, entity);
         }
     }
 }

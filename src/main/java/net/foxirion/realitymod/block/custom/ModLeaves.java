@@ -10,6 +10,7 @@ public class ModLeaves extends LeavesBlock {
     public ModLeaves(Properties pProperties) {
         super(pProperties);
     }
+
     @Override
     public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
         return true;

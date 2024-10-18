@@ -15,7 +15,7 @@ public class DesertTurtleRenderer extends MobRenderer<DesertTurtleEntity, Desert
 
     @Override
     public ResourceLocation getTextureLocation(DesertTurtleEntity pEntity){
-        return new ResourceLocation(RealityMod.MOD_ID, "textures/entity/desert_turtle.png");
+        return ResourceLocation.fromNamespaceAndPath(RealityMod.MODID, "textures/entity/desert_turtle.png");
     }
 
     @Override
