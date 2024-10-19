@@ -52,7 +52,7 @@ public class ModLangProvider extends LanguageProvider {
         add(ModItems.OASIS_CLAY_BALL.get(), "Oasis Clay Ball");
         add(ModItems.PALM_BOAT.get(), "Palm Boat");
         add(ModItems.PALM_CHEST_BOAT.get(), "Palm Boat with Chest");
-        add(Items.SCUTE, "Sea Turtle Scute");
+        add(Items.TURTLE_SCUTE, "Sea Turtle Scute");
         add(Items.TURTLE_HELMET, "Sea Turtle Shell");
         add(Items.TURTLE_SPAWN_EGG, "Sea Turtle Spawn Egg");
 
