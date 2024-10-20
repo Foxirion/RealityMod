@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_nether",
+  "features": "realitymod:nether_fossil_placed_key",
+  "step": "underground_ores"
+}

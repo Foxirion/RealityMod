@@ -52,6 +52,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.PALM_LOG.get());
         dropSelf(ModBlocks.PALM_STAIRS.get());
         dropSelf(ModBlocks.PALM_SAPLING.get());
+        dropPottedContents(ModBlocks.POTTED_PALM_SAPLING.get());
         dropSelf(ModBlocks.PALM_TRAPDOOR.get());
         dropSelf(ModBlocks.PALM_WOOD.get());
         dropSelf(ModBlocks.STRIPPED_PALM_LOG.get());

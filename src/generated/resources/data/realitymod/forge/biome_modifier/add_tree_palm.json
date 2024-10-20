@@ -1,6 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#forge:is_desert",
-  "features": "realitymod:palm_placed",
-  "step": "vegetal_decoration"
-}

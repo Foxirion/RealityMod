@@ -53,8 +53,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.PALM_HANGING_SIGN.get());
         basicItem(ModItems.PALM_SIGN.get());
 
-        simpleBlockItem(ModBlocks.PALM_DOOR.get());
-
         //EvenSimpler Items & Block Items
 
         evenSimplerBlockItem(ModBlocks.FOSSIL);
@@ -103,7 +101,7 @@ public class ModItemModelProvider extends ItemModelProvider {
                 .texture("texture", RealityMod.rl("block/" + BuiltInRegistries.BLOCK.getKey(baseBlock.get()).getPath()));
     }
 
-    private void trimmableArmorItem(Item item) {
+    public void trimmableArmorItem(Item item) {
         String name = getItemName(item);
         String itemName = "item/" + name;
         ModelFile mcItem = getExistingFile(mcLoc("item/generated"));

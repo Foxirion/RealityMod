@@ -47,11 +47,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         createFossilBlock(ModBlocks.FROZEN_FOSSIL.get(), "frozen_fossil", "frozen_fossil_front", "frozen_fossil_side");
         createFossilBlock(ModBlocks.NETHER_FOSSIL.get(), "nether_fossil", "nether_fossil_front", "nether_fossil_side");
 
-        doorBlockWithRenderType(((DoorBlock) ModBlocks.PALM_DOOR.get()),
-                modLoc("block/palm_door_bottom"),
-                modLoc("block/palm_door_top"),
-                "cutout");
-
         fenceBlock(((FenceBlock) ModBlocks.PALM_FENCE.get()), blockTexture(ModBlocks.PALM_PLANKS.get()));
 
         fenceGateBlock(((FenceGateBlock) ModBlocks.PALM_FENCE_GATE.get()), blockTexture(ModBlocks.PALM_PLANKS.get()));
@@ -74,6 +69,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 true,
                 "cutout");
 
+        createDoorModel(ModBlocks.PALM_DOOR.get());
+    }
+
+    public void createDoorModel(Block block) {
+        doorBlockWithRenderType(((DoorBlock) block),
+                modLoc("block/" + name(block) + "_bottom"),
+                modLoc("block/" + name(block) + "_top"),
+                "cutout");
+        simpleBlockItem(block, new ModelFile.UncheckedModelFile(modLoc("block/" + name(block))));
     }
 
     public void createTurtleEgg(Block turtleEgg) {
