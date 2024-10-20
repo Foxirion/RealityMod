@@ -1,6 +1,7 @@
 package net.foxirion.realitymod.worldgen.tree.custom;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.foxirion.realitymod.worldgen.tree.ModFoliagePlacers;
 import net.minecraft.core.BlockPos;
@@ -13,9 +14,10 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 
 public class PalmFoliagePlacer extends FoliagePlacer {
-    public static final Codec<PalmFoliagePlacer> CODEC = RecordCodecBuilder.create(palmFoliagePlacerInstance
+    public static final MapCodec<PalmFoliagePlacer> CODEC = RecordCodecBuilder.mapCodec(palmFoliagePlacerInstance
             -> foliagePlacerParts(palmFoliagePlacerInstance).and(Codec.intRange(1, 4).fieldOf("frond_length")
             .forGetter(fp -> fp.frondLength)).apply(palmFoliagePlacerInstance, PalmFoliagePlacer::new));
+
     private final int frondLength;
 
     public PalmFoliagePlacer(IntProvider pRadius, IntProvider pOffset, int frondLength) {

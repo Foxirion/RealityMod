@@ -3,15 +3,15 @@ package net.foxirion.realitymod.datagen.loot;
 import net.foxirion.realitymod.RealityMod;
 import net.foxirion.realitymod.block.ModBlocks;
 import net.foxirion.realitymod.item.ModItems;
-import net.minecraft.advancements.critereon.EnchantmentPredicate;
-import net.minecraft.advancements.critereon.ItemPredicate;
-import net.minecraft.advancements.critereon.MinMaxBounds;
+import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -30,6 +30,8 @@ import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -86,54 +88,53 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     }
 
     private LootPool.Builder createSilkTouchPool(Block block) {
-        return LootPool.lootPool().when(this.hasSilkTouch()).setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(block));
+        return LootPool.lootPool()
+                .when(this.hasSilkTouch()).setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(block));
     }
 
     private LootPool.Builder createCommonDropPool(ItemLike commonDrop) {
-        return LootPool.lootPool()
-                .add(LootItem.lootTableItem(commonDrop)
-                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3)))
-                        .apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))
-                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 5))
-                                .when(MatchTool.toolMatches(ItemPredicate.Builder.item()
-                                        .hasEnchantment(new EnchantmentPredicate(Enchantments.BLOCK_FORTUNE, MinMaxBounds.Ints.exactly(3)))))));
+        HolderLookup.RegistryLookup<Enchantment> registrylookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
+
+        return LootPool.lootPool().add(LootItem.lootTableItem(commonDrop)
+                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3)))
+                .apply(ApplyBonusCount.addOreBonusCount(registrylookup.getOrThrow(Enchantments.FORTUNE)))
+                .apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 5))
+                        .when(MatchTool.toolMatches(ItemPredicate.Builder.item().withSubPredicate(ItemSubPredicates.ENCHANTMENTS, ItemEnchantmentsPredicate.enchantments(
+                                List.of(new EnchantmentPredicate(registrylookup.getOrThrow(Enchantments.FORTUNE), MinMaxBounds.Ints.exactly(3)))))))
+                )
+        );
     }
 
     private LootPool.Builder createUncommonDropPool(Item uncommonDrop) {
+        HolderLookup.RegistryLookup<Enchantment> registrylookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
         return LootPool.lootPool()
                 .setRolls(ConstantValue.exactly(1))
-                .when(InvertedLootItemCondition.invert(MatchTool.toolMatches(ItemPredicate.Builder.item()
-                        .hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.atLeast(1))))))
                 .add(LootItem.lootTableItem(uncommonDrop)
                         .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 2)))
-                        .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))
+                        .apply(ApplyBonusCount.addUniformBonusCount(registrylookup.getOrThrow(Enchantments.FORTUNE)))
                         .when(LootItemRandomChanceCondition.randomChance(0.75f)) // Replace with standard random chance
                         .apply(SetItemCountFunction.setCount(ConstantValue.exactly(2))
                                 .when(LootItemRandomChanceCondition.randomChance(0.45f))));
     }
 
     private LootPool.Builder createRareDropPool(Item rareDrop) {
+        HolderLookup.RegistryLookup<Enchantment> registrylookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
         return LootPool.lootPool()
                 .setRolls(ConstantValue.exactly(1))
-                .when(InvertedLootItemCondition.invert(MatchTool.toolMatches(ItemPredicate.Builder.item()
-                        .hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.atLeast(1))))))
                 .add(LootItem.lootTableItem(rareDrop)
                         .apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 1)))
-                        .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))
+                        .apply(ApplyBonusCount.addUniformBonusCount(registrylookup.getOrThrow(Enchantments.FORTUNE)))
                         .when(LootItemRandomChanceCondition.randomChance(0.20f)) // Replace with standard random chance
                         .apply(SetItemCountFunction.setCount(ConstantValue.exactly(2))
-                                .when(MatchTool.toolMatches(ItemPredicate.Builder.item()
-                                                .hasEnchantment(new EnchantmentPredicate(Enchantments.BLOCK_FORTUNE, MinMaxBounds.Ints.exactly(3))))
-                                        .and(LootItemRandomChanceCondition.randomChance(0.15f)))));
+                                .when(MatchTool.toolMatches(ItemPredicate.Builder.item().withSubPredicate(ItemSubPredicates.ENCHANTMENTS, ItemEnchantmentsPredicate.enchantments(
+                                        List.of(new EnchantmentPredicate(registrylookup.getOrThrow(Enchantments.FORTUNE), MinMaxBounds.Ints.exactly(3)))))
+                                ).and(LootItemRandomChanceCondition.randomChance(0.15f)))));
     }
 
     private LootPool.Builder createEpicDropPool(Item epicDrop) {
         return LootPool.lootPool()
                 .setRolls(ConstantValue.exactly(1))
-                .when(InvertedLootItemCondition.invert(MatchTool.toolMatches(ItemPredicate.Builder.item()
-                        .hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.atLeast(1))))))
-                .add(LootItem.lootTableItem(epicDrop)
-                        .when(LootItemRandomChanceCondition.randomChance(0.004f))); // Use random chance without looting
+                .add(LootItem.lootTableItem(epicDrop).when(LootItemRandomChanceCondition.randomChance(0.004f)));
     }
 
     @Override

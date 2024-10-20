@@ -1,10 +1,9 @@
 package net.foxirion.realitymod.worldgen;
 
 import net.foxirion.realitymod.RealityMod;
-import net.foxirion.realitymod.util.ModTags;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep;
@@ -15,14 +14,14 @@ import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.TerrainAdjustment;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
-import net.minecraftforge.common.Tags;
+import net.neoforged.neoforge.common.Tags;
 
 import java.util.Map;
 
 public class ModStructures {
     public static ResourceKey<Structure> OASIS = createKey("oasis");
 
-    public static void bootstrap(BootstapContext<Structure> pContext) {
+    public static void bootstrap(BootstrapContext<Structure> pContext) {
         HolderGetter<Biome> holdergetter = pContext.lookup(Registries.BIOME);
         HolderGetter<StructureTemplatePool> holdergetter1 = pContext.lookup(Registries.TEMPLATE_POOL);
 

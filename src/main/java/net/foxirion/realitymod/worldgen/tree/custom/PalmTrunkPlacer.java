@@ -2,6 +2,7 @@ package net.foxirion.realitymod.worldgen.tree.custom;
 
 import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.foxirion.realitymod.worldgen.tree.ModTrunkPlacerTypes;
 import net.minecraft.core.BlockPos;
@@ -19,7 +20,7 @@ import java.util.OptionalInt;
 import java.util.function.BiConsumer;
 
 public class PalmTrunkPlacer extends TrunkPlacer {
-    public static final Codec<PalmTrunkPlacer> CODEC = RecordCodecBuilder.create(palmTrunkPlacerInstance ->
+    public static final MapCodec<PalmTrunkPlacer> CODEC = RecordCodecBuilder.mapCodec(palmTrunkPlacerInstance ->
             trunkPlacerParts(palmTrunkPlacerInstance).apply(palmTrunkPlacerInstance, PalmTrunkPlacer::new)
     );
 

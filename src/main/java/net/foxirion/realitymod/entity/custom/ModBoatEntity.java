@@ -4,79 +4,76 @@ import net.foxirion.realitymod.block.ModBlocks;
 import net.foxirion.realitymod.entity.ModEntities;
 import net.foxirion.realitymod.item.ModItems;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerEntity;
 import net.minecraft.util.ByIdMap;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 
+import java.util.Arrays;
 import java.util.function.IntFunction;
 
 public class ModBoatEntity extends Boat {
-    private static final EntityDataAccessor<Integer> DATA_ID_TYPE = SynchedEntityData.defineId(Boat.class, EntityDataSerializers.INT);
-
-    public ModBoatEntity(EntityType<? extends Boat> pEntityType, Level pLevel) {
-        super(pEntityType, pLevel);
+    public ModBoatEntity(EntityType<? extends Boat> entityType, Level level) {
+        super(entityType, level);
+        this.blocksBuilding = true;
     }
 
-    public ModBoatEntity(Level level, double pX, double pY, double pZ) {
+    public ModBoatEntity(Level level, double x, double y, double z) {
         this(ModEntities.MOD_BOAT.get(), level);
-        this.setPos(pX, pY, pZ);
-        this.xo = pX;
-        this.yo = pY;
-        this.zo = pZ;
+        this.setPos(x, y, z);
+        this.xo = x;
+        this.yo = y;
+        this.zo = z;
+    }
+
+    @Override
+    protected void addAdditionalSaveData(CompoundTag compound) {
+        compound.putString("Type", this.getVariant().getSerializedName());
+    }
+
+    @Override
+    protected void readAdditionalSaveData(CompoundTag compound) {
+        if (compound.contains("Type", 8)) {
+            this.entityData.set(DATA_ID_TYPE, Type.byName(compound.getString("Type")).ordinal());
+        }
     }
 
     @Override
     public Item getDropItem() {
-        return switch (getModVariant()) {
+        return switch (getModel()) {
             case PALM -> ModItems.PALM_BOAT.get();
         };
     }
 
-    public void setVariant(Type pVariant) {
-        this.entityData.set(DATA_ID_TYPE, pVariant.ordinal());
+    public void setType(Type type) {
+        this.entityData.set(DATA_ID_TYPE, type.ordinal());
     }
 
-    public Type getModVariant() {
+    public Type getModel() {
         return Type.byId(this.entityData.get(DATA_ID_TYPE));
     }
 
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(DATA_ID_TYPE, Type.PALM.ordinal());
-    }
-
-    protected void addAdditionalSaveData(CompoundTag pCompound) {
-        pCompound.putString("Type", this.getModVariant().getSerializedName());
-    }
-
-    protected void readAdditionalSaveData(CompoundTag pCompound) {
-        if (pCompound.contains("Type", 8)) {
-            this.setVariant(Type.byName(pCompound.getString("Type")));
-        }
-    }
-
-    public static enum Type implements StringRepresentable {
-        PALM(ModBlocks.PALM_PLANKS.get(), "palm");
+    public enum Type {
+        PALM("palm", ModBlocks.PALM_PLANKS.get());
 
         private final String name;
         private final Block planks;
-        public static final StringRepresentable.EnumCodec<ModBoatEntity.Type> CODEC = StringRepresentable.fromEnum(ModBoatEntity.Type::values);
-        private static final IntFunction<ModBoatEntity.Type> BY_ID = ByIdMap.continuous(Enum::ordinal, values(), ByIdMap.OutOfBoundsStrategy.ZERO);
 
-        private Type(Block pPlanks, String pName) {
-            this.name = pName;
-            this.planks = pPlanks;
-        }
-
-        public String getSerializedName() {
-            return this.name;
+        Type(String name, Block planks) {
+            this.name = name;
+            this.planks = planks;
         }
 
         public String getName() {
@@ -91,15 +88,14 @@ public class ModBoatEntity extends Boat {
             return this.name;
         }
 
-        /**
-         * Get a boat type by its enum ordinal
-         */
-        public static ModBoatEntity.Type byId(int pId) {
-            return BY_ID.apply(pId);
+        public static Type byId(int id) {
+            Type[] type = values();
+            return type[id < 0 || id >= type.length ? 0 : id];
         }
 
-        public static ModBoatEntity.Type byName(String pName) {
-            return CODEC.byName(pName, PALM);
+        public static Type byName(String aName) {
+            Type[] type = values();
+            return Arrays.stream(type).filter(t -> t.getName().equals(aName)).findFirst().orElse(type[0]);
         }
     }
 }

@@ -5,10 +5,8 @@ import net.foxirion.realitymod.block.ModBlocks;
 import net.foxirion.realitymod.worldgen.tree.custom.PalmFoliagePlacer;
 import net.foxirion.realitymod.worldgen.tree.custom.PalmTrunkPlacer;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Blocks;
@@ -26,10 +24,10 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import java.util.List;
 
 public class ModConfiguredFeatures {
-    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_FOSSIL_KEY = registerKey("overworld_fossil");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> NETHER_FOSSIL_KEY = registerKey("nether_fossil");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_FOSSIL_KEY = createKey("overworld_fossil");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> NETHER_FOSSIL_KEY = createKey("nether_fossil");
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> PALM_KEY = registerKey("palm");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PALM_KEY = createKey("palm");
 
     public static void boostrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         RuleTest stoneReplaceables = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
@@ -54,11 +52,11 @@ public class ModConfiguredFeatures {
                 new TwoLayersFeatureSize(1, 0, 2)).build());
     }
 
-    public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
-        return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(RealityMod.MOD_ID, name));
+    private static ResourceKey<ConfiguredFeature<?, ?>> createKey(String name) {
+        return ResourceKey.create(Registries.CONFIGURED_FEATURE, RealityMod.rl(name));
     }
 
-    private static <FC extends FeatureConfiguration, F extends Feature<FC>> void register(BootstapContext<ConfiguredFeature<?, ?>> context, ResourceKey<ConfiguredFeature<?, ?>> key, F feature, FC configuration) {
-        context.register(key, new ConfiguredFeature<>(feature, configuration));
+    private static <FC extends FeatureConfiguration, F extends Feature<FC>> void register(BootstrapContext<ConfiguredFeature<?, ?>> context, ResourceKey<ConfiguredFeature<?, ?>> key, F feature, FC config) {
+        context.register(key, new ConfiguredFeature<>(feature, config));
     }
 }

@@ -1,3 +1,4 @@
+/*
 package net.foxirion.realitymod.datagen;
 
 import com.google.gson.JsonObject;
@@ -19,8 +20,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
-
+public class ModRecipeProvider extends RecipeProvider {
     public ModRecipeProvider(PackOutput pOutput) {
         super(pOutput);
     }
@@ -28,14 +28,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> pWriter) {
 
-                //Smelting
+        //Smelting
 
         // Oasis Clay & Ball
         customSmelting(pWriter, ModBlocks.OASIS_CLAY.get(), Items.TERRACOTTA, 2, 0.7f, 200, "oasis_clay_to_terracotta");
         customSmelting(pWriter, ModItems.OASIS_CLAY_BALL.get(), Items.BRICK, 2, 0.6f, 200, "oasis_clay_ball_to_brick");
 
 
-            //Crafting
+        //Crafting
 
         //Coconut
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.COCONUT_MILK.get())
@@ -204,13 +204,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     protected static void oreCooking(Consumer<FinishedRecipe> pFinishedRecipeConsumer, RecipeSerializer<? extends AbstractCookingRecipe> pCookingSerializer, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTime, String pGroup, String pRecipeName, int pResultCount) {
         Iterator var9 = pIngredients.iterator();
 
-        while(var9.hasNext()) {
-            ItemLike itemlike = (ItemLike)var9.next();
+        while (var9.hasNext()) {
+            ItemLike itemlike = (ItemLike) var9.next();
             String s1 = (pResult) + pRecipeName + "_" + getItemName(itemlike);
             SimpleCookingRecipeBuilder.generic(Ingredient.of(new ItemLike[]{itemlike}), pCategory, pResult,
-                    pExperience, pCookingTime, pCookingSerializer)
+                            pExperience, pCookingTime, pCookingSerializer)
                     .group(pGroup).unlockedBy(getHasName(itemlike), has(itemlike))
-                    .save(pFinishedRecipeConsumer, RealityMod.MOD_ID + ":"  + pRecipeName + "_" + getItemName(itemlike));
+                    .save(pFinishedRecipeConsumer, RealityMod.MOD_ID + ":" + pRecipeName + "_" + getItemName(itemlike));
         }
 
     }
@@ -271,3 +271,4 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         }
     }
 }
+*/
