@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "realitymod:coconut"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "realitymod:coconut_milk"
+  }
+}

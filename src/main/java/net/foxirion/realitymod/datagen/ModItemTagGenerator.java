@@ -24,32 +24,32 @@ public class ModItemTagGenerator extends ItemTagsProvider {
     protected void addTags(HolderLookup.Provider pProvider) {
         //Fossils
         tag(ModTags.Items.FOSSILS)
-                .add(ModBlocks.FOSSIL.get().asItem(),
-                        ModBlocks.DEEPSLATE_FOSSIL.get().asItem(),
-                        ModBlocks.FROZEN_FOSSIL.get().asItem(),
-                        ModBlocks.NETHER_FOSSIL.get().asItem());
+                .add(ModBlocks.FOSSIL.asItem(),
+                        ModBlocks.DEEPSLATE_FOSSIL.asItem(),
+                        ModBlocks.FROZEN_FOSSIL.asItem(),
+                        ModBlocks.NETHER_FOSSIL.asItem());
 
         //Leaves
         tag(ItemTags.LEAVES)
-                .add(ModBlocks.PALM_LEAVES.get().asItem());
+                .add(ModBlocks.PALM_LEAVES.asItem());
 
         //Logs that burn
         tag(ItemTags.LOGS_THAT_BURN)
-                .add(ModBlocks.PALM_LOG.get().asItem(),
-                        ModBlocks.PALM_WOOD.get().asItem(),
-                        ModBlocks.STRIPPED_PALM_LOG.get().asItem(),
-                        ModBlocks.STRIPPED_PALM_WOOD.get().asItem());
+                .add(ModBlocks.PALM_LOG.asItem(),
+                        ModBlocks.PALM_WOOD.asItem(),
+                        ModBlocks.STRIPPED_PALM_LOG.asItem(),
+                        ModBlocks.STRIPPED_PALM_WOOD.asItem());
 
         //Palm Logs
         tag(ModTags.Items.PALM_LOGS)
-                .add(ModBlocks.PALM_LOG.get().asItem(),
-                        ModBlocks.PALM_WOOD.get().asItem().asItem(),
-                        ModBlocks.STRIPPED_PALM_LOG.get().asItem(),
-                        ModBlocks.STRIPPED_PALM_WOOD.get().asItem());
+                .add(ModBlocks.PALM_LOG.asItem(),
+                        ModBlocks.PALM_WOOD.asItem().asItem(),
+                        ModBlocks.STRIPPED_PALM_LOG.asItem(),
+                        ModBlocks.STRIPPED_PALM_WOOD.asItem());
 
         //Planks
         tag(ItemTags.PLANKS)
-                .add(ModBlocks.PALM_PLANKS.get().asItem());
+                .add(ModBlocks.PALM_PLANKS.asItem());
 
         //Signs
         tag(ItemTags.HANGING_SIGNS)
