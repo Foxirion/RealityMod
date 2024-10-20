@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "realitymod:block/fossil_front",
+    "side": "realitymod:block/fossil_side",
+    "top": "realitymod:block/fossil_side"
+  }
+}

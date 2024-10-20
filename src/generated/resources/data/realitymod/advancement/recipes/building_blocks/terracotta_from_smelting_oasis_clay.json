@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_oasis_clay": {
+      "conditions": {
+        "items": [
+          {
+            "items": "realitymod:oasis_clay"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "realitymod:terracotta_from_smelting_oasis_clay"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_oasis_clay"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "realitymod:terracotta_from_smelting_oasis_clay"
+    ]
+  }
+}

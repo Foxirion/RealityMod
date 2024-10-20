@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/turtle_egg",
+  "textures": {
+    "layer0": "realitymod:item/desert_turtle_egg"
+  }
+}
