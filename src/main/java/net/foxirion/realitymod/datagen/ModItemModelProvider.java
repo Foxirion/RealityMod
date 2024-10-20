@@ -75,8 +75,6 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         fenceItem(ModBlocks.PALM_FENCE, ModBlocks.PALM_PLANKS);
 
-        trapdoorItem(ModBlocks.PALM_TRAPDOOR);
-
         trimmableArmorItem(ModItems.DESERT_TURTLE_HELMET.get());
     }
 
@@ -84,11 +82,6 @@ public class ModItemModelProvider extends ItemModelProvider {
     public void evenSimplerBlockItem(DeferredBlock<Block> block) {
         this.withExistingParent(RealityMod.MODID + ":" + BuiltInRegistries.BLOCK.getKey(block.get()).getPath(),
                 modLoc("block/" + BuiltInRegistries.BLOCK.getKey(block.get()).getPath()));
-    }
-
-    public void trapdoorItem(DeferredBlock<Block> block) {
-        this.withExistingParent(BuiltInRegistries.BLOCK.getKey(block.get()).getPath(),
-                modLoc("block/" + BuiltInRegistries.BLOCK.getKey(block.get()).getPath() + "_bottom"));
     }
 
     public void fenceItem(DeferredBlock<Block> block, DeferredBlock<Block> baseBlock) {

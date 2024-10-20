@@ -1,3 +1,6 @@
 {
-  "parent": "realitymod:block/palm_door"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "realitymod:item/palm_door"
+  }
 }

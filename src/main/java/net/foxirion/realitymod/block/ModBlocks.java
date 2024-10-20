@@ -39,7 +39,7 @@ public class ModBlocks {
 
     //Palm Button
     public static final DeferredBlock<Block> PALM_BUTTON = registerBlock("palm_button",
-            () -> new ButtonBlock(BlockSetType.OAK, 10, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_BUTTON)));
+            () -> new ButtonBlock(BlockSetType.OAK, 20, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_BUTTON)));
 
     //Palm Door
     public static final DeferredBlock<Block> PALM_DOOR = registerBlock("palm_door",

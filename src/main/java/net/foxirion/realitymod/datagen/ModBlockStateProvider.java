@@ -64,12 +64,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         stairsBlock(((StairBlock) ModBlocks.PALM_STAIRS.get()), blockTexture(ModBlocks.PALM_PLANKS.get()));
 
-        trapdoorBlockWithRenderType(((TrapDoorBlock) ModBlocks.PALM_TRAPDOOR.get()),
-                modLoc("block/palm_trapdoor"),
+        createTrapDoorModel(ModBlocks.PALM_TRAPDOOR.get());
+        createDoorModel(ModBlocks.PALM_DOOR.get());
+    }
+
+    public void createTrapDoorModel(Block block) {
+        trapdoorBlockWithRenderType(((TrapDoorBlock) block),
+                modLoc("block/" + name(block)),
                 true,
                 "cutout");
-
-        createDoorModel(ModBlocks.PALM_DOOR.get());
+        simpleBlockItem(block, new ModelFile.UncheckedModelFile(modLoc("block/" + name(block) + "_bottom")));
     }
 
     public void createDoorModel(Block block) {
@@ -77,7 +81,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 modLoc("block/" + name(block) + "_bottom"),
                 modLoc("block/" + name(block) + "_top"),
                 "cutout");
-        simpleBlockItem(block, new ModelFile.UncheckedModelFile(modLoc("block/" + name(block))));
+        itemModels().getBuilder(name(block))
+                .parent(itemModels().getExistingFile(mcLoc("item/generated")))
+                .texture("layer0", "item/" + name(block));
     }
 
     public void createTurtleEgg(Block turtleEgg) {
