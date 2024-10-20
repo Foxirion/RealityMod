@@ -133,7 +133,6 @@ public class DesertTurtleEntity extends Animal {
         return SoundEvents.TURTLE_DEATH;
     }
 
-
     //Breeding
     private static final int BREEDING_COOLDOWN = 6000; // 5 minutes in ticks
     private int breedingCooldown = 0;
