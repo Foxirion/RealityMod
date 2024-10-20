@@ -1,6 +1,7 @@
 package net.foxirion.realitymod.datagen;
 
 import net.foxirion.realitymod.RealityMod;
+import net.foxirion.realitymod.datagen.recipe.ModRecipeProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -22,7 +23,7 @@ public class DataGenerators {
 
         generator.addProvider(true, new ModLangProvider(packOutput));
 
-        //generator.addProvider(true, new ModRecipeProvider(packOutput));
+        generator.addProvider(true, new ModRecipeProvider(packOutput, lookupProvider));
         generator.addProvider(true, new ModLootTableProvider(packOutput, lookupProvider));
 
         generator.addProvider(true, new ModBlockStateProvider(packOutput, existingFileHelper));

@@ -16,6 +16,5 @@ public class ModCraftingRecipes extends ModRecipeProvider{
 
     public void build() {
 
-
     }
 }

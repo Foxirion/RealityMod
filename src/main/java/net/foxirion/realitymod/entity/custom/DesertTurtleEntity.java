@@ -43,7 +43,7 @@ public class DesertTurtleEntity extends Animal {
     private static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(DesertTurtleEntity.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> LAYING_EGG = SynchedEntityData.defineId(DesertTurtleEntity.class, EntityDataSerializers.BOOLEAN);
 
-     public int layEggCounter;
+    public int layEggCounter;
 
     public DesertTurtleEntity(EntityType<? extends Animal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -118,6 +118,7 @@ public class DesertTurtleEntity extends Animal {
     protected @Nullable SoundEvent getAmbientSound() {
         return SoundEvents.TURTLE_AMBIENT_LAND;
     }
+
     public int getAmbientSoundInterval() {
         return 200;
     }

@@ -2,8 +2,14 @@ package net.foxirion.realitymod.datagen.recipe;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.ItemLike;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -27,6 +33,17 @@ public class ModRecipeProvider extends RecipeProvider {
     }
 
     // Recipes
-    protected static void simpleCountCookingRecipeBuilder
+    public static void oreSmelting(RecipeOutput pRecipeOutput, ItemLike pIngredients, RecipeCategory pCategory, Item pResult, int pResultCount, float pExperience, int pCookingTime) {
+        oreCooking(pRecipeOutput, RecipeSerializer.SMELTING_RECIPE, SmeltingRecipe::new, pIngredients, pCategory, new ItemStack(pResult, pResultCount), pExperience, pCookingTime, "_from_smelting");
+    }
 
+    public static void oreBlasting(RecipeOutput pRecipeOutput, ItemLike pIngredients, RecipeCategory pCategory, Item pResult, int pResultCount, float pExperience, int pCookingTime) {
+        oreCooking(pRecipeOutput, RecipeSerializer.BLASTING_RECIPE, BlastingRecipe::new, pIngredients, pCategory, new ItemStack(pResult, pResultCount), pExperience, pCookingTime, "_from_blasting");
+    }
+
+    public static <T extends AbstractCookingRecipe> void oreCooking(RecipeOutput pRecipeOutput, RecipeSerializer<T> pSerializer, AbstractCookingRecipe.Factory<T> pRecipeFactory, ItemLike itemlike, RecipeCategory pCategory, ItemStack pResultStack, float pExperience, int pCookingTime, String pSuffix) {
+        SimpleCookingRecipeBuilder.generic(Ingredient.of(itemlike), pCategory, pResultStack, pExperience, pCookingTime, pSerializer, pRecipeFactory)
+                .unlockedBy(getHasName(itemlike), has(itemlike))
+                .save(pRecipeOutput, path + getItemName(pResultStack.getItem()) + pSuffix + "_" + getItemName(itemlike));
+    }
 }
