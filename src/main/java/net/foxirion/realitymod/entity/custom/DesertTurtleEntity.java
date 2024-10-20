@@ -40,18 +40,17 @@ import net.neoforged.neoforge.fluids.FluidType;
 import org.jetbrains.annotations.Nullable;
 
 public class DesertTurtleEntity extends Animal {
-    private static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(DesertTurtleEntity.class, EntityDataSerializers.BOOLEAN);
-    private static final EntityDataAccessor<Boolean> LAYING_EGG = SynchedEntityData.defineId(DesertTurtleEntity.class, EntityDataSerializers.BOOLEAN);
-
+    public static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(DesertTurtleEntity.class, EntityDataSerializers.BOOLEAN);
+    public static final EntityDataAccessor<Boolean> LAYING_EGG = SynchedEntityData.defineId(DesertTurtleEntity.class, EntityDataSerializers.BOOLEAN);
+    public static final float BABY_SCALE = 0.3F;
+    public static final EntityDimensions BABY_DIMENSIONS = ModEntities.DESERT_TURTLE.get()
+            .getDimensions()
+            .withAttachments(EntityAttachments.builder().attach(EntityAttachment.PASSENGER, 0.0F, ModEntities.DESERT_TURTLE.get().getHeight(), -0.25F))
+            .scale(0.3F);
     public int layEggCounter;
 
     public DesertTurtleEntity(EntityType<? extends Animal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
-    }
-
-    @Override
-    public RandomSource getRandom() {
-        return super.getRandom();
     }
 
     public final AnimationState idleAnimationState = new AnimationState();
@@ -162,8 +161,14 @@ public class DesertTurtleEntity extends Animal {
         return this.moveDist + 0.15F;
     }
 
-    public float getScale() {
+    @Override
+    public float getAgeScale() {
         return this.isBaby() ? 0.3F : 1.0F;
+    }
+
+    @Override
+    public EntityDimensions getDefaultDimensions(Pose pose) {
+        return this.isBaby() ? BABY_DIMENSIONS : super.getDefaultDimensions(pose);
     }
 
     @javax.annotation.Nullable
@@ -291,7 +296,6 @@ public class DesertTurtleEntity extends Animal {
     public boolean canBeLeashed() {
         return false;
     }
-
 
     //Desert Turtle Spawn rules
     public static boolean checkDesertTurtleSpawnRules(EntityType<DesertTurtleEntity> entityType, ServerLevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {

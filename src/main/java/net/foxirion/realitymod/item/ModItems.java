@@ -28,7 +28,7 @@ public class ModItems {
 
     // Desert Turtle
     public static final DeferredItem<Item> DESERT_TURTLE_HELMET = ITEMS.register("desert_turtle_helmet",
-            () -> new ArmorItem(ModArmorMaterials.DESERT_TURTLE, ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(26))));
+            () -> new DesertTurtleHelmet(ModArmorMaterials.DESERT_TURTLE, ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(26))));
     public static final DeferredItem<Item> DESERT_TURTLE_SCUTE = ITEMS.register("desert_turtle_scute",
             () -> new Item(new Item.Properties()));
 

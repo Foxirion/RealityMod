@@ -3,15 +3,22 @@ package net.foxirion.realitymod.event;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.foxirion.realitymod.RealityMod;
 import net.foxirion.realitymod.block.ModBlocks;
+import net.foxirion.realitymod.init.ModDataComponents;
+import net.foxirion.realitymod.item.DesertTurtleHelmet;
 import net.foxirion.realitymod.item.ModItems;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import net.neoforged.neoforge.event.village.WandererTradesEvent;
 
@@ -50,27 +57,17 @@ public class ModEvents {
     }
 
     //Desert Turtle Helmet effect
-/*    private static final String COOLDOWN_TAG = "DesertTurtleHelmetCooldown";
+    public static final int COOLDOWN_TICKS = 600; // 30 seconds
 
     @SubscribeEvent
-    public static void onPlayerDamaged(LivingDamageEvent event) {
-        if (!(event.getEntity() instanceof Player player)) return;
+    public static void onPlayerDamaged(LivingDamageEvent.Pre event) {
+        if (!event.getEntity().level().isClientSide() && event.getEntity() instanceof Player player) {
+            ItemStack helmet = player.getItemBySlot(EquipmentSlot.HEAD);
 
-        // Check if player is wearing the helmet
-        ItemStack helmet = player.getItemBySlot(EquipmentSlot.HEAD);
-        if (!(helmet.getItem() instanceof DesertTurtleHelmetItem)) return;
-
-        // Get the current game time
-        long currentTime = player.level().getGameTime();
-        long lastActivated = helmet.getOrCreateTag().getLong(COOLDOWN_TAG);
-
-        // Check the cooldown (20 seconds in ticks = 400 ticks)
-        if (currentTime >= lastActivated + 400) {
-            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 80, 0));
-
-            // Set the new cooldown time
-            helmet.getOrCreateTag().putLong(COOLDOWN_TAG, currentTime);
+            if (helmet.getItem() instanceof DesertTurtleHelmet) {
+                helmet.set(ModDataComponents.TURTLE_HELMET_COOLDOWN, COOLDOWN_TICKS);
+            }
         }
-    }*/
+    }
 
 }

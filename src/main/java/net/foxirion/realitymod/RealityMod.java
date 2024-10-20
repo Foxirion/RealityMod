@@ -3,6 +3,7 @@ package net.foxirion.realitymod;
 import net.foxirion.realitymod.block.ModBlocks;
 import net.foxirion.realitymod.block.entity.ModBlockEntities;
 import net.foxirion.realitymod.entity.ModEntities;
+import net.foxirion.realitymod.init.ModDataComponents;
 import net.foxirion.realitymod.item.ModCreativeModeTabs;
 import net.foxirion.realitymod.item.ModItems;
 import net.foxirion.realitymod.item.custom.ModArmorMaterials;
@@ -30,6 +31,7 @@ public class RealityMod {
         ModBlockEntities.BLOCK_ENTITIES.register(bus);
         ModTrunkPlacerTypes.TRUNK_PLACER.register(bus);
         ModFoliagePlacers.FOLIAGE_PLACERS.register(bus);
+        ModDataComponents.COMPONENTS.register(bus);
     }
 
     public static ResourceLocation rl(String path) {

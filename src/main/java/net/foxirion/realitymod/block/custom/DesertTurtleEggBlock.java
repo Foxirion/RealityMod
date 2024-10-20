@@ -40,12 +40,12 @@ public class DesertTurtleEggBlock extends TurtleEggBlock {
                 level.removeBlock(pos, false);
                 level.gameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Context.of(state));
 
-                for(int j = 0; j < state.getValue(EGGS); ++j) {
+                for (int j = 0; j < state.getValue(EGGS); ++j) {
                     level.levelEvent(2001, pos, Block.getId(state));
                     DesertTurtleEntity turtle = ModEntities.DESERT_TURTLE.get().create(level);
                     if (turtle != null) {
                         turtle.setAge(-24000);
-                        turtle.moveTo((double)pos.getX() + 0.3D + (double)j * 0.2D, (double)pos.getY(), (double)pos.getZ() + 0.3D, 0.0F, 0.0F);
+                        turtle.moveTo((double) pos.getX() + 0.3D + (double) j * 0.2D, (double) pos.getY(), (double) pos.getZ() + 0.3D, 0.0F, 0.0F);
                         level.addFreshEntity(turtle);
                     }
                 }
@@ -55,7 +55,7 @@ public class DesertTurtleEggBlock extends TurtleEggBlock {
 
     private boolean shouldUpdateHatchLevel(Level level) {
         float f = level.getTimeOfDay(1.0F);
-        return (double)f < 0.69 && (double)f > 0.65 ? true : level.random.nextInt(500) == 0;
+        return (double) f < 0.69 && (double) f > 0.65 ? true : level.random.nextInt(500) == 0;
     }
 
     // Trample Eggs
@@ -98,7 +98,7 @@ public class DesertTurtleEggBlock extends TurtleEggBlock {
     }
 
     private boolean canDestroyEgg(Level level, Entity entity) {
-        if (entity instanceof Turtle || entity instanceof Bat) {
+        if (entity instanceof DesertTurtleEntity || entity instanceof Bat) {
             return false;
         } else {
             return !(entity instanceof LivingEntity) ? false : entity instanceof Player || net.neoforged.neoforge.event.EventHooks.canEntityGrief(level, entity);

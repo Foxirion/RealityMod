@@ -17,7 +17,7 @@ public class ModEntities {
     //Register Desert Turtle
     public static final Supplier<EntityType<DesertTurtleEntity>> DESERT_TURTLE =
             ENTITY_TYPES.register("desert_turtle", () -> EntityType.Builder.of(DesertTurtleEntity::new, MobCategory.CREATURE)
-                    .sized(1.0F, 0.75F).build("desert_turtle"));
+                    .sized(1.2F, 0.75F).build("desert_turtle"));
 
     //Register ModBoats
     public static final Supplier<EntityType<ModBoatEntity>> MOD_BOAT =
