@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "front": "realitymod:block/deepslate_fossil_front",
-    "side": "realitymod:block/deepslate_fossil_side",
-    "top": "realitymod:block/deepslate_fossil_side"
-  }
-}

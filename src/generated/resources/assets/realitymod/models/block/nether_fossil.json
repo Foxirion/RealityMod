@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "front": "realitymod:block/nether_fossil_front",
-    "side": "realitymod:block/nether_fossil_side",
-    "top": "realitymod:block/nether_fossil_side"
-  }
-}

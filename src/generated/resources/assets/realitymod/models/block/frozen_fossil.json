@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "front": "realitymod:block/frozen_fossil_front",
-    "side": "realitymod:block/frozen_fossil_side",
-    "top": "realitymod:block/frozen_fossil_side"
-  }
-}

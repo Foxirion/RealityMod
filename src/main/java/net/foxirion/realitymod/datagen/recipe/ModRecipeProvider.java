@@ -1,11 +1,14 @@
 package net.foxirion.realitymod.datagen.recipe;
 
+import net.foxirion.realitymod.datagen.ModBlockFamilies;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.data.BlockFamily;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
@@ -33,6 +36,11 @@ public class ModRecipeProvider extends RecipeProvider {
     }
 
     // Recipes
+    @Override
+    protected void generateForEnabledBlockFamilies(RecipeOutput recipeOutput, FeatureFlagSet featureFlagSet) {
+        ModBlockFamilies.getAllFamilies().filter(BlockFamily::shouldGenerateRecipe).forEach(blockFamily -> generateRecipes(recipeOutput, blockFamily, featureFlagSet));
+    }
+
     public static void oreSmelting(RecipeOutput pRecipeOutput, ItemLike pIngredients, RecipeCategory pCategory, Item pResult, int pResultCount, float pExperience, int pCookingTime) {
         oreCooking(pRecipeOutput, RecipeSerializer.SMELTING_RECIPE, SmeltingRecipe::new, pIngredients, pCategory, new ItemStack(pResult, pResultCount), pExperience, pCookingTime, "_from_smelting");
     }
