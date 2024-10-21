@@ -13,7 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 public class DesertTurtleHelmet extends ArmorItem {
-    public static final int EFFECT_DURATION = 100; // Infinite
+    public static final int EFFECT_DURATION = 100; // 5 seconds
 
     public DesertTurtleHelmet(Holder<ArmorMaterial> material, Type type, Properties properties) {
         super(material, type, properties);

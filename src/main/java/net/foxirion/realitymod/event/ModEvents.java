@@ -57,7 +57,7 @@ public class ModEvents {
     }
 
     //Desert Turtle Helmet effect
-    public static final int COOLDOWN_TICKS = 600; // 30 seconds
+    public static final int COOLDOWN_TICKS = 1400; // 30 seconds
 
     @SubscribeEvent
     public static void onPlayerDamaged(LivingDamageEvent.Pre event) {
