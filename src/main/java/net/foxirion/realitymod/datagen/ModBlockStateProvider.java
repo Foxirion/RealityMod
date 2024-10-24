@@ -4,6 +4,7 @@ import net.foxirion.realitymod.RealityMod;
 import net.foxirion.realitymod.block.ModBlocks;
 import net.foxirion.realitymod.block.custom.DesertTurtleEggBlock;
 import net.foxirion.realitymod.block.custom.ModFlammableRotatedPillarBlock;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -60,7 +61,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         pressurePlateBlock(((PressurePlateBlock) ModBlocks.PALM_PRESSURE_PLATE.get()), blockTexture(ModBlocks.PALM_PLANKS.get()));
 
-        saplingBlock(ModBlocks.PALM_SAPLING);
+        createSaplingBlock(ModBlocks.PALM_SAPLING.get(), ModBlocks.POTTED_PALM_SAPLING.get());
 
         slabBlock(((SlabBlock) ModBlocks.PALM_SLAB.get()), blockTexture(ModBlocks.PALM_PLANKS.get()), blockTexture(ModBlocks.PALM_PLANKS.get()));
 
@@ -166,9 +167,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 new ResourceLocation(RealityMod.MOD_ID, "block/" + name(block) + "_top"));
     }
 
-    private void saplingBlock(RegistryObject<Block> blockRegistryObject) {
-        simpleBlock(blockRegistryObject.get(),
-                models().cross(ForgeRegistries.BLOCKS.getKey(blockRegistryObject.get()).getPath(), blockTexture(blockRegistryObject.get())).renderType("cutout"));
+    public void createSaplingBlock(Block block, Block pottedSaplingBlock) {
+        simpleBlock(block, models().cross(name(block), blockTexture(block)).renderType("cutout"));;
+
+        simpleBlock(pottedSaplingBlock, models().withExistingParent(name(pottedSaplingBlock), "block/flower_pot_cross")
+                .texture("plant", blockTexture(block)).renderType("cutout"));
+
+        itemModels().getBuilder(name(block))
+                .parent(itemModels().getExistingFile(mcLoc("item/generated")))
+                .texture("layer0", "block/" + name(block));
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {

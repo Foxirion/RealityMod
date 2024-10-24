@@ -87,6 +87,8 @@ public class ModBlocks {
     //Palm Sapling
     public static final RegistryObject<Block> PALM_SAPLING = registerBlock("palm_sapling",
             () -> new PalmSaplingBlock(new PalmTreeGrower(), BlockBehaviour.Properties.copy(Blocks.ACACIA_SAPLING)));
+    public static final RegistryObject<Block> POTTED_PALM_SAPLING = registerBlock("potted_palm_sapling",
+            () -> new FlowerPotBlock (PALM_SAPLING.get(), BlockBehaviour.Properties.copy(Blocks.POTTED_OAK_SAPLING)));
 
     //Palm Slab
     public static final RegistryObject<Block> PALM_SLAB = registerBlock("palm_slab",

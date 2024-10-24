@@ -34,18 +34,19 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     protected void generate() {
         //dropSelf
 
-        this.dropSelf(ModBlocks.PALM_BUTTON.get());
-        this.dropSelf(ModBlocks.PALM_FENCE.get());
-        this.dropSelf(ModBlocks.PALM_FENCE_GATE.get());
-        this.dropSelf(ModBlocks.PALM_PLANKS.get());
-        this.dropSelf(ModBlocks.PALM_PRESSURE_PLATE.get());
-        this.dropSelf(ModBlocks.PALM_LOG.get());
-        this.dropSelf(ModBlocks.PALM_STAIRS.get());
-        this.dropSelf(ModBlocks.PALM_SAPLING.get());
-        this.dropSelf(ModBlocks.PALM_TRAPDOOR.get());
-        this.dropSelf(ModBlocks.PALM_WOOD.get());
-        this.dropSelf(ModBlocks.STRIPPED_PALM_LOG.get());
-        this.dropSelf(ModBlocks.STRIPPED_PALM_WOOD.get());
+        dropSelf(ModBlocks.PALM_BUTTON.get());
+        dropSelf(ModBlocks.PALM_FENCE.get());
+        dropSelf(ModBlocks.PALM_FENCE_GATE.get());
+        dropSelf(ModBlocks.PALM_PLANKS.get());
+        dropSelf(ModBlocks.PALM_PRESSURE_PLATE.get());
+        dropSelf(ModBlocks.PALM_LOG.get());
+        dropSelf(ModBlocks.PALM_STAIRS.get());
+        dropSelf(ModBlocks.PALM_SAPLING.get());
+        dropSelf(ModBlocks.PALM_TRAPDOOR.get());
+        dropSelf(ModBlocks.PALM_WOOD.get());
+        dropSelf(ModBlocks.STRIPPED_PALM_LOG.get());
+        dropSelf(ModBlocks.STRIPPED_PALM_WOOD.get());
+        dropPottedContents(ModBlocks.POTTED_PALM_SAPLING.get());
 
         //Complex drops
 
@@ -55,32 +56,32 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         createFossilDrops(ModBlocks.FROZEN_FOSSIL.get(), Items.BONE_MEAL, Items.BONE, Items.BONE_BLOCK, Items.SKELETON_SKULL);
         createFossilDrops(ModBlocks.NETHER_FOSSIL.get(), Items.BONE, Items.COAL, Items.BONE_BLOCK, Items.WITHER_SKELETON_SKULL);
 
-        this.add(ModBlocks.DESERT_TURTLE_EGG.get(),
+        add(ModBlocks.DESERT_TURTLE_EGG.get(),
                 LootTable.lootTable()
                         .withPool(LootPool.lootPool()
                                 .add(LootItem.lootTableItem(ModBlocks.DESERT_TURTLE_EGG.get())
                                         .when(MatchTool.toolMatches(ItemPredicate.Builder.item()
                                                 .hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.atLeast(1))))))));
 
-        this.add(ModBlocks.OASIS_CLAY.get(),
+        add(ModBlocks.OASIS_CLAY.get(),
                 (block) -> createOasisClayDrops(ModBlocks.OASIS_CLAY.get(), ModItems.OASIS_CLAY_BALL.get()));
 
-        this.add(ModBlocks.PALM_DOOR.get(),
+        add(ModBlocks.PALM_DOOR.get(),
                 block -> createDoorTable(ModBlocks.PALM_DOOR.get()));
 
-        this.add(ModBlocks.PALM_LEAVES.get(),
+        add(ModBlocks.PALM_LEAVES.get(),
                 (block) -> createPalmLeavesDrops(ModBlocks.PALM_LEAVES.get(), ModBlocks.PALM_SAPLING.get(), 0.05F, 0.0625F, 0.083333336F, 0.1F));
 
-        this.add(ModBlocks.PALM_SLAB.get(),
+        add(ModBlocks.PALM_SLAB.get(),
                 block -> createSlabItemTable(ModBlocks.PALM_SLAB.get()));
 
-        this.add(ModBlocks.PALM_SIGN.get(), block ->
+        add(ModBlocks.PALM_SIGN.get(), block ->
                 createSingleItemTable(ModItems.PALM_SIGN.get()));
-        this.add(ModBlocks.PALM_WALL_SIGN.get(), block ->
+        add(ModBlocks.PALM_WALL_SIGN.get(), block ->
                 createSingleItemTable(ModItems.PALM_SIGN.get()));
-        this.add(ModBlocks.PALM_HANGING_SIGN.get(), block ->
+        add(ModBlocks.PALM_HANGING_SIGN.get(), block ->
                 createSingleItemTable(ModItems.PALM_HANGING_SIGN.get()));
-        this.add(ModBlocks.PALM_WALL_HANGING_SIGN.get(), block ->
+        add(ModBlocks.PALM_WALL_HANGING_SIGN.get(), block ->
                 createSingleItemTable(ModItems.PALM_HANGING_SIGN.get()));
 
     }
@@ -88,7 +89,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     //Methods
 
     private void createFossilDrops(Block block, Item commonDrop, Item uncommonDrop, Item rareDrop, Item epicDrop) {
-        this.add(block, LootTable.lootTable()
+        add(block, LootTable.lootTable()
                 .withPool(createSilkTouchPool(block))
                 .withPool(createCommonDropPool(commonDrop))
                 .withPool(createUncommonDropPool(uncommonDrop))
@@ -157,11 +158,11 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     }
 
     protected LootTable.Builder createPalmLeavesDrops(Block pPalmLeavesBlock, Block pSaplingBlock, float... pChances) {
-        return this.createLeavesDrops(pPalmLeavesBlock, pSaplingBlock, pChances)
+        return createLeavesDrops(pPalmLeavesBlock, pSaplingBlock, pChances)
                 .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
                         .when(HAS_SILK_TOUCH.invert())
                         .when(HAS_SHEARS.invert())
-                        .add(((LootPoolSingletonContainer.Builder)this.applyExplosionCondition(pPalmLeavesBlock,
+                        .add(((LootPoolSingletonContainer.Builder)applyExplosionCondition(pPalmLeavesBlock,
                                 LootItem.lootTableItem(ModItems.COCONUT.get())))
                                 .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE,
                                         0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))));
