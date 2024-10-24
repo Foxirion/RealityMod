@@ -4,7 +4,7 @@ import net.foxirion.realitymod.RealityMod;
 import net.foxirion.realitymod.block.ModBlocks;
 import net.foxirion.realitymod.entity.ModEntities;
 import net.foxirion.realitymod.entity.custom.ModBoatEntity;
-import net.foxirion.realitymod.item.custom.DesertTurtleHelmetItem;
+import net.foxirion.realitymod.item.custom.DesertTurtleHelmet;
 import net.foxirion.realitymod.item.custom.ModArmorMaterials;
 import net.foxirion.realitymod.item.custom.ModBoatItem;
 import net.minecraft.world.item.ArmorItem;
@@ -33,7 +33,7 @@ public class ModItems {
 
     // Desert Turtle
     public static final RegistryObject<Item> DESERT_TURTLE_HELMET = ITEMS.register("desert_turtle_helmet",
-            () -> new DesertTurtleHelmetItem(ModArmorMaterials.DESERT_TURTLE, ArmorItem.Type.HELMET, new Item.Properties()));
+            () -> new DesertTurtleHelmet(ModArmorMaterials.DESERT_TURTLE, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final RegistryObject<Item> DESERT_TURTLE_SCUTE = ITEMS.register("desert_turtle_scute",
             () -> new Item(new Item.Properties()));
 
