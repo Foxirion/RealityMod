@@ -83,8 +83,8 @@ public class ModCreativeModeTabs {
                     .withTabsBefore(ModCreativeModeTabs.RM_COMBAT.getKey())
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModItems.COCONUT);
-                        pOutput.accept(ModItems.COCONUT_SHELL);
                         pOutput.accept(ModItems.COCONUT_MILK);
+                        pOutput.accept(ModItems.COCONUT_SHELL);
                     }).build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> RM_INGREDIENTS = CREATIVE_MODE_TABS.register("rm_ingredients",

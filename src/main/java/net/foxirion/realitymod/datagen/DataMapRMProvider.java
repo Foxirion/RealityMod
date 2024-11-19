@@ -18,7 +18,7 @@ public class DataMapRMProvider extends DataMapProvider {
     public void gather() {
         builder(NeoForgeDataMaps.COMPOSTABLES)
                 .add(ModItems.COCONUT, new Compostable(0.65F), false)
-                .add(ModItems.COCONUT_SHELL, new Compostable(0.25F), false)
-                .add(ModItems.COCONUT_MILK, new Compostable(0.4F), false);
+                .add(ModItems.COCONUT_SHELL, new Compostable(0.15F), false)
+                .add(ModItems.COCONUT_MILK, new Compostable(0.325F), false);
     }
 }

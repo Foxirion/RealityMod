@@ -33,14 +33,7 @@ public class ModCraftingRecipes extends ModRecipeProvider {
         chestBoat(recipeOutput, ModItems.PALM_CHEST_BOAT, ModBlocks.PALM_PLANKS);
         hangingSign(recipeOutput, ModItems.PALM_HANGING_SIGN, ModBlocks.STRIPPED_PALM_LOG);
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.APPLE_PIE)
-                .requires(Items.APPLE)
-                .requires(Items.SUGAR)
-                .requires(Items.EGG)
-                .unlockedBy(getHasName(Items.APPLE), has(Items.APPLE))
-                .save(recipeOutput);
-
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.COCONUT_MILK)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.COCONUT_MILK, 2)
                 .requires(ModItems.COCONUT)
                 .unlockedBy(getHasName(ModItems.COCONUT), has(ModItems.COCONUT))
                 .unlockedBy(getHasName(ModItems.COCONUT_MILK), has(ModItems.COCONUT_MILK))

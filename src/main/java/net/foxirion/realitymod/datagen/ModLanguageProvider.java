@@ -44,8 +44,6 @@ public class ModLanguageProvider extends LanguageProvider {
         add(Blocks.TURTLE_EGG, "Sea Turtle Egg");
 
         // Item translations
-        add(ModItems.APPLE_PIE.get(), "Apple Pie");
-        add(ModItems.BOWL_OF_WATER.get(), "Bowl of Water");
         add(ModItems.COCONUT.get(), "Coconut");
         add(ModItems.COCONUT_MILK.get(), "Coconut Milk");
         add(ModItems.COCONUT_SHELL.get(), "Coconut Shell");

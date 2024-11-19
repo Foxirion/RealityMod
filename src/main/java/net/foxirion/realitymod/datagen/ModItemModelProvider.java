@@ -44,8 +44,6 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         // Basic Item
-        basicItem(ModItems.APPLE_PIE.get());
-        basicItem(ModItems.BOWL_OF_WATER.get());
         basicItem(ModItems.COCONUT.get());
         basicItem(ModItems.COCONUT_MILK.get());
         basicItem(ModItems.COCONUT_SHELL.get());

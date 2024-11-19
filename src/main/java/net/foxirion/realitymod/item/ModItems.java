@@ -47,11 +47,4 @@ public class ModItems {
     public static final DeferredItem<SpawnEggItem> DESERT_TURTLE_SPAWN_EGG = ITEMS.register("desert_turtle_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.DESERT_TURTLE, 0x8D4B38, 0x6A5220, new Item.Properties()));
 
-    //Stews, Soups and other Foods
-    public static final DeferredItem<Item> APPLE_PIE = ITEMS.register("apple_pie",
-            () -> new Item(new Item.Properties().food(ModFoods.APPLE_PIE)));
-    public static final DeferredItem<Item> BOWL_OF_WATER = ITEMS.register("bowl_of_water",
-            () -> new DrinkableItem(new Item.Properties()
-                    .stacksTo(1)
-                    .food(ModFoods.BOWL_OF_WATER)));
 }
