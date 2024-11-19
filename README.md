@@ -6,15 +6,19 @@
 </p>
 
 <p align="center">
-  <a href="https://www.curseforge.com/minecraft/mc-mods/realitymod"><img alt="CurseForge Downloads" src="https://img.shields.io/curseforge/dt/1102155?style=for-the-badge&logo=curseforge&color=1B3193"></a>
-  <a href="https://modrinth.com/mod/realitymod"><img alt="Modrinth Downloads" src="https://img.shields.io/modrinth/dt/Miwb8ahh?style=for-the-badge&logo=modrinth&color=1B3193"></a>
+  <a href="https://www.curseforge.com/minecraft/mc-mods/realitymod"><img alt="CurseForge Downloads" src="https://img.shields.io/curseforge/dt/1102155?style=for-the-badge&logo=curseforge&color=#00d845"></a>
+  <a href="https://modrinth.com/mod/realitymod"><img alt="Modrinth Downloads" src="https://img.shields.io/modrinth/dt/Miwb8ahh?style=for-the-badge&logo=modrinth&color=#00d845"></a>
 </p>
 
 <p align="center">
   <a href="https://x.com/s_forge31658"><img alt="X (formerly Twitter) URL" src="https://img.shields.io/twitter/url?url=https%3A%2F%2Fx.com%2Fs_forge31658&style=for-the-badge&logo=x&logoColor=000000&label=Follow%20Me&color=555555"></a>
-  <a href="https://github.com/Foxirion/RealityMod_Forge_1.20.1/issues"><img alt="GitHub Issues" src="https://img.shields.io/github/issues/Foxirion/RealityMod_Forge_1.20.1?style=for-the-badge&color=1B3193"></a>
-  <a href="https://github.com/Foxirion/RealityMod_Forge_1.20.1/blob/master/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/Foxirion/RealityMod_Forge_1.20.1?style=for-the-badge&color=1B3193"></a>
+  <a href="https://github.com/Foxirion/RealityMod_Forge_1.20.1/issues"><img alt="GitHub Issues" src="https://img.shields.io/github/issues/Foxirion/RealityMod_Forge_1.20.1?style=for-the-badge&color=#00d845"></a>
+  <a href="https://github.com/Foxirion/RealityMod_Forge_1.20.1/blob/master/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/Foxirion/RealityMod_Forge_1.20.1?style=for-the-badge&color=#00d845"></a>
 </p>
+
+<p align="center">
+ <a href="https://github.com/Foxirion/RealityMod/wiki"><img alt="Documentation" src="https://img.shields.io/badge/mod%20documentation%20(Wiki)-1?style=for-the-badge&logo=readdotcv&color=#00d845"></a> 
+ </p>
 
 
 <table align="center" style="border-collapse: collapse; margin: 20px auto; width: 80%;">
