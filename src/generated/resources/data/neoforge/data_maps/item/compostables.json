@@ -1,0 +1,13 @@
+{
+  "values": {
+    "realitymod:coconut": {
+      "chance": 0.65
+    },
+    "realitymod:coconut_milk": {
+      "chance": 0.4
+    },
+    "realitymod:coconut_shell": {
+      "chance": 0.25
+    }
+  }
+}

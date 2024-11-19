@@ -45,6 +45,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         // Basic Item
         basicItem(ModItems.COCONUT.get());
+        basicItem(ModItems.COCONUT_SHELL.get());
         basicItem(ModItems.COCONUT_MILK.get());
         basicItem(ModItems.DESERT_TURTLE_SCUTE.get());
         basicItem(ModItems.OASIS_CLAY_BALL.get());

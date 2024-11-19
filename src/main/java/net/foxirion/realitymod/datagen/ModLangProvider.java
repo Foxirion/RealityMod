@@ -45,6 +45,7 @@ public class ModLangProvider extends LanguageProvider {
 
         // Item translations
         add(ModItems.COCONUT.get(), "Coconut");
+        add(ModItems.COCONUT_SHELL.get(), "Coconut Shell");
         add(ModItems.COCONUT_MILK.get(), "Coconut Milk");
         add(ModItems.DESERT_TURTLE_HELMET.get(), "Desert Turtle Shell");
         add(ModItems.DESERT_TURTLE_SCUTE.get(), "Desert Turtle Scute");

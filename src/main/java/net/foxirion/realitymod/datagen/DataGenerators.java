@@ -33,5 +33,6 @@ public class DataGenerators {
         generator.addProvider(true, new ModItemTagGenerator(packOutput, lookupProvider, blockTagGenerator.contentsGetter(), existingFileHelper));
 
         generator.addProvider(true, new DatapackProvider(packOutput, lookupProvider));
+        generator.addProvider(true, new DataMapRMProvider(packOutput, lookupProvider));
     }
 }

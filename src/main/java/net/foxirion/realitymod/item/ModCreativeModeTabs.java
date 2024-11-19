@@ -83,6 +83,7 @@ public class ModCreativeModeTabs {
                     .withTabsBefore(ModCreativeModeTabs.RM_COMBAT.getKey())
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModItems.COCONUT);
+                        pOutput.accept(ModItems.COCONUT_SHELL);
                         pOutput.accept(ModItems.COCONUT_MILK);
                     }).build());
 
@@ -90,6 +91,7 @@ public class ModCreativeModeTabs {
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.DESERT_TURTLE_SCUTE.get()))
                     .title(Component.translatable("creativetab.rm_ingredients"))
                     .withTabsBefore(ModCreativeModeTabs.RM_FOOD_AND_DRINKS.getKey())
+                    .withTabsAfter(ModCreativeModeTabs.RM_SPAWN_EGGS.getKey())
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModItems.DESERT_TURTLE_SCUTE);
                         pOutput.accept(ModItems.OASIS_CLAY_BALL);
