@@ -11,6 +11,8 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Blocks;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -30,6 +32,13 @@ public class ModCraftingRecipes extends ModRecipeProvider {
         woodenBoat(recipeOutput, ModItems.PALM_BOAT, ModBlocks.PALM_PLANKS);
         chestBoat(recipeOutput, ModItems.PALM_CHEST_BOAT, ModBlocks.PALM_PLANKS);
         hangingSign(recipeOutput, ModItems.PALM_HANGING_SIGN, ModBlocks.STRIPPED_PALM_LOG);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.APPLE_PIE)
+                .requires(Items.APPLE)
+                .requires(Items.SUGAR)
+                .requires(Items.EGG)
+                .unlockedBy(getHasName(Items.APPLE), has(Items.APPLE))
+                .save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.COCONUT_MILK)
                 .requires(ModItems.COCONUT)

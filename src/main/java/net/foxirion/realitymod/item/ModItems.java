@@ -4,10 +4,7 @@ import net.foxirion.realitymod.RealityMod;
 import net.foxirion.realitymod.block.ModBlocks;
 import net.foxirion.realitymod.entity.ModEntities;
 import net.foxirion.realitymod.entity.custom.ModBoatEntity;
-import net.foxirion.realitymod.item.custom.DesertTurtleHelmet;
-import net.foxirion.realitymod.item.custom.CoconutMilkItem;
-import net.foxirion.realitymod.item.custom.ModArmorMaterials;
-import net.foxirion.realitymod.item.custom.ModBoatItem;
+import net.foxirion.realitymod.item.custom.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -28,8 +25,7 @@ public class ModItems {
     public static final DeferredItem<Item> COCONUT_SHELL = ITEMS.register("coconut_shell",
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> COCONUT_MILK = ITEMS.register("coconut_milk",
-            () -> new CoconutMilkItem(new Item.Properties()
-                    .food(ModFoods.COCONUT_MILK)));
+            () -> new DrinkableItem(new Item.Properties().food(ModFoods.COCONUT_MILK)));
 
     // Desert Turtle
     public static final DeferredItem<Item> DESERT_TURTLE_HELMET = ITEMS.register("desert_turtle_helmet",
@@ -50,4 +46,12 @@ public class ModItems {
     // Spawn Eggs
     public static final DeferredItem<SpawnEggItem> DESERT_TURTLE_SPAWN_EGG = ITEMS.register("desert_turtle_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.DESERT_TURTLE, 0x8D4B38, 0x6A5220, new Item.Properties()));
+
+    //Stews, Soups and other Foods
+    public static final DeferredItem<Item> APPLE_PIE = ITEMS.register("apple_pie",
+            () -> new Item(new Item.Properties().food(ModFoods.APPLE_PIE)));
+    public static final DeferredItem<Item> BOWL_OF_WATER = ITEMS.register("bowl_of_water",
+            () -> new DrinkableItem(new Item.Properties()
+                    .stacksTo(1)
+                    .food(ModFoods.BOWL_OF_WATER)));
 }
