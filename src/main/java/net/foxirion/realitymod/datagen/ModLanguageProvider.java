@@ -9,9 +9,9 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.data.LanguageProvider;
 
-public class ModLangProvider extends LanguageProvider {
+public class ModLanguageProvider extends LanguageProvider {
 
-    public ModLangProvider(PackOutput output) {
+    public ModLanguageProvider(PackOutput output) {
         super(output, RealityMod.MOD_ID, "en_us");
     }
 
@@ -46,6 +46,7 @@ public class ModLangProvider extends LanguageProvider {
         // Item translations
         add(ModItems.COCONUT.get(), "Coconut");
         add(ModItems.COCONUT_MILK.get(), "Coconut Milk");
+        add(ModItems.COCONUT_SHELL.get(), "Coconut Shell");
         add(ModItems.DESERT_TURTLE_HELMET.get(), "Desert Turtle Shell");
         add(ModItems.DESERT_TURTLE_SCUTE.get(), "Desert Turtle Scute");
         add(ModItems.DESERT_TURTLE_SPAWN_EGG.get(), "Desert Turtle Spawn Egg");

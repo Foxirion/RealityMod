@@ -47,6 +47,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         simpleItem(ModItems.COCONUT);
         simpleItem(ModItems.COCONUT_MILK);
+        simpleItem(ModItems.COCONUT_SHELL);
         simpleItem(ModItems.DESERT_TURTLE_SCUTE);
         simpleItem(ModItems.OASIS_CLAY_BALL);
         simpleItem(ModItems.PALM_BOAT);

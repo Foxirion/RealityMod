@@ -85,6 +85,7 @@ public class ModCreativeModeTabs {
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModItems.COCONUT.get());
                         pOutput.accept(ModItems.COCONUT_MILK.get());
+                        pOutput.accept(ModItems.COCONUT_SHELL.get());
                     }).build());
 
     public static final RegistryObject<CreativeModeTab> RM_INGREDIENTS = CREATIVE_MODE_TABS.register("rm_ingredients",

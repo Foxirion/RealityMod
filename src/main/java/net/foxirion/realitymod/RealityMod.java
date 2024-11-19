@@ -2,7 +2,6 @@ package net.foxirion.realitymod;
 
 import net.foxirion.realitymod.block.ModBlocks;
 import net.foxirion.realitymod.block.entity.ModBlockEntities;
-import net.foxirion.realitymod.datagen.DataGenerators;
 import net.foxirion.realitymod.entity.ModEntities;
 import net.foxirion.realitymod.item.ModCreativeModeTabs;
 import net.foxirion.realitymod.item.ModItems;

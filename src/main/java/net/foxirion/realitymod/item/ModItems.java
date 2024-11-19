@@ -5,6 +5,7 @@ import net.foxirion.realitymod.block.ModBlocks;
 import net.foxirion.realitymod.entity.ModEntities;
 import net.foxirion.realitymod.entity.custom.ModBoatEntity;
 import net.foxirion.realitymod.item.custom.DesertTurtleHelmet;
+import net.foxirion.realitymod.item.custom.CoconutMilk;
 import net.foxirion.realitymod.item.custom.ModArmorMaterials;
 import net.foxirion.realitymod.item.custom.ModBoatItem;
 import net.minecraft.world.item.ArmorItem;
@@ -28,8 +29,10 @@ public class ModItems {
     // Coconut
     public static final RegistryObject<Item> COCONUT = ITEMS.register("coconut",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> COCONUT_SHELL = ITEMS.register("coconut_shell",
+            () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> COCONUT_MILK = ITEMS.register("coconut_milk",
-            () -> new Item(new Item.Properties().food(ModFoods.COCONUT_MILK)));
+            () -> new CoconutMilk(new Item.Properties().food(ModFoods.COCONUT_MILK)));
 
     // Desert Turtle
     public static final RegistryObject<Item> DESERT_TURTLE_HELMET = ITEMS.register("desert_turtle_helmet",

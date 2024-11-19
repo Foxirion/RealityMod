@@ -4,7 +4,7 @@ import net.minecraft.world.food.FoodProperties;
 
 public class ModFoods {
     public static final FoodProperties COCONUT_MILK = new FoodProperties.Builder()
-            .nutrition(4)
-            .saturationMod(0.3F)
+            .nutrition(2)
+            .saturationMod(0.15F)
             .build();
 }
