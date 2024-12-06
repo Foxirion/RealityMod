@@ -27,4 +27,5 @@ public class ModEntities {
     public static final Supplier<EntityType<ModChestBoatEntity>> MOD_CHEST_BOAT =
             ENTITY_TYPES.register("mod_chest_boat", () -> EntityType.Builder.<ModChestBoatEntity>of(ModChestBoatEntity::new, MobCategory.MISC)
                     .sized(1.375f, 0.5625f).build("mod_chest_boat"));
+
 }
