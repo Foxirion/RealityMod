@@ -1,0 +1,50 @@
+/effect give @a minecraft:saturation 5 255 true
+/time set day
+/summon minecraft:creeper ~-1 ~ ~-1
+/gamemode creative
+/locate biome minecraft:desert
+/tp @s 1989 119 1826
+/locate structure realitymod:oasis
+/tp @s 2064 ~ 2080
+/locate structure realitymod:oasis
+/tp @s 2064 ~ 2080
+/gamemode survival
+/give @a minecraft:iron_sword
+/give @a minecraft:iron_boots
+/give @a minecraft:diamond_pickaxe
+/give @a minecraft:golden_carrot 12
+/gamemode creativeq
+/gamemode creative
+/tick rate 140
+/tick rate 2000
+/tick rate 20
+/gamerule randomTickSpeed 100000
+/gamerule randomTickSpeed 100000000
+/time set day
+/gamerule randomTickSpeed 3
+/gamemode survival
+/time set day
+/effect give @a minecraft:hunger 5 255 true
+/give @a realitymod:coconut 64
+/fill 2050 68 2264 2050 68 2264 minecraft:composter
+/give @a apple
+/effect give @a minecraft:hunger
+/effect give @a minecraft:hunger 10 255 true
+/give @a bowl
+/give @a realitymod:bowl_of_water
+/time set day
+/effect give @a minecraft:hunger 10 255 true
+/give @a apple
+/give @a egg
+/give @a minecraft:sugar
+/give @a realitymod:coconut
+/gamemode creative
+/effect give @e[type=realitymod:desert_turtle ] minecraft:glowing 10 1 true
+/locate biome minecraft:desert
+/tp @s -3053 77 3169
+/locate biome minecraft:desert
+/tp @s -611 68 -4183
+/locate biome minecraft:desert
+/tp @s 1797 110 1746
+/effect give @e[type=realitymod:desert_turtle ] minecraft:glowing 1 0 true
+/effect give @e[type=realitymod:desert_turtle ] minecraft:glowing 10 0 true

@@ -1,0 +1,48 @@
+[06Dec2024 20:18:08.070] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--mod, realitymod, --all, --output, F:\Modding\Workspaces\Foxirion's Forge\RealityMod\src\generated\resources, --existing, F:\Modding\Workspaces\Foxirion's Forge\RealityMod\src\main\resources, --launchTarget, forgedatauserdev, --assetIndex, asset-index, --assetsDir, C:\Users\dariu\.gradle\caches\minecraft\assets, --gameDir, ., --fml.neoForgeVersion, 21.1.83, --fml.fmlVersion, 4.0.34, --fml.mcVersion, 1.21.1, --fml.neoFormVersion, 20240808.144430]
+[06Dec2024 20:18:08.075] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: JVM identified as Eclipse Adoptium OpenJDK 64-Bit Server VM 21.0.4+7-LTS
+[06Dec2024 20:18:08.076] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 11.0.4+main.d2e20e43 starting: java version 21.0.4 by Eclipse Adoptium; OS Windows 11 arch amd64 version 10.0
+[06Dec2024 20:18:08.205] [main/WARN] [net.neoforged.fml.loading.FMLConfig/CORE]: Configuration file F:\Modding\Workspaces\Foxirion's Forge\RealityMod\runs\data\config\fml.toml is not correct. Correcting
+[06Dec2024 20:18:08.251] [main/INFO] [net.neoforged.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgedatauserdev
+[06Dec2024 20:18:08.319] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=union:/C:/Users/dariu/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.15.2+mixin.0.8.7/2af2f021d8e02a0220dc27a7a72b4666d66d44ca/sponge-mixin-0.15.2+mixin.0.8.7.jar%23135!/ Service=ModLauncher Env=CLIENT
+[06Dec2024 20:18:08.333] [main/WARN] [net.neoforged.fml.loading.FMLConfig/CORE]: Configuration file F:\Modding\Workspaces\Foxirion's Forge\RealityMod\runs\data\config\fml.toml is not correct. Correcting
+[06Dec2024 20:18:08.603] [main/INFO] [net.neoforged.fml.loading.moddiscovery.ModDiscoverer/SCAN]: Found mod file "neoforge-21.1.83.jar" [locator: neoforge devenv provider ([F:\Modding\Workspaces\Foxirion's Forge\RealityMod\.gradle\repositories\ng_dummy_ng\net\neoforged\neoforge\21.1.83\neoforge-21.1.83.jar])]
+[06Dec2024 20:18:08.632] [main/INFO] [net.neoforged.fml.loading.moddiscovery.ModDiscoverer/SCAN]: Found mod file "neoforge-21.1.83.jar" [locator: neoforge devenv provider ([F:\Modding\Workspaces\Foxirion's Forge\RealityMod\.gradle\repositories\ng_dummy_ng\net\neoforged\neoforge\21.1.83\neoforge-21.1.83.jar])]
+[06Dec2024 20:18:08.651] [main/INFO] [net.neoforged.fml.loading.moddiscovery.ModDiscoverer/SCAN]: Found mod file "main" [locator: userdev mods and services, reader: mod manifest]
+[06Dec2024 20:18:08.664] [main/INFO] [net.neoforged.fml.loading.moddiscovery.ModDiscoverer/SCAN]: Found mod file "neoforge-21.1.83.jar" [locator: userdev mods and services, reader: mod manifest]
+[06Dec2024 20:18:08.701] [main/INFO] [net.neoforged.fml.loading.moddiscovery.ModDiscoverer/SCAN]: Found gamelibrary file "mixinextras-neoforge-0.4.1.jar" [locator: userdev mods and services, reader: mod manifest]
+[06Dec2024 20:18:08.928] [main/WARN] [net.neoforged.jarjar.selection.JarSelector/]: Attempted to select a dependency jar for JarJar which was passed in as source: library:mixinextras.neoforge. Using Mod File: C:\Users\dariu\.gradle\caches\modules-2\files-2.1\io.github.llamalad7\mixinextras-neoforge\0.4.1\eff97772ecd0dcf8e52cdbafd3b3ccec425f8314\mixinextras-neoforge-0.4.1.jar
+[06Dec2024 20:18:08.929] [main/INFO] [net.neoforged.fml.loading.moddiscovery.locators.JarInJarDependencyLocator/]: Found 1 dependencies adding them to mods collection
+[06Dec2024 20:18:08.929] [main/INFO] [net.neoforged.fml.loading.moddiscovery.ModDiscoverer/SCAN]: Found library file "neoforge-coremods-21.1.83.jar" [parent: neoforge-21.1.83.jar, locator: jarinjar, reader: mod manifest]
+[06Dec2024 20:18:08.931] [main/INFO] [net.neoforged.fml.loading.moddiscovery.ModDiscoverer/]: 
+     Mod List:
+		Name Version (Mod Id)
+
+		Minecraft 1.21.1 (minecraft)
+		NeoForge 21.1.83 (neoforge)
+		Reality Mod 1.0.0-1.21.1-neo (realitymod)
+[06Dec2024 20:18:09.770] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgedatauserdev' with arguments [--gameDir, ., --assetsDir, C:\Users\dariu\.gradle\caches\minecraft\assets, --mod, realitymod, --all, --output, F:\Modding\Workspaces\Foxirion's Forge\RealityMod\src\generated\resources, --existing, F:\Modding\Workspaces\Foxirion's Forge\RealityMod\src\main\resources, --assetIndex, asset-index]
+[06Dec2024 20:18:10.326] [main/INFO] [net.neoforged.neoforge.data.loading.DatagenModLoader/]: Initializing Data Gatherer for mods [realitymod]
+[06Dec2024 20:18:10.341] [main/INFO] [MixinExtras|Service/]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.4.1).
+[06Dec2024 20:18:16.422] [modloading-worker-0/INFO] [net.neoforged.neoforge.common.NeoForgeMod/NEOFORGE-MOD]: NeoForge mod loading, version 21.1.83, for MC 1.21.1
+[06Dec2024 20:18:17.000] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/F:/Modding/Workspaces/Foxirion's%20Forge/RealityMod/.gradle/repositories/ng_dummy_ng/net/neoforged/neoforge/21.1.83/neoforge-21.1.83.jar%23189!/assets/.mcassetsroot' uses unexpected schema
+[06Dec2024 20:18:17.001] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/F:/Modding/Workspaces/Foxirion's%20Forge/RealityMod/.gradle/repositories/ng_dummy_ng/net/neoforged/neoforge/21.1.83/neoforge-21.1.83.jar%23189!/data/.mcassetsroot' uses unexpected schema
+[06Dec2024 20:18:17.239] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Languages: en_us for mod: realitymod
+[06Dec2024 20:18:17.246] [main/INFO] [net.minecraft.data.DataGenerator/]: Languages: en_us for mod: realitymod finished after 6 ms
+[06Dec2024 20:18:17.247] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Recipes
+[06Dec2024 20:18:17.390] [main/INFO] [net.minecraft.data.DataGenerator/]: Recipes finished after 143 ms
+[06Dec2024 20:18:17.390] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Loot Tables
+[06Dec2024 20:18:17.444] [main/INFO] [net.minecraft.data.DataGenerator/]: Loot Tables finished after 53 ms
+[06Dec2024 20:18:17.444] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Block States: realitymod
+[06Dec2024 20:18:17.640] [main/INFO] [net.minecraft.data.DataGenerator/]: Block States: realitymod finished after 196 ms
+[06Dec2024 20:18:17.642] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Item Models: realitymod
+[06Dec2024 20:18:17.654] [main/INFO] [net.minecraft.data.DataGenerator/]: Item Models: realitymod finished after 12 ms
+[06Dec2024 20:18:17.654] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:block mod id realitymod
+[06Dec2024 20:18:17.664] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:block mod id realitymod finished after 9 ms
+[06Dec2024 20:18:17.664] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:item mod id realitymod
+[06Dec2024 20:18:17.667] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:item mod id realitymod finished after 2 ms
+[06Dec2024 20:18:17.667] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Registries
+[06Dec2024 20:18:17.677] [main/INFO] [net.minecraft.data.DataGenerator/]: Registries finished after 10 ms
+[06Dec2024 20:18:17.677] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Data Maps
+[06Dec2024 20:18:17.690] [main/INFO] [net.minecraft.data.DataGenerator/]: Data Maps finished after 11 ms
+[06Dec2024 20:18:17.690] [main/INFO] [net.minecraft.data.DataGenerator/]: All providers took: 452 ms
+[06Dec2024 20:18:17.704] [main/INFO] [net.minecraft.data.HashCache/]: Caching: total files: 243, old count: 243, new count: 244, removed stale: 0, written: 1
