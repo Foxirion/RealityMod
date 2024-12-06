@@ -60,7 +60,7 @@
 
 ## 🗞️ RealityMod News
 
-Alpha Version 0.0.1b RELEASED!
+Alpha Version 0.0.2b RELEASED!
 
 ## ℹ️ About
 
