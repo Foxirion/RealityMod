@@ -76,7 +76,7 @@ RealityMod is a Minecraft mod designed to immerse players in a more realistic ga
 </tr>
 <tr>
 <td style="padding: 10px; text-align: left; border: none;"><strong>🐢 Desert Turtles</strong></td>
-<td style="padding: 10px; text-align: left; border: none;">Discover these gentle creatures roaming the oasis, offering valuable resources.</td>
+<td style="padding: 10px; text-align: left; border: none;">Discover these gentle creatures roaming the oasis and desert offering valuable resources.</td>
 </tr>
 <tr>
 <td style="padding: 10px; text-align: left; border: none;"><strong>🥥 Palm Trees and Coconut</strong></td>
