@@ -3,7 +3,7 @@ package net.foxirion.realitymod.entity.client;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.foxirion.realitymod.entity.animations.ModAnimationDefinitions;
-import net.foxirion.realitymod.entity.custom.DesertTurtleEntity;
+import net.foxirion.realitymod.entity.custom.DesertTurtle;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -64,7 +64,7 @@ public class DesertTurtleModel<T extends Entity> extends HierarchicalModel<T> {
 		this.applyHeadRotation(netHeadYaw, headPitch, ageInTicks);
 
 		this.animateWalk(ModAnimationDefinitions.DESERT_TURTLE_WALK, limbSwing, limbSwingAmount, 2f, 2.5f);
-		this.animate(((DesertTurtleEntity) entity).idleAnimationState, ModAnimationDefinitions.DESERT_TURTLE_IDLE, ageInTicks, 1f);
+		this.animate(((DesertTurtle) entity).idleAnimationState, ModAnimationDefinitions.DESERT_TURTLE_IDLE, ageInTicks, 1f);
 	}
 
 	private void applyHeadRotation(float pNetHeadYaw, float pHeadPitch, float pAgeInTicks) {

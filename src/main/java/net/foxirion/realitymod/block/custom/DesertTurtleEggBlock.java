@@ -2,7 +2,7 @@ package net.foxirion.realitymod.block.custom;
 
 import net.foxirion.realitymod.block.ModBlocks;
 import net.foxirion.realitymod.entity.ModEntities;
-import net.foxirion.realitymod.entity.custom.DesertTurtleEntity;
+import net.foxirion.realitymod.entity.custom.DesertTurtle;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -40,7 +40,7 @@ public class DesertTurtleEggBlock extends TurtleEggBlock {
 
                 for(int j = 0; j < state.getValue(EGGS); ++j) {
                     level.levelEvent(2001, pos, Block.getId(state));
-                    DesertTurtleEntity turtle = ModEntities.DESERT_TURTLE.get().create(level);
+                    DesertTurtle turtle = ModEntities.DESERT_TURTLE.get().create(level);
                     if (turtle != null) {
                         turtle.setAge(-24000);
                         turtle.moveTo((double)pos.getX() + 0.3D + (double)j * 0.2D, (double)pos.getY(), (double)pos.getZ() + 0.3D, 0.0F, 0.0F);

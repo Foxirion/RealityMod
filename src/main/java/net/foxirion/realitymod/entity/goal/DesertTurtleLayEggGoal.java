@@ -1,7 +1,7 @@
 package net.foxirion.realitymod.entity.goal;
 
 import net.foxirion.realitymod.block.ModBlocks;
-import net.foxirion.realitymod.entity.custom.DesertTurtleEntity;
+import net.foxirion.realitymod.entity.custom.DesertTurtle;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -15,9 +15,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 
 public class DesertTurtleLayEggGoal extends MoveToBlockGoal {
-    private final DesertTurtleEntity desertTurtle;
+    private final DesertTurtle desertTurtle;
 
-    public DesertTurtleLayEggGoal(DesertTurtleEntity turtle, double speedModifier) {
+    public DesertTurtleLayEggGoal(DesertTurtle turtle, double speedModifier) {
         super(turtle, speedModifier, 16);
         this.desertTurtle = turtle;
     }

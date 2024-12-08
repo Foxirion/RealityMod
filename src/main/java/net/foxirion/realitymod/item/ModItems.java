@@ -53,4 +53,7 @@ public class ModItems {
     // Spawn Eggs
     public static final RegistryObject<Item> DESERT_TURTLE_SPAWN_EGG = ITEMS.register("desert_turtle_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.DESERT_TURTLE, 0x8D4B38, 0x6A5220, new Item.Properties()));
+    public static final RegistryObject<Item> FENNEC_SPAWN_EGG = ITEMS.register("fennec_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.FENNEC, 0xF0E68C, 0xD2B48C, new Item.Properties()));
+
 }

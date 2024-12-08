@@ -2,10 +2,7 @@ package net.foxirion.realitymod.event;
 
 import net.foxirion.realitymod.block.entity.ModBlockEntities;
 import net.foxirion.realitymod.entity.ModEntities;
-import net.foxirion.realitymod.entity.client.DesertTurtleModel;
-import net.foxirion.realitymod.entity.client.DesertTurtleRenderer;
-import net.foxirion.realitymod.entity.client.ModBoatRenderer;
-import net.foxirion.realitymod.entity.client.ModModelLayers;
+import net.foxirion.realitymod.entity.client.*;
 import net.foxirion.realitymod.util.ModWoodTypes;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
@@ -27,6 +24,7 @@ public class ModEventBusClientEvents {
     @SubscribeEvent
     public static void setupClient(FMLClientSetupEvent event) {
         EntityRenderers.register(ModEntities.DESERT_TURTLE.get(), DesertTurtleRenderer::new);
+        EntityRenderers.register(ModEntities.FENNEC.get(), FennecRenderer::new);
         EntityRenderers.register(ModEntities.MOD_BOAT.get(), pContext -> new ModBoatRenderer(pContext, false));
         EntityRenderers.register(ModEntities.MOD_CHEST_BOAT.get(), pContext -> new ModBoatRenderer(pContext, true));
 
@@ -36,6 +34,7 @@ public class ModEventBusClientEvents {
     @SubscribeEvent
     public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(ModModelLayers.DESERT_TURTLE_LAYER, DesertTurtleModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.FENNEC_LAYER, FennecModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.PALM_BOAT_LAYER, BoatModel::createBodyModel);
         event.registerLayerDefinition(ModModelLayers.PALM_CHEST_BOAT_LAYER, ChestBoatModel::createBodyModel);
     }

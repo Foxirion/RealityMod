@@ -50,6 +50,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModItems.DESERT_TURTLE_HELMET.get(), "Desert Turtle Shell");
         add(ModItems.DESERT_TURTLE_SCUTE.get(), "Desert Turtle Scute");
         add(ModItems.DESERT_TURTLE_SPAWN_EGG.get(), "Desert Turtle Spawn Egg");
+        add(ModItems.FENNEC_SPAWN_EGG.get(), "Fennec Spawn Egg");
         add(ModItems.OASIS_CLAY_BALL.get(), "Oasis Clay Ball");
         add(ModItems.PALM_BOAT.get(), "Palm Boat");
         add(ModItems.PALM_CHEST_BOAT.get(), "Palm Boat with Chest");

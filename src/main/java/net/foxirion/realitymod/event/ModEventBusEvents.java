@@ -2,7 +2,8 @@ package net.foxirion.realitymod.event;
 
 import net.foxirion.realitymod.RealityMod;
 import net.foxirion.realitymod.entity.ModEntities;
-import net.foxirion.realitymod.entity.custom.DesertTurtleEntity;
+import net.foxirion.realitymod.entity.custom.DesertTurtle;
+import net.foxirion.realitymod.entity.custom.Fennec;
 import net.foxirion.realitymod.item.ModItems;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -24,7 +25,8 @@ public class ModEventBusEvents {
 
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event) {
-        event.put(ModEntities.DESERT_TURTLE.get(), DesertTurtleEntity.createAttributes().build());
+        event.put(ModEntities.DESERT_TURTLE.get(), DesertTurtle.createAttributes().build());
+        event.put(ModEntities.FENNEC.get(), Fennec.createAttributes().build());
     }
 
 }

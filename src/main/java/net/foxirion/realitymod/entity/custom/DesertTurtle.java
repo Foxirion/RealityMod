@@ -16,7 +16,6 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
@@ -39,13 +38,13 @@ import net.minecraft.world.level.block.TurtleEggBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
-public class DesertTurtleEntity extends Animal {
-    private static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(DesertTurtleEntity.class, EntityDataSerializers.BOOLEAN);
-    private static final EntityDataAccessor<Boolean> LAYING_EGG = SynchedEntityData.defineId(DesertTurtleEntity.class, EntityDataSerializers.BOOLEAN);
+public class DesertTurtle extends Animal {
+    private static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(DesertTurtle.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> LAYING_EGG = SynchedEntityData.defineId(DesertTurtle.class, EntityDataSerializers.BOOLEAN);
 
      public int layEggCounter;
 
-    public DesertTurtleEntity(EntityType<? extends Animal> pEntityType, Level pLevel) {
+    public DesertTurtle(EntityType<? extends Animal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
 
@@ -232,10 +231,10 @@ public class DesertTurtleEntity extends Animal {
 
     @Override
     public boolean canMate(Animal otherAnimal) {
-        if (!(otherAnimal instanceof DesertTurtleEntity)) {
+        if (!(otherAnimal instanceof DesertTurtle)) {
             return false;
         } else {
-            DesertTurtleEntity otherTurtle = (DesertTurtleEntity) otherAnimal;
+            DesertTurtle otherTurtle = (DesertTurtle) otherAnimal;
             return this.isInLove() && otherTurtle.isInLove() && !this.hasEgg() && !otherTurtle.hasEgg() && this.breedingCooldown == 0 && otherTurtle.breedingCooldown == 0;
         }
     }
@@ -307,7 +306,7 @@ public class DesertTurtleEntity extends Animal {
 
     //Desert Turtle Spawn rules
 
-    public static boolean checkDesertTurtleSpawnRules(EntityType<DesertTurtleEntity> entityType, ServerLevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+    public static boolean checkDesertTurtleSpawnRules(EntityType<DesertTurtle> entityType, ServerLevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
         // Check if it's a desert biome and on sand
         if (!level.getBiome(pos).is(Biomes.DESERT) || !level.getBlockState(pos.below()).is(Blocks.SAND)) {
             return false;
@@ -332,20 +331,20 @@ public class DesertTurtleEntity extends Animal {
         }
 
         // Check other animal spawn rules
-        return DesertTurtleEntity.checkAnimalSpawnRules(entityType, level, spawnType, pos, random);
+        return DesertTurtle.checkAnimalSpawnRules(entityType, level, spawnType, pos, random);
     }
 
     @Override
     public void spawnChildFromBreeding(ServerLevel world, Animal mate) {
         // Ensure we're dealing with another DesertTurtleEntity
-        if (!(mate instanceof DesertTurtleEntity)) {
+        if (!(mate instanceof DesertTurtle)) {
             return;
         }
 
-        DesertTurtleEntity mateDesertTurtle = (DesertTurtleEntity) mate;
+        DesertTurtle mateDesertTurtle = (DesertTurtle) mate;
 
         // Randomly choose which turtle will be considered the "egg layer"
-        DesertTurtleEntity eggLayer = world.random.nextBoolean() ? this : mateDesertTurtle;
+        DesertTurtle eggLayer = world.random.nextBoolean() ? this : mateDesertTurtle;
 
         // Only set hasEgg for the chosen turtle
         eggLayer.setHasEgg(true);

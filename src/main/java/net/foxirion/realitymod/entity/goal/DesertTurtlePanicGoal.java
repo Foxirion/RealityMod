@@ -1,11 +1,11 @@
 package net.foxirion.realitymod.entity.goal;
 
-import net.foxirion.realitymod.entity.custom.DesertTurtleEntity;
+import net.foxirion.realitymod.entity.custom.DesertTurtle;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.ai.goal.PanicGoal;
 
 public class DesertTurtlePanicGoal extends PanicGoal {
-    public DesertTurtlePanicGoal(DesertTurtleEntity pTurtle, double pSpeedModifier) {
+    public DesertTurtlePanicGoal(DesertTurtle pTurtle, double pSpeedModifier) {
         super(pTurtle, pSpeedModifier);
     }
 

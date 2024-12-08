@@ -103,5 +103,6 @@ public class ModCreativeModeTabs {
                     .withTabsBefore(ModCreativeModeTabs.RM_INGREDIENTS.getKey())
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModItems.DESERT_TURTLE_SPAWN_EGG.get());
+                        pOutput.accept(ModItems.FENNEC_SPAWN_EGG.get());
                     }).build());
 }

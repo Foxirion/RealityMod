@@ -4,11 +4,9 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.foxirion.realitymod.RealityMod;
 import net.foxirion.realitymod.block.ModBlocks;
 import net.foxirion.realitymod.entity.ModEntities;
-import net.foxirion.realitymod.entity.custom.DesertTurtleEntity;
+import net.foxirion.realitymod.entity.custom.DesertTurtle;
 import net.foxirion.realitymod.item.ModItems;
 import net.foxirion.realitymod.item.custom.DesertTurtleHelmet;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.npc.VillagerProfession;
@@ -20,7 +18,6 @@ import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -38,7 +35,7 @@ public class ModEvents {
                 ModEntities.DESERT_TURTLE.get(),
                 SpawnPlacements.Type.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                DesertTurtleEntity::checkDesertTurtleSpawnRules,
+                DesertTurtle::checkDesertTurtleSpawnRules,
                 SpawnPlacementRegisterEvent.Operation.AND);
     }
 

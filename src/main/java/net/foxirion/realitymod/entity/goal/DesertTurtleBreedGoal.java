@@ -1,6 +1,6 @@
 package net.foxirion.realitymod.entity.goal;
 
-import net.foxirion.realitymod.entity.custom.DesertTurtleEntity;
+import net.foxirion.realitymod.entity.custom.DesertTurtle;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
@@ -11,9 +11,9 @@ import net.minecraft.world.entity.ai.goal.BreedGoal;
 import net.minecraft.world.level.GameRules;
 
 public class DesertTurtleBreedGoal extends BreedGoal {
-    public final DesertTurtleEntity desertTurtle;
+    public final DesertTurtle desertTurtle;
 
-    public DesertTurtleBreedGoal(DesertTurtleEntity pTurtle, double pSpeedModifier, DesertTurtleEntity desertTurtle) {
+    public DesertTurtleBreedGoal(DesertTurtle pTurtle, double pSpeedModifier, DesertTurtle desertTurtle) {
         super(pTurtle, pSpeedModifier);
         this.desertTurtle = desertTurtle;
     }
