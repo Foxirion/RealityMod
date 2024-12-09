@@ -8,6 +8,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -23,6 +24,15 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
+            //Fennec Foods
+        this.tag(ModTags.Items.FENNEC_FOODS)
+                .add(Items.CHICKEN)
+                .add(Items.COD)
+                .add(Items.RABBIT)
+                .add(Items.SALMON)
+                .add(Items.TROPICAL_FISH);
+
+
             //Fossils
         this.tag(ModTags.Items.FOSSILS)
                 .add(ModBlocks.FOSSIL.get().asItem(),

@@ -2,10 +2,13 @@ package net.foxirion.realitymod.entity.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.foxirion.realitymod.entity.animations.ModAnimationDefinitions;
+import net.foxirion.realitymod.entity.custom.Fennec;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 
 public class FennecModel<T extends Entity> extends HierarchicalModel<T> {
@@ -69,7 +72,40 @@ public class FennecModel<T extends Entity> extends HierarchicalModel<T> {
 
 	@Override
 	public void setupAnim(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		this.root().getAllParts().forEach(ModelPart::resetPose);
+		this.applyHeadRotation(netHeadYaw, headPitch, ageInTicks);
 
+		this.animateWalk(ModAnimationDefinitions.FENNEC_WALK, limbSwing, limbSwingAmount, 2f, 2.5f);
+		this.animate(((Fennec) entity).idleAnimationState, ModAnimationDefinitions.FENNEC_IDLE, ageInTicks, 1f);
+
+		Fennec fennec = (Fennec) entity;
+
+		// Sitting animation takes priority
+		if (fennec.isSitting()) {
+			this.animate(fennec.sittingAnimationState, ModAnimationDefinitions.FENNEC_IDLE_STANDING, ageInTicks, 1f);
+		} else {
+			// Only play walk and idle if not sitting
+			this.animateWalk(ModAnimationDefinitions.FENNEC_WALK, limbSwing, limbSwingAmount, 2f, 2.5f);
+			this.animate(fennec.idleAnimationState, ModAnimationDefinitions.FENNEC_IDLE, ageInTicks, 1f);
+		}
+
+		// Ear flapping animation (can still play while sitting/walking/idle)
+		if (fennec.earFlapAnimationState.isStarted()) {
+			this.animate(fennec.earFlapAnimationState, ModAnimationDefinitions.FENNEC_EARS_FLAPPING, ageInTicks, 1f);
+		}
+
+		// Randomly start the ear flap animation
+		if (!fennec.earFlapAnimationState.isStarted() && fennec.getRandom().nextFloat() < 0.02f) { // 2% chance each tick
+			fennec.earFlapAnimationState.start((int) ageInTicks);
+		}
+	}
+
+	private void applyHeadRotation(float netHeadYaw, float headPitch, float ageInTicks) {
+		netHeadYaw = Mth.clamp(netHeadYaw, -30.0F, 30.0F);
+		headPitch = Mth.clamp(headPitch, -25.0F, 45.0F);
+
+		this.head.yRot = netHeadYaw * ((float)Math.PI / 180F);
+		this.head.xRot = headPitch * ((float)Math.PI / 180F);
 	}
 
 	@Override

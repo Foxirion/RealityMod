@@ -10,8 +10,9 @@ import net.minecraft.world.level.block.Block;
 
 public class ModTags {
     public static class Blocks {
-        public static final TagKey<Block> PALM_LOGS = tag("palm_logs");
         public static final TagKey<Block> FOSSILS = tag("fossils");
+        public static final TagKey<Block> PALM_LOGS = tag("palm_logs");
+
 
         private static TagKey<Block> tag(String name) {
             return BlockTags.create(new ResourceLocation(RealityMod.MOD_ID, name));
@@ -19,8 +20,9 @@ public class ModTags {
     }
 
     public static class Items {
-        public static final TagKey<Item> PALM_LOGS = tag("palm_logs");
+        public static final TagKey<Item> FENNEC_FOODS= tag("fennec_foods");
         public static final TagKey<Item> FOSSILS = tag("fossils");
+        public static final TagKey<Item> PALM_LOGS = tag("palm_logs");
 
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(new ResourceLocation(RealityMod.MOD_ID, name));

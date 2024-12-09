@@ -38,11 +38,17 @@ import net.minecraft.world.level.block.TurtleEggBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.function.Predicate;
+
 public class DesertTurtle extends Animal {
     private static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(DesertTurtle.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> LAYING_EGG = SynchedEntityData.defineId(DesertTurtle.class, EntityDataSerializers.BOOLEAN);
 
      public int layEggCounter;
+
+    public static final Predicate<LivingEntity> BABY_SELECTOR = (desert_turtle) -> {
+        return desert_turtle.isBaby();
+    };
 
     public DesertTurtle(EntityType<? extends Animal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);

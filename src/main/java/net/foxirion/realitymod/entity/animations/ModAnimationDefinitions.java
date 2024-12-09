@@ -80,6 +80,76 @@ public class ModAnimationDefinitions {
 
             //Fennec
 
+    public static final AnimationDefinition FENNEC_IDLE = AnimationDefinition.Builder.withLength(2.0F).looping()
+            .addAnimation("head", new AnimationChannel(AnimationChannel.Targets.POSITION,
+                    new Keyframe(0.0F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F),
+                            AnimationChannel.Interpolations.CATMULLROM),
+                    new Keyframe(1.0F, KeyframeAnimations.posVec(0.0F, -0.1F, 0.0F),
+                            AnimationChannel.Interpolations.CATMULLROM),
+                    new Keyframe(2.0F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F),
+                            AnimationChannel.Interpolations.CATMULLROM)
+            ))
+            .addAnimation("ear0", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			        new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F),
+                            AnimationChannel.Interpolations.CATMULLROM),
+                    new Keyframe(1.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 2.5F),
+                            AnimationChannel.Interpolations.CATMULLROM),
+                    new Keyframe(2.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F),
+                            AnimationChannel.Interpolations.CATMULLROM)
+            ))
+            .addAnimation("ear1", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			        new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F),
+                            AnimationChannel.Interpolations.CATMULLROM),
+                    new Keyframe(1.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, -2.5F),
+                            AnimationChannel.Interpolations.CATMULLROM),
+                    new Keyframe(2.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F),
+                            AnimationChannel.Interpolations.CATMULLROM)
+            ))
+            .addAnimation("body", new AnimationChannel(AnimationChannel.Targets.POSITION,
+			        new Keyframe(0.0F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F),
+                            AnimationChannel.Interpolations.CATMULLROM),
+                    new Keyframe(1.0F, KeyframeAnimations.posVec(0.0F, -0.1F, 0.0F),
+                            AnimationChannel.Interpolations.CATMULLROM),
+                    new Keyframe(2.0F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F),
+                            AnimationChannel.Interpolations.CATMULLROM)
+            ))
+            .build();
+
+    public static final AnimationDefinition FENNEC_WALK = AnimationDefinition.Builder.withLength(0.5F).looping()
+		.addAnimation("leg0", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			        new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F),
+                            AnimationChannel.Interpolations.CATMULLROM),
+                    new Keyframe(0.25F, KeyframeAnimations.degreeVec(-5.0F, 0.0F, 0.0F),
+                            AnimationChannel.Interpolations.CATMULLROM),
+                    new Keyframe(0.5F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F),
+                            AnimationChannel.Interpolations.CATMULLROM)
+            ))
+            .addAnimation("leg1", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			        new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F),
+                            AnimationChannel.Interpolations.CATMULLROM),
+                    new Keyframe(0.25F, KeyframeAnimations.degreeVec(5.0F, 0.0F, 0.0F),
+                            AnimationChannel.Interpolations.CATMULLROM),
+                    new Keyframe(0.5F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F),
+                            AnimationChannel.Interpolations.CATMULLROM)
+            ))
+            .addAnimation("leg2", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			        new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F),
+                            AnimationChannel.Interpolations.CATMULLROM),
+                    new Keyframe(0.25F, KeyframeAnimations.degreeVec(5.0F, 0.0F, 0.0F),
+                            AnimationChannel.Interpolations.CATMULLROM),
+                    new Keyframe(0.5F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F),
+                            AnimationChannel.Interpolations.CATMULLROM)
+            ))
+            .addAnimation("leg3", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+			        new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F),
+                            AnimationChannel.Interpolations.CATMULLROM),
+                    new Keyframe(0.25F, KeyframeAnimations.degreeVec(-5.0F, 0.0F, 0.0F),
+                            AnimationChannel.Interpolations.CATMULLROM),
+                    new Keyframe(0.5F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F),
+                            AnimationChannel.Interpolations.CATMULLROM)
+            ))
+            .build();
+
     public static final AnimationDefinition FENNEC_IDLE_STANDING = AnimationDefinition.Builder.withLength(2.0F).looping()
             .addAnimation("fennec", new AnimationChannel(AnimationChannel.Targets.POSITION,
                     new Keyframe(0.0F, KeyframeAnimations.posVec(0.0F, -2.4F, 0.0F),

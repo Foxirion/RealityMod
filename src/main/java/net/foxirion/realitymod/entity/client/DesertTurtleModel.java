@@ -67,12 +67,12 @@ public class DesertTurtleModel<T extends Entity> extends HierarchicalModel<T> {
 		this.animate(((DesertTurtle) entity).idleAnimationState, ModAnimationDefinitions.DESERT_TURTLE_IDLE, ageInTicks, 1f);
 	}
 
-	private void applyHeadRotation(float pNetHeadYaw, float pHeadPitch, float pAgeInTicks) {
-		pNetHeadYaw = Mth.clamp(pNetHeadYaw, -30.0F, 30.0F);
-		pHeadPitch = Mth.clamp(pHeadPitch, -25.0F, 45.0F);
+	private void applyHeadRotation(float netHeadYaw, float headPitch, float ageInTicks) {
+		netHeadYaw = Mth.clamp(netHeadYaw, -30.0F, 30.0F);
+		headPitch = Mth.clamp(headPitch, -25.0F, 45.0F);
 
-		this.head.yRot = pNetHeadYaw * ((float)Math.PI / 180F);
-		this.head.xRot = pHeadPitch * ((float)Math.PI / 180F);
+		this.head.yRot = netHeadYaw * ((float)Math.PI / 180F);
+		this.head.xRot = headPitch * ((float)Math.PI / 180F);
 	}
 
 	@Override
