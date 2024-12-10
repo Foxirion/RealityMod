@@ -24,7 +24,7 @@ public class ModBiomeModifiers {
 
     public static final ResourceKey<BiomeModifier> ADD_TREE_PALM = registerKey("add_tree_palm");
 
-    public static final ResourceKey<BiomeModifier> ADD_DESERT_TURTLE_SPAWN = registerKey("add_desert_turtle_spawn");
+    public static final ResourceKey<BiomeModifier> MOB_SPAWN_DESERT = registerKey("mob_spawn_desert");
 
     public static void bootstrap (BootstapContext<BiomeModifier> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
@@ -45,10 +45,11 @@ public class ModBiomeModifiers {
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.PALM_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
 
-        context.register(ADD_DESERT_TURTLE_SPAWN, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
+        context.register(MOB_SPAWN_DESERT, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 HolderSet.direct(biomes.getOrThrow(Biomes.DESERT)),
                 List.of(
-                        new MobSpawnSettings.SpawnerData(ModEntities.DESERT_TURTLE.get(), 3, 1, 1)
+                        new MobSpawnSettings.SpawnerData(ModEntities.DESERT_TURTLE.get(), 3, 1, 1),
+                        new MobSpawnSettings.SpawnerData(ModEntities.FENNEC.get(), 1, 1, 2)
                 )
         ));
     }
