@@ -5,6 +5,7 @@ import net.foxirion.realitymod.RealityMod;
 import net.foxirion.realitymod.block.ModBlocks;
 import net.foxirion.realitymod.entity.ModEntities;
 import net.foxirion.realitymod.entity.custom.DesertTurtle;
+import net.foxirion.realitymod.entity.custom.Fennec;
 import net.foxirion.realitymod.item.ModItems;
 import net.foxirion.realitymod.item.custom.DesertTurtleHelmet;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -36,6 +37,13 @@ public class ModEvents {
                 SpawnPlacements.Type.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 DesertTurtle::checkDesertTurtleSpawnRules,
+                SpawnPlacementRegisterEvent.Operation.AND);
+
+        event.register(
+                ModEntities.DESERT_TURTLE.get(),
+                SpawnPlacements.Type.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                Fennec::checkFennecSpawnRules, // TODO
                 SpawnPlacementRegisterEvent.Operation.AND);
     }
 
