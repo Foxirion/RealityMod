@@ -30,7 +30,7 @@ public class ModCraftingRecipes extends ModRecipeProvider {
         woodFromLogs(recipeOutput, ModBlocks.PALM_WOOD, ModBlocks.PALM_LOG);
         woodFromLogs(recipeOutput, ModBlocks.STRIPPED_PALM_WOOD, ModBlocks.STRIPPED_PALM_LOG);
         woodenBoat(recipeOutput, ModItems.PALM_BOAT, ModBlocks.PALM_PLANKS);
-        chestBoat(recipeOutput, ModItems.PALM_CHEST_BOAT, ModBlocks.PALM_PLANKS);
+        chestBoat(recipeOutput, ModItems.PALM_CHEST_BOAT, ModItems.PALM_BOAT);
         hangingSign(recipeOutput, ModItems.PALM_HANGING_SIGN, ModBlocks.STRIPPED_PALM_LOG);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.COCONUT_MILK, 2)
