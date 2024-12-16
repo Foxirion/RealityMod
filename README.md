@@ -53,14 +53,14 @@
 
 <p align="center">
     <strong>
-        ⚠️ Please note that RealityMod is currently in alpha development. As such, you may encounter bugs or incomplete features. 
+        ⚠️ Please note that RealityMod is currently in beta development. As such, you may encounter bugs or incomplete features. 
       Your feedback and suggestions are invaluable as we continue to refine and expand the mod.
     </strong>
 </p>
 
 ## 🗞️ RealityMod News
 
-Alpha Version 0.0.2b RELEASED!
+Alpha Version 0.0.3b RELEASED!
 
 ## ℹ️ About
 
