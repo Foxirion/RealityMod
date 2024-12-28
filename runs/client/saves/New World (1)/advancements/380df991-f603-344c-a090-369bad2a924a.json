@@ -1,0 +1,87 @@
+{
+  "minecraft:recipes/decorations/crafting_table": {
+    "criteria": {
+      "unlock_right_away": "2024-12-16 12:25:25 +0200"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "minecraft:forest": "2024-12-16 12:25:26 +0200"
+    },
+    "done": false
+  },
+  "minecraft:story/root": {
+    "criteria": {
+      "crafting_table": "2024-12-16 12:25:44 +0200"
+    },
+    "done": true
+  },
+  "realitymod:recipes/decorations/palm_sign": {
+    "criteria": {
+      "has_planks": "2024-12-16 12:26:08 +0200"
+    },
+    "done": true
+  },
+  "realitymod:recipes/redstone/palm_fence_gate": {
+    "criteria": {
+      "has_planks": "2024-12-16 12:26:08 +0200"
+    },
+    "done": true
+  },
+  "realitymod:recipes/redstone/palm_door": {
+    "criteria": {
+      "has_planks": "2024-12-16 12:26:08 +0200"
+    },
+    "done": true
+  },
+  "realitymod:recipes/redstone/palm_pressure_plate": {
+    "criteria": {
+      "has_planks": "2024-12-16 12:26:08 +0200"
+    },
+    "done": true
+  },
+  "realitymod:recipes/redstone/palm_trapdoor": {
+    "criteria": {
+      "has_planks": "2024-12-16 12:26:08 +0200"
+    },
+    "done": true
+  },
+  "realitymod:recipes/redstone/palm_button": {
+    "criteria": {
+      "has_planks": "2024-12-16 12:26:08 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/stick": {
+    "criteria": {
+      "has_planks": "2024-12-16 12:26:08 +0200"
+    },
+    "done": true
+  },
+  "realitymod:recipes/building_blocks/palm_slab": {
+    "criteria": {
+      "has_planks": "2024-12-16 12:26:08 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/barrel": {
+    "criteria": {
+      "has_planks": "2024-12-16 12:26:08 +0200"
+    },
+    "done": true
+  },
+  "realitymod:recipes/decorations/palm_fence": {
+    "criteria": {
+      "has_planks": "2024-12-16 12:26:08 +0200"
+    },
+    "done": true
+  },
+  "realitymod:recipes/building_blocks/palm_stairs": {
+    "criteria": {
+      "has_planks": "2024-12-16 12:26:08 +0200"
+    },
+    "done": true
+  },
+  "DataVersion": 3955
+}

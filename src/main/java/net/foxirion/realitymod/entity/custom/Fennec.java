@@ -2,10 +2,12 @@ package net.foxirion.realitymod.entity.custom;
 
 import net.foxirion.realitymod.entity.ModEntities;
 import net.foxirion.realitymod.util.ModTags;
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -19,6 +21,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LightLayer;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.gameevent.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
@@ -214,6 +220,37 @@ public class Fennec extends TamableAnimal {
 
     protected float getSoundVolume() {
         return 0.4F;
+    }
+
+
+    //Spawn rules
+
+    public static boolean checkFennecSpawnRules(EntityType<Fennec> entityType, ServerLevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+        // Check if it's a desert biome and on sand
+        if (!level.getBiome(pos).is(Biomes.DESERT) || !level.getBlockState(pos.below()).is(Blocks.SAND)) {
+            return false;
+        }
+
+        // Check if it's nighttime (similar to sea turtles)
+        long timeOfDay = level.getLevelData().getDayTime() % 24000;
+        if (timeOfDay < 13000 || timeOfDay > 23000) {
+            return false;
+        }
+
+        // Remove the water check to increase spawn chances
+
+        // Check light level (desert turtles prefer lighter areas)
+        if (level.getBrightness(LightLayer.SKY, pos) > 8) {
+            return true;
+        }
+
+        // Increase spawn chance
+        if (random.nextFloat() > 0.01f) {  // 0.1% chance of spawning (decreased from 30%)
+            return false;
+        }
+
+        // Check other animal spawn rules
+        return Fennec.checkAnimalSpawnRules(entityType, level, spawnType, pos, random);
     }
 
 

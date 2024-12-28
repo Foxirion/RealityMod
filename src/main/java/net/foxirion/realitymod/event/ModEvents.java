@@ -29,6 +29,19 @@ import java.util.List;
 @Mod.EventBusSubscriber(modid = RealityMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ModEvents {
 
+    //Desert Turtle Helmet effect
+    public static final int COOLDOWN_TICKS = 1400; // 30 seconds
+
+    @SubscribeEvent
+    public static void onPlayerDamaged(LivingDamageEvent event) {
+        if (!event.getEntity().level().isClientSide() && event.getEntity() instanceof Player player) {
+            ItemStack helmet = player.getItemBySlot(EquipmentSlot.HEAD);
+            if (helmet.getItem() instanceof DesertTurtleHelmet) {
+                DesertTurtleHelmet.setCooldown(helmet, COOLDOWN_TICKS);
+            }
+        }
+    }
+
     //Mob Spawning
     @SubscribeEvent
     public static void onSpawnPlacementRegister(SpawnPlacementRegisterEvent event) {
@@ -40,15 +53,14 @@ public class ModEvents {
                 SpawnPlacementRegisterEvent.Operation.AND);
 
         event.register(
-                ModEntities.DESERT_TURTLE.get(),
+                ModEntities.FENNEC.get(),
                 SpawnPlacements.Type.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                Fennec::checkFennecSpawnRules, // TODO
+                Fennec::checkFennecSpawnRules,
                 SpawnPlacementRegisterEvent.Operation.AND);
     }
 
-
-    //Custom Trades Villagers & Wandering Trader
+    //Trades Custom for Villagers & Wandering Trader
     //Villagers
     @SubscribeEvent
     public static void addCustomTrades(VillagerTradesEvent event) {
@@ -75,18 +87,5 @@ public class ModEvents {
                 new ItemStack(ModBlocks.PALM_SAPLING.get().asItem(), 1),
                 8, 12, 0.2f));
 
-    }
-
-    //Desert Turtle Helmet effect
-    public static final int COOLDOWN_TICKS = 1400; // 30 seconds
-
-    @SubscribeEvent
-    public static void onPlayerDamaged(LivingDamageEvent event) {
-        if (!event.getEntity().level().isClientSide() && event.getEntity() instanceof Player player) {
-            ItemStack helmet = player.getItemBySlot(EquipmentSlot.HEAD);
-            if (helmet.getItem() instanceof DesertTurtleHelmet) {
-                DesertTurtleHelmet.setCooldown(helmet, COOLDOWN_TICKS);
-            }
-        }
     }
 }
