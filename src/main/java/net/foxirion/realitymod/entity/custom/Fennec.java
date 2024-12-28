@@ -231,14 +231,6 @@ public class Fennec extends TamableAnimal {
             return false;
         }
 
-        // Check if it's nighttime (similar to sea turtles)
-        long timeOfDay = level.getLevelData().getDayTime() % 24000;
-        if (timeOfDay < 13000 || timeOfDay > 23000) {
-            return false;
-        }
-
-        // Remove the water check to increase spawn chances
-
         // Check light level (desert turtles prefer lighter areas)
         if (level.getBrightness(LightLayer.SKY, pos) > 8) {
             return true;
