@@ -29,6 +29,7 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Rabbit;
 import net.minecraft.world.entity.animal.Turtle;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -51,8 +52,8 @@ public class DesertTurtleEntity extends Animal {
             .scale(0.3F);
     public int layEggCounter;
 
-    public DesertTurtleEntity(EntityType<? extends Animal> pEntityType, Level pLevel) {
-        super(pEntityType, pLevel);
+    public DesertTurtleEntity(EntityType<? extends Animal> pEntityType, Level level) {
+        super(pEntityType, level);
     }
 
     public final AnimationState idleAnimationState = new AnimationState();
@@ -84,7 +85,7 @@ public class DesertTurtleEntity extends Animal {
         } else {
             f = 0;
         }
-        this.walkAnimation.update(f, 0.2F);
+        this.walkAnimation.update(f, 0.2F, this.isBaby() ? 3.0F : 1.0F);
     }
 
     //Attributes
@@ -174,8 +175,8 @@ public class DesertTurtleEntity extends Animal {
     }
 
     @javax.annotation.Nullable
-    public AgeableMob getBreedOffspring(ServerLevel pLevel, AgeableMob pOtherParent) {
-        return ModEntities.DESERT_TURTLE.get().create(pLevel);
+    public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob pOtherParent) {
+        return ModEntities.DESERT_TURTLE.get().create(level, EntitySpawnReason.BREEDING);
     }
 
     @Override
@@ -201,11 +202,11 @@ public class DesertTurtleEntity extends Animal {
         int j1 = pCompound.getInt("TravelPosZ");
     }
 
-    public float getWalkTargetValue(BlockPos pPos, LevelReader pLevel) {
-        if (pLevel.getFluidState(pPos).is(FluidTags.WATER)) {
+    public float getWalkTargetValue(BlockPos pPos, LevelReader level) {
+        if (level.getFluidState(pPos).is(FluidTags.WATER)) {
             return 10.0F;
         } else {
-            return DesertTurtleEggBlock.onSand(pLevel, pPos) ? 10.0F : pLevel.getPathfindingCostFromLightLevels(pPos);
+            return DesertTurtleEggBlock.onSand(level, pPos) ? 10.0F : level.getPathfindingCostFromLightLevels(pPos);
         }
     }
 
@@ -239,23 +240,23 @@ public class DesertTurtleEntity extends Animal {
         }
     }
 
-    //Drop Dead Bush at Lightning hit (easter egg)
+    //Drop Dead Bush at Lightning hit (Easter egg)
     @Override
-    public void thunderHit(ServerLevel pLevel, LightningBolt pLightning) {
-        super.thunderHit(pLevel, pLightning);
-        this.spawnAtLocation(Items.DEAD_BUSH);
+    public void thunderHit(ServerLevel level, LightningBolt pLightning) {
+        super.thunderHit(level, pLightning);
+        this.spawnAtLocation(level, Items.DEAD_BUSH, 1);
     }
 
     //Drops when killed
     @Override
-    public void die(DamageSource pCause) {
+    public void die(DamageSource pCause, ServerLevel level) {
         super.die(pCause);
         if (!this.level().isClientSide()) {
             // Only drop items if the turtle is an adult
             if (!this.isBaby()) {
                 int cactusCount = this.random.nextInt(3);
                 for (int i = 0; i < cactusCount; i++) {
-                    this.spawnAtLocation(Items.CACTUS);
+                    this.spawnAtLocation(level, Items.CACTUS, 1);
                 }
             }
 
@@ -281,12 +282,12 @@ public class DesertTurtleEntity extends Animal {
     }
 
     //Babies growing drops
+    @Override
     protected void ageBoundaryReached() {
         super.ageBoundaryReached();
-        if (!this.isBaby() && this.level().getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)) {
-            this.spawnAtLocation(ModItems.DESERT_TURTLE_SCUTE.get(), 1);
+        if (!this.isBaby() && this.level() instanceof ServerLevel serverlevel && serverlevel.getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)) {
+            this.spawnAtLocation(serverlevel, ModItems.DESERT_TURTLE_SCUTE, 1);
         }
-
     }
 
     //Unleashable
@@ -296,18 +297,19 @@ public class DesertTurtleEntity extends Animal {
     }
 
         //Spawning
-    @Nullable
+    @javax.annotation.Nullable
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
-        return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
+    public SpawnGroupData finalizeSpawn(
+            ServerLevelAccessor levelAccessor, DifficultyInstance difficultyInstance, EntitySpawnReason entitySpawnReason, @javax.annotation.Nullable SpawnGroupData spawnGroupData
+    ) {
+        return super.finalizeSpawn(levelAccessor, difficultyInstance, entitySpawnReason, spawnGroupData);
     }
 
     public static boolean checkDesertTurtleSpawnRules(
-            EntityType<DesertTurtleEntity> desertTurtle, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random
+            EntityType<DesertTurtleEntity> desertTurtle, LevelAccessor level, EntitySpawnReason entitySpawnReason, BlockPos pos, RandomSource random
     ) {
-        return level.getBlockState(pos.below()).is(BlockTags.RABBITS_SPAWNABLE_ON) && isBrightEnoughToSpawn(level, pos);
+        return level.getBlockState(pos.below()).is(BlockTags.RABBITS_SPAWNABLE_ON) && DesertTurtleEggBlock.onSand(level, pos) && isBrightEnoughToSpawn(level, pos);
     }
-
 
     // Breeding
     @Override
