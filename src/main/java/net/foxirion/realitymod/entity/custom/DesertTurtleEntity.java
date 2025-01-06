@@ -248,23 +248,23 @@ public class DesertTurtleEntity extends Animal {
     }
 
     //Drops when killed
-    @Override
-    public void die(DamageSource pCause, ServerLevel level) {
-        super.die(pCause);
-        if (!this.level().isClientSide()) {
-            // Only drop items if the turtle is an adult
-            if (!this.isBaby()) {
-                int cactusCount = this.random.nextInt(3);
-                for (int i = 0; i < cactusCount; i++) {
-                    this.spawnAtLocation(level, Items.CACTUS, 1);
-                }
-            }
-
-            // Drop XP
-            int xpAmount = 1 + this.random.nextInt(3);
-            this.spawnExperience(xpAmount);
-        }
-    }
+//    @Override
+//    public void die(DamageSource pCause, ServerLevel level) {
+//        super.die(pCause);
+//        if (!this.level().isClientSide()) {
+//            // Only drop items if the turtle is an adult
+//            if (!this.isBaby()) {
+//                int cactusCount = this.random.nextInt(3);
+//                for (int i = 0; i < cactusCount; i++) {
+//                    this.spawnAtLocation(level, Items.CACTUS, 1);
+//                }
+//            }
+//
+//            // Drop XP
+//            int xpAmount = 1 + this.random.nextInt(3);
+//            this.spawnExperience(xpAmount);
+//        }
+//    }
 
     // Helper method to spawn experience orbs
     private void spawnExperience(int amount) {
