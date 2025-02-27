@@ -231,13 +231,13 @@ public class Fennec extends TamableAnimal {
             return false;
         }
 
-        // Check light level (desert turtles prefer lighter areas)
+        // Check light level (fennecs prefer lighter areas)
         if (level.getBrightness(LightLayer.SKY, pos) > 8) {
             return true;
         }
 
-        // Increase spawn chance
-        if (random.nextFloat() > 0.01f) {  // 0.1% chance of spawning (decreased from 30%)
+        // Decrease spawn chance
+        if (random.nextFloat() > 0.01f) {  // 0.1% chance of spawning
             return false;
         }
 
